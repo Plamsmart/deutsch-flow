@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Fraunces, Work_Sans } from "next/font/google";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import LanguageSwitcher from "./LanguageSwitcher";
 import styles from "./Hero.module.css";
 
 const fraunces = Fraunces({
@@ -17,6 +18,7 @@ const workSans = Work_Sans({
 });
 
 export default async function Hero() {
+  const locale = await getLocale();
   const tNav = await getTranslations("nav");
   const tHero = await getTranslations("hero");
 
@@ -38,40 +40,44 @@ export default async function Hero() {
             </svg>
           </span>
         </div>
-        <ul className="hidden gap-10 md:flex">
-          <li>
-            <a
-              href="#sobre-mi"
-              className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
-            >
-              {tNav("sobreMi")}
-            </a>
-          </li>
-          <li>
-            <a
-              href="#clases"
-              className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
-            >
-              {tNav("clases")}
-            </a>
-          </li>
-          <li>
-            <a
-              href="#testimonios"
-              className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
-            >
-              {tNav("testimonios")}
-            </a>
-          </li>
-          <li>
-            <a
-              href="#contacto"
-              className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
-            >
-              {tNav("contacto")}
-            </a>
-          </li>
-        </ul>
+        <div className="flex items-center gap-6 md:gap-10">
+          <ul className="hidden gap-10 md:flex">
+            <li>
+              <a
+                href="#sobre-mi"
+                className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
+              >
+                {tNav("sobreMi")}
+              </a>
+            </li>
+            <li>
+              <a
+                href="#clases"
+                className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
+              >
+                {tNav("clases")}
+              </a>
+            </li>
+            <li>
+              <a
+                href="#testimonios"
+                className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
+              >
+                {tNav("testimonios")}
+              </a>
+            </li>
+            <li>
+              <a
+                href="#contacto"
+                className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
+              >
+                {tNav("contacto")}
+              </a>
+            </li>
+          </ul>
+
+          <LanguageSwitcher currentLocale={locale} />
+        </div>
       </nav>
 
       <div className="relative z-[2] flex flex-1 flex-col items-center justify-center px-8 pt-4 pb-12 text-center">
