@@ -1,1 +1,18 @@
-{}
+{
+  "nav": {
+    "sobreMi": "About",
+    "clases": "Classes",
+    "testimonios": "Testimonials",
+    "contacto": "Contact"
+  },
+  "hero": {
+    "eyebrow": "Online German classes · 1-on-1",
+    "titleStart": "Learn German with",
+    "titleEmphasis": "flow",
+    "titleEnd": "from wherever you are.",
+    "subtitle": "Personalized classes to speak with confidence from week one. No endless vocabulary lists — just real conversation.",
+    "ctaPrimary": "Book your class",
+    "ctaSecondary": "See the method",
+    "scrollHint": "SCROLL"
+  }
+}

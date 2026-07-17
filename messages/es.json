@@ -1,1 +1,18 @@
-{}
+{
+  "nav": {
+    "sobreMi": "Sobre mí",
+    "clases": "Clases",
+    "testimonios": "Testimonios",
+    "contacto": "Contacto"
+  },
+  "hero": {
+    "eyebrow": "Clases de alemán online · 1 a 1",
+    "titleStart": "Aprende alemán con",
+    "titleEmphasis": "flow",
+    "titleEnd": "desde donde estés.",
+    "subtitle": "Clases personalizadas para hablar con confianza desde la primera semana. Sin memorizar listas interminables — con conversación real.",
+    "ctaPrimary": "Reserva tu clase",
+    "ctaSecondary": "Ver metodología",
+    "scrollHint": "DESLIZA"
+  }
+}

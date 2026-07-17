@@ -1,1 +1,18 @@
-{}
+{
+  "nav": {
+    "sobreMi": "À propos",
+    "clases": "Cours",
+    "testimonios": "Témoignages",
+    "contacto": "Contact"
+  },
+  "hero": {
+    "eyebrow": "Cours d'allemand en ligne · Individuels",
+    "titleStart": "Apprenez l'allemand avec",
+    "titleEmphasis": "flow",
+    "titleEnd": "où que vous soyez.",
+    "subtitle": "Des cours personnalisés pour parler avec confiance dès la première semaine. Sans listes de vocabulaire interminables — de la vraie conversation.",
+    "ctaPrimary": "Réservez votre cours",
+    "ctaSecondary": "Voir la méthode",
+    "scrollHint": "DÉFILER"
+  }
+}

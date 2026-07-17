@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Fraunces, Work_Sans } from "next/font/google";
+import { getTranslations } from "next-intl/server";
 import styles from "./Hero.module.css";
 
 const fraunces = Fraunces({
@@ -15,7 +16,10 @@ const workSans = Work_Sans({
   variable: "--font-work-sans",
 });
 
-export default function Hero() {
+export default async function Hero() {
+  const tNav = await getTranslations("nav");
+  const tHero = await getTranslations("hero");
+
   return (
     <section
       className={`${fraunces.variable} ${workSans.variable} relative flex min-h-screen flex-col overflow-hidden bg-[#0a0a0a] font-[family-name:var(--font-work-sans)]`}
@@ -40,7 +44,7 @@ export default function Hero() {
               href="#sobre-mi"
               className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
             >
-              Sobre mí
+              {tNav("sobreMi")}
             </a>
           </li>
           <li>
@@ -48,7 +52,7 @@ export default function Hero() {
               href="#clases"
               className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
             >
-              Clases
+              {tNav("clases")}
             </a>
           </li>
           <li>
@@ -56,7 +60,7 @@ export default function Hero() {
               href="#testimonios"
               className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
             >
-              Testimonios
+              {tNav("testimonios")}
             </a>
           </li>
           <li>
@@ -64,7 +68,7 @@ export default function Hero() {
               href="#contacto"
               className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
             >
-              Contacto
+              {tNav("contacto")}
             </a>
           </li>
         </ul>
@@ -72,13 +76,16 @@ export default function Hero() {
 
       <div className="relative z-[2] flex flex-1 flex-col items-center justify-center px-8 pt-4 pb-12 text-center">
         <span className="mb-[1.2rem] text-[0.8rem] font-semibold tracking-[0.18em] text-[#00b7b5] uppercase">
-          Clases de alemán online · 1 a 1
+          {tHero("eyebrow")}
         </span>
         <h1 className="mb-[2.4rem] max-w-[680px] font-[family-name:var(--font-fraunces)] text-[2rem] leading-[1.1] font-normal text-[#f4f4f4] md:text-[clamp(2.2rem,4.6vw,3.4rem)]">
-          Aprende alemán con{" "}
-          <em className="font-light text-[#00b7b5] italic">fluidez</em>,
+          {tHero("titleStart")}{" "}
+          <em className="font-light text-[#00b7b5] italic">
+            {tHero("titleEmphasis")}
+          </em>
+          ,
           <br />
-          desde donde estés.
+          {tHero("titleEnd")}
         </h1>
 
         <div className="relative mb-[2.4rem] w-[min(220px,55vw)] md:w-[min(260px,48vw)]">
@@ -115,8 +122,7 @@ export default function Hero() {
         </div>
 
         <p className="mb-[2.3rem] max-w-[460px] text-[1.08rem] leading-[1.6] font-light text-[#f4f4f4] opacity-70">
-          Clases personalizadas para hablar con confianza desde la primera
-          semana. Sin memorizar listas interminables — con conversación real.
+          {tHero("subtitle")}
         </p>
 
         <div className="flex items-center gap-[1.8rem]">
@@ -124,20 +130,20 @@ export default function Hero() {
             href="#contacto"
             className="inline-block rounded-sm bg-[#00b7b5] px-[2.3rem] py-4 text-base font-medium text-[#04282d] shadow-[0_4px_20px_rgba(0,183,181,0.3)] transition-[transform,box-shadow,background] duration-[250ms] ease-out hover:-translate-y-0.5 hover:bg-[#33cfcd] hover:shadow-[0_8px_26px_rgba(0,183,181,0.4)] motion-reduce:transition-none"
           >
-            Reserva tu clase
+            {tHero("ctaPrimary")}
           </a>
           <a
             href="#clases"
             className="border-b border-[rgba(244,244,244,0.35)] pb-0.5 text-[0.95rem] font-normal text-[#f4f4f4] transition-colors duration-200 hover:border-[#f4f4f4] motion-reduce:transition-none"
           >
-            Ver metodología
+            {tHero("ctaSecondary")}
           </a>
         </div>
       </div>
 
       <div className="relative z-[2] flex items-center justify-center gap-[0.8rem] pb-8 text-[0.78rem] tracking-[0.1em] text-[#00b7b5] opacity-70">
         <span className="h-px w-8 bg-[#00b7b5]" />
-        <span>DESLIZA</span>
+        <span>{tHero("scrollHint")}</span>
       </div>
     </section>
   );

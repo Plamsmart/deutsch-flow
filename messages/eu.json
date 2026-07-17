@@ -1,1 +1,18 @@
-{}
+{
+  "nav": {
+    "sobreMi": "Nitaz",
+    "clases": "Eskolak",
+    "testimonios": "Iritziak",
+    "contacto": "Kontaktua"
+  },
+  "hero": {
+    "eyebrow": "Alemaniera eskola onlinean · Banaka",
+    "titleStart": "Ikasi alemaniera",
+    "titleEmphasis": "flow",
+    "titleEnd": "zauden lekutik.",
+    "subtitle": "Lehen astetik konfiantzaz hitz egiteko eskola pertsonalizatuak. Hiztegi zerrenda amaigabeak alde batera utzi — benetako elkarrizketa.",
+    "ctaPrimary": "Erreserbatu zure eskola",
+    "ctaSecondary": "Metodoa ikusi",
+    "scrollHint": "MUGITU"
+  }
+}

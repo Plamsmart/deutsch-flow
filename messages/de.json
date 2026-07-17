@@ -1,1 +1,18 @@
-{}
+{
+  "nav": {
+    "sobreMi": "Über mich",
+    "clases": "Kurse",
+    "testimonios": "Erfahrungen",
+    "contacto": "Kontakt"
+  },
+  "hero": {
+    "eyebrow": "Online-Deutschkurse · Einzelunterricht",
+    "titleStart": "Lerne Deutsch mit",
+    "titleEmphasis": "flow",
+    "titleEnd": "von überall aus.",
+    "subtitle": "Individueller Unterricht, um ab der ersten Woche selbstsicher zu sprechen. Keine endlosen Vokabellisten — echte Konversation.",
+    "ctaPrimary": "Kurs buchen",
+    "ctaSecondary": "Methode ansehen",
+    "scrollHint": "SCROLLEN"
+  }
+}
