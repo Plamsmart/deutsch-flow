@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Fraunces, Work_Sans } from "next/font/google";
-import { getLocale, getTranslations } from "next-intl/server";
-import LanguageSwitcher from "./LanguageSwitcher";
+import { getTranslations } from "next-intl/server";
 import styles from "./Hero.module.css";
 
 const fraunces = Fraunces({
@@ -18,69 +17,13 @@ const workSans = Work_Sans({
 });
 
 export default async function Hero() {
-  const locale = await getLocale();
-  const tNav = await getTranslations("nav");
   const tHero = await getTranslations("hero");
 
   return (
     <section
       className={`${fraunces.variable} ${workSans.variable} relative flex min-h-screen flex-col overflow-hidden bg-[#0a0a0a] font-[family-name:var(--font-work-sans)]`}
     >
-      <nav className="relative z-[3] flex items-center justify-between px-6 py-6 md:px-16 md:py-8">
-        <div className="font-[family-name:var(--font-fraunces)] text-2xl font-medium tracking-[0.02em] text-[#f4f4f4]">
-          Deutsch{" "}
-          <span className="relative">
-            Flow
-            <svg
-              className={`absolute -bottom-1.5 left-0 h-2.5 w-full overflow-visible ${styles.flowWord}`}
-              viewBox="0 0 100 10"
-              preserveAspectRatio="none"
-            >
-              <path d="M2,6 Q25,2 50,6 T98,5" />
-            </svg>
-          </span>
-        </div>
-        <div className="flex items-center gap-6 md:gap-10">
-          <ul className="hidden gap-10 md:flex">
-            <li>
-              <a
-                href="#sobre-mi"
-                className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
-              >
-                {tNav("sobreMi")}
-              </a>
-            </li>
-            <li>
-              <a
-                href="#clases"
-                className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
-              >
-                {tNav("clases")}
-              </a>
-            </li>
-            <li>
-              <a
-                href="#testimonios"
-                className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
-              >
-                {tNav("testimonios")}
-              </a>
-            </li>
-            <li>
-              <a
-                href="#contacto"
-                className="text-[0.95rem] font-normal tracking-[0.03em] text-[#f4f4f4] opacity-85 transition-opacity duration-200 hover:opacity-100"
-              >
-                {tNav("contacto")}
-              </a>
-            </li>
-          </ul>
-
-          <LanguageSwitcher currentLocale={locale} />
-        </div>
-      </nav>
-
-      <div className="relative z-[2] flex flex-1 flex-col items-center justify-center px-8 pt-4 pb-12 text-center">
+      <div className="relative z-[2] flex flex-1 flex-col items-center justify-center px-8 pt-24 pb-12 text-center md:pt-28">
         <span className="mb-[1.2rem] text-[0.8rem] font-semibold tracking-[0.18em] text-[#00b7b5] uppercase">
           {tHero("eyebrow")}
         </span>
@@ -94,7 +37,7 @@ export default async function Hero() {
           {tHero("titleEnd")}
         </h1>
 
-        <div className="relative mb-[2.4rem] w-[min(220px,55vw)] md:w-[min(260px,48vw)]">
+        <div className="relative mb-[2.4rem] w-[min(440px,55vw)] md:w-[min(520px,48vw)]">
           <div className="relative aspect-square w-full">
             <div className={styles.ring} />
             <Image
@@ -108,21 +51,21 @@ export default async function Hero() {
           </div>
 
           <div
-            className={`absolute -top-[60%] -right-[68%] z-[4] h-full w-full cursor-default ${styles.cluster}`}
+            className={`absolute -top-[40%] -right-[45%] z-[4] h-[70%] w-[70%] cursor-default ${styles.cluster}`}
           >
             <Image
               src="/images/stars.png"
               alt="Estrellas decorativas"
-              width={506}
-              height={493}
+              width={175}
+              height={160}
               className={`absolute inset-0 h-full w-full object-contain opacity-90 transition-opacity duration-300 ${styles.starsImg}`}
             />
             <Image
               src="/images/hummingbird.png"
               alt="Colibrí decorativo"
-              width={500}
-              height={500}
-              className={`absolute top-[38%] left-[34%] w-[24%] origin-center drop-shadow-[0_6px_10px_rgba(0,0,0,0.4)] transition-[filter] duration-300 ${styles.hummingbirdImg}`}
+              width={250}
+              height={250}
+              className={`absolute top-[42%] left-[40%] w-[18%] origin-center drop-shadow-[0_6px_10px_rgba(0,0,0,0.4)] transition-[filter] duration-300 ${styles.hummingbirdImg}`}
             />
           </div>
         </div>

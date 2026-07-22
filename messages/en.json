@@ -14,5 +14,122 @@
     "ctaPrimary": "Book your class",
     "ctaSecondary": "See the method",
     "scrollHint": "SCROLL"
+  },
+  "about": {
+    "eyebrow": "About me",
+    "intro": "I'm Gesa, a native German teacher with a degree in pedagogy from the University of Hamburg.",
+    "p1": "Over the years I've taught German and Spanish in very different settings — from the kindergarten at Colegio Alemán in Guadalajara to vocational schools in Hamburg — and that mix of experience taught me something key: there's no single way to learn a language. Every student needs their own pace and their own method.",
+    "p2": "Since 2022 I've been teaching independently, designing every course around the student — no endless vocabulary lists, just real conversation from day one. I'll guide you step by step along the way.",
+    "p3": "I live between two languages and two cultures, and that's exactly what I want to share with you: not just grammar, but the fluency to hold your own with confidence.",
+    "closing": "Outside the classroom I'm a mom, and when I'm not teaching you'll probably find me doing yoga, near the sea, or walking a dog — the one you see in the homepage photo is part of the team too.",
+    "credentials": {
+      "nativeValue": "Native",
+      "nativeLabel": "German",
+      "masterValue": "Master's",
+      "masterLabel": "Pedagogy · Uni. Hamburg",
+      "expValue": "DE · MX · ES",
+      "expLabel": "International experience"
+    },
+    "faroAlt": "Pellworm lighthouse, Gesa's home island"
+  },
+  "clases": {
+    "eyebrow": "Classes",
+    "heading": "Choose the pace that fits you",
+    "intro": "One-on-one or group classes, for every level. No commitment — pick whichever package matches how you like to learn.",
+    "individualLabel": "Individual classes",
+    "grupalLabel": "Group classes",
+    "badge": "Recommended",
+    "perPackage": "/package",
+    "perSession": "/session",
+    "individual": {
+      "suelta": {
+        "title": "Single Class",
+        "f1": "1 hour",
+        "f2": "One-on-one class"
+      },
+      "p4": {
+        "title": "4-hour Package",
+        "f1": "4 hours total",
+        "f2": "One-on-one class",
+        "perHour": "€24 per hour"
+      },
+      "p8": {
+        "title": "8-hour Package",
+        "f1": "8 hours total",
+        "f2": "One-on-one class",
+        "perHour": "€23.75 per hour"
+      },
+      "p12": {
+        "title": "12-hour Package",
+        "f1": "12 hours total",
+        "f2": "One-on-one class",
+        "perHour": "€23.50 per hour — best value"
+      }
+    },
+    "grupal": {
+      "pareja": {
+        "title": "Couple's Package",
+        "f1": "8 hours total",
+        "f2": "Class for 2 people",
+        "perHour": "€8 per person/hour"
+      },
+      "reducido": {
+        "title": "Small Group",
+        "f1": "8 hours total",
+        "f2": "Class of 3 to 4 people",
+        "perHour": "from €3.25 per person/hour"
+      },
+      "conversacion": {
+        "title": "Conversation Group",
+        "f1": "1 hour",
+        "f2": "Once a week",
+        "f3": "Different topics each session"
+      }
+    }
+  },
+  "testimonios": {
+    "eyebrow": "Testimonials",
+    "heading": "What my students say",
+    "prevLabel": "Previous",
+    "nextLabel": "Next",
+    "items": [
+      {
+        "quote": "Example text — this is where a real student's experience will go, describing how their classes went and what they learned.",
+        "name": "Example Student",
+        "detail": "Level A2 · One-on-one classes",
+        "initials": "ES"
+      },
+      {
+        "quote": "Another example — this spot is ready for a real testimonial once you have one available.",
+        "name": "Example Student",
+        "detail": "Level B1 · Conversation group",
+        "initials": "ES"
+      },
+      {
+        "quote": "Third example — the layout already supports 3 cards, and it's easy to adjust if there are more or fewer real testimonials.",
+        "name": "Example Student",
+        "detail": "Level B2 · Couple's package",
+        "initials": "ES"
+      }
+    ]
+  },
+  "contacto": {
+    "eyebrow": "Contact",
+    "heading": "Let's talk",
+    "intro": "Have questions about the classes or want to book your first session? Write to me and I'll get back to you as soon as possible.",
+    "infoEmailLabel": "Email",
+    "infoPhoneLabel": "Phone",
+    "infoLocationLabel": "Location",
+    "formNameLabel": "Name",
+    "formEmailLabel": "Email",
+    "formMessageLabel": "Message",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@email.com",
+    "messagePlaceholder": "Tell me about your level or what you'd like to achieve...",
+    "submitButton": "Send message",
+    "formNote": "I'll get back to you within 24-48 hours.",
+    "sendingText": "Sending...",
+    "successText": "Message sent! I'll get back to you soon.",
+    "errorText": "Something went wrong. Please try again or email me directly."
   }
 }

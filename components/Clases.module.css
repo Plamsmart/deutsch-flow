@@ -1,0 +1,29 @@
+.badge {
+  position: absolute;
+  top: -0.7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #00b7b5;
+  color: #ffffff;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.feature::before {
+  content: "✓";
+  color: #00b7b5;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.groupLabel::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(0, 84, 97, 0.15);
+}

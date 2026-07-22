@@ -14,5 +14,122 @@
     "ctaPrimary": "Réservez votre cours",
     "ctaSecondary": "Voir la méthode",
     "scrollHint": "DÉFILER"
+  },
+  "about": {
+    "eyebrow": "À propos de moi",
+    "intro": "Je suis Gesa, professeure d'allemand native, titulaire d'un master en pédagogie de l'Université de Hambourg.",
+    "p1": "Au fil des années, j'ai enseigné l'allemand et l'espagnol dans des contextes très différents — de la maternelle du Colegio Alemán à Guadalajara aux écoles professionnelles de Hambourg — et ce mélange d'expériences m'a appris une chose essentielle : il n'y a pas une seule façon d'apprendre une langue. Chaque élève a besoin de son propre rythme et de sa propre méthode.",
+    "p2": "Depuis 2022, j'enseigne en indépendante, en concevant chaque cours sur mesure — pas de listes de vocabulaire interminables, mais de la vraie conversation dès le premier jour. Je vous accompagne pas à pas.",
+    "p3": "Je vis entre deux langues et deux cultures, et c'est exactement ce que je veux partager avec vous : pas seulement la grammaire, mais l'aisance de vous exprimer avec confiance.",
+    "closing": "En dehors des cours, je suis maman, et quand je n'enseigne pas, vous me trouverez probablement en train de faire du yoga, près de la mer, ou en balade avec un chien — celui de la photo d'accueil fait aussi partie de l'équipe.",
+    "credentials": {
+      "nativeValue": "Langue maternelle",
+      "nativeLabel": "Allemand",
+      "masterValue": "Master",
+      "masterLabel": "Pédagogie · Uni. Hambourg",
+      "expValue": "DE · MX · ES",
+      "expLabel": "Expérience internationale"
+    },
+    "faroAlt": "Phare de Pellworm, île natale de Gesa"
+  },
+  "clases": {
+    "eyebrow": "Cours",
+    "heading": "Choisissez le rythme qui vous convient",
+    "intro": "Cours individuels ou en groupe, pour tous les niveaux. Sans engagement — choisissez la formule qui correspond à votre façon d'apprendre.",
+    "individualLabel": "Cours individuels",
+    "grupalLabel": "Cours en groupe",
+    "badge": "Recommandé",
+    "perPackage": "/forfait",
+    "perSession": "/séance",
+    "individual": {
+      "suelta": {
+        "title": "Cours à l'unité",
+        "f1": "Durée d'1 heure",
+        "f2": "Cours individuel"
+      },
+      "p4": {
+        "title": "Forfait 4 heures",
+        "f1": "4 heures au total",
+        "f2": "Cours individuel",
+        "perHour": "24 € de l'heure"
+      },
+      "p8": {
+        "title": "Forfait 8 heures",
+        "f1": "8 heures au total",
+        "f2": "Cours individuel",
+        "perHour": "23,75 € de l'heure"
+      },
+      "p12": {
+        "title": "Forfait 12 heures",
+        "f1": "12 heures au total",
+        "f2": "Cours individuel",
+        "perHour": "23,50 € de l'heure — meilleur prix"
+      }
+    },
+    "grupal": {
+      "pareja": {
+        "title": "Forfait Duo",
+        "f1": "8 heures au total",
+        "f2": "Cours pour 2 personnes",
+        "perHour": "8 € par personne/heure"
+      },
+      "reducido": {
+        "title": "Petit Groupe",
+        "f1": "8 heures au total",
+        "f2": "Cours de 3 à 4 personnes",
+        "perHour": "à partir de 3,25 € par personne/heure"
+      },
+      "conversacion": {
+        "title": "Groupe de Conversation",
+        "f1": "Durée d'1 heure",
+        "f2": "Une fois par semaine",
+        "f3": "Thèmes variés à chaque séance"
+      }
+    }
+  },
+  "testimonios": {
+    "eyebrow": "Témoignages",
+    "heading": "Ce que disent mes élèves",
+    "prevLabel": "Précédent",
+    "nextLabel": "Suivant",
+    "items": [
+      {
+        "quote": "Texte d'exemple — ici figurera l'expérience réelle d'un élève, racontant comment se sont passés ses cours et ce qu'il a appris.",
+        "name": "Élève Exemple",
+        "detail": "Niveau A2 · Cours individuels",
+        "initials": "ÉE"
+      },
+      {
+        "quote": "Un autre exemple — cet espace est prêt à recevoir un vrai témoignage dès qu'il sera disponible.",
+        "name": "Élève Exemple",
+        "detail": "Niveau B1 · Groupe de conversation",
+        "initials": "ÉE"
+      },
+      {
+        "quote": "Troisième exemple — la mise en page prend déjà en charge 3 cartes, facilement ajustable selon le nombre réel de témoignages.",
+        "name": "Élève Exemple",
+        "detail": "Niveau B2 · Forfait Duo",
+        "initials": "ÉE"
+      }
+    ]
+  },
+  "contacto": {
+    "eyebrow": "Contact",
+    "heading": "Discutons-en",
+    "intro": "Des questions sur les cours ou envie de réserver votre première séance ? Écrivez-moi, je vous répondrai dès que possible.",
+    "infoEmailLabel": "Email",
+    "infoPhoneLabel": "Téléphone",
+    "infoLocationLabel": "Localisation",
+    "formNameLabel": "Nom",
+    "formEmailLabel": "Email",
+    "formMessageLabel": "Message",
+    "namePlaceholder": "Votre nom",
+    "emailPlaceholder": "vous@email.com",
+    "messagePlaceholder": "Parlez-moi de votre niveau ou de ce que vous aimeriez accomplir...",
+    "submitButton": "Envoyer le message",
+    "formNote": "Je vous répondrai sous 24 à 48 heures.",
+    "sendingText": "Envoi en cours...",
+    "successText": "Message envoyé ! Je vous répondrai bientôt.",
+    "errorText": "Une erreur s'est produite. Réessayez ou écrivez-moi directement par email."
   }
 }

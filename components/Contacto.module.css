@@ -1,0 +1,27 @@
+.formGlass {
+  background: rgba(244, 244, 244, 0.05);
+  border: 1px solid rgba(244, 244, 244, 0.12);
+}
+
+.field {
+  width: 100%;
+  background: rgba(244, 244, 244, 0.08);
+  border: 1px solid rgba(244, 244, 244, 0.18);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  color: #f4f4f4;
+  font-size: 0.95rem;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.field::placeholder {
+  color: rgba(244, 244, 244, 0.4);
+}
+
+.field:focus {
+  border-color: #00b7b5;
+  background: rgba(244, 244, 244, 0.12);
+}

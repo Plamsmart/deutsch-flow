@@ -14,5 +14,122 @@
     "ctaPrimary": "Erreserbatu zure eskola",
     "ctaSecondary": "Metodoa ikusi",
     "scrollHint": "MUGITU"
+  },
+  "about": {
+    "eyebrow": "Nitaz",
+    "intro": "Gesa naiz, alemaniera irakasle natiboa, Hamburgoko Unibertsitatean pedagogian masterduna.",
+    "p1": "Urteetan zehar alemaniera eta gaztelania irakatsi dut testuinguru ezberdinetan — Guadalajarako Alemaniar Eskolako haur hezkuntzatik Hamburgoko lanbide heziketako eskoletara — eta esperientzia nahasketa horrek gauza garrantzitsu bat erakutsi zidan: ez dago hizkuntza bat ikasteko modu bakarra. Ikasle bakoitzak bere erritmoa eta bere metodoa behar ditu.",
+    "p2": "2022tik autonomo gisa ematen ditut eskolak, ikastaro bakoitza neurrira diseinatuz — hiztegi zerrenda amaigabeik gabe, benetako elkarrizketarekin lehen egunetik. Urrats bat urrats zurekin egongo naiz.",
+    "p3": "Bi hizkuntzen eta bi kulturen artean bizi naiz, eta hori da zurekin partekatu nahi dudana: ez soilik gramatika, baizik eta konfiantzaz adierazteko erraztasuna.",
+    "closing": "Ikasgelatik kanpo ama naiz, eta klaserik ematen ez dudanean seguruenik yoga egiten, itsasoaren ondoan edo txakur batekin paseatzen aurkituko nauzu — hasierako argazkiko txakurra ere taldekoa da.",
+    "credentials": {
+      "nativeValue": "Ama hizkuntza",
+      "nativeLabel": "Alemaniera",
+      "masterValue": "Masterra",
+      "masterLabel": "Pedagogia · Hamburgo Uni.",
+      "expValue": "DE · MX · ES",
+      "expLabel": "Nazioarteko esperientzia"
+    },
+    "faroAlt": "Pellworm-eko itsasargia, Gesaren jaioterria"
+  },
+  "clases": {
+    "eyebrow": "Eskolak",
+    "heading": "Aukeratu zure erritmora egokitzen dena",
+    "intro": "Banakako edo taldeko eskolak, maila guztietarako. Konpromisorik gabe — zure ikasteko erarik onena zaion paketea aukeratu.",
+    "individualLabel": "Banakako eskolak",
+    "grupalLabel": "Taldeko eskolak",
+    "badge": "Gomendatua",
+    "perPackage": "/paketea",
+    "perSession": "/saioa",
+    "individual": {
+      "suelta": {
+        "title": "Eskola Solte",
+        "f1": "Ordu 1eko iraupena",
+        "f2": "Banakako eskola"
+      },
+      "p4": {
+        "title": "4 orduko paketea",
+        "f1": "4 ordu guztira",
+        "f2": "Banakako eskola",
+        "perHour": "24€ orduko"
+      },
+      "p8": {
+        "title": "8 orduko paketea",
+        "f1": "8 ordu guztira",
+        "f2": "Banakako eskola",
+        "perHour": "23,75€ orduko"
+      },
+      "p12": {
+        "title": "12 orduko paketea",
+        "f1": "12 ordu guztira",
+        "f2": "Banakako eskola",
+        "perHour": "23,50€ orduko — prezio onena"
+      }
+    },
+    "grupal": {
+      "pareja": {
+        "title": "Bikote paketea",
+        "f1": "8 ordu guztira",
+        "f2": "2 pertsonentzako eskola",
+        "perHour": "8€ pertsona/orduko"
+      },
+      "reducido": {
+        "title": "Talde txikia",
+        "f1": "8 ordu guztira",
+        "f2": "3-4 pertsonako taldea",
+        "perHour": "3,25€tik gora pertsona/orduko"
+      },
+      "conversacion": {
+        "title": "Elkarrizketa Taldea",
+        "f1": "Ordu 1eko iraupena",
+        "f2": "Astean behin",
+        "f3": "Gai ezberdinak saio bakoitzean"
+      }
+    }
+  },
+  "testimonios": {
+    "eyebrow": "Iritziak",
+    "heading": "Nire ikasleek diotena",
+    "prevLabel": "Aurrekoa",
+    "nextLabel": "Hurrengoa",
+    "items": [
+      {
+        "quote": "Adibidezko testua — hemen egongo da ikasle baten benetako esperientzia, eskolak nolakoak izan diren eta zer ikasi duen kontatuz.",
+        "name": "Adibide Ikaslea",
+        "detail": "A2 maila · Banakako eskolak",
+        "initials": "AI"
+      },
+      {
+        "quote": "Beste adibide bat — leku hau prest dago benetako iritzi bat jasotzeko eskuragarri dagoenean.",
+        "name": "Adibide Ikaslea",
+        "detail": "B1 maila · Elkarrizketa taldea",
+        "initials": "AI"
+      },
+      {
+        "quote": "Hirugarren adibidea — diseinuak jada 3 txartel onartzen ditu, erraz egoki daiteke benetako iritzi gehiago edo gutxiago badaude.",
+        "name": "Adibide Ikaslea",
+        "detail": "B2 maila · Bikote paketea",
+        "initials": "AI"
+      }
+    ]
+  },
+  "contacto": {
+    "eyebrow": "Kontaktua",
+    "heading": "Hitz egin dezagun",
+    "intro": "Eskolei buruzko zalantzarik baduzu edo zure lehen saioa erreserbatu nahi duzu? Idatzi eta ahalik eta lasterren erantzungo dizut.",
+    "infoEmailLabel": "Emaila",
+    "infoPhoneLabel": "Telefonoa",
+    "infoLocationLabel": "Kokapena",
+    "formNameLabel": "Izena",
+    "formEmailLabel": "Emaila",
+    "formMessageLabel": "Mezua",
+    "namePlaceholder": "Zure izena",
+    "emailPlaceholder": "zu@email.com",
+    "messagePlaceholder": "Kontaidazu zein mailatan zauden edo zer lortu nahi duzun...",
+    "submitButton": "Mezua bidali",
+    "formNote": "24-48 orduko epean erantzungo dizut.",
+    "sendingText": "Bidaltzen...",
+    "successText": "Mezua bidalita! Laster erantzungo dizut.",
+    "errorText": "Zerbait gaizki joan da. Saiatu berriro edo idatzi zuzenean emailez."
   }
 }

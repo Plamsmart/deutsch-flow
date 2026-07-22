@@ -14,5 +14,134 @@
     "ctaPrimary": "Reserva tu clase",
     "ctaSecondary": "Ver metodología",
     "scrollHint": "DESLIZA"
+  },
+  "about": {
+    "eyebrow": "Sobre mí",
+    "intro": "Soy Gesa, profesora de alemán nativa con formación en pedagogía por la Universidad de Hamburgo.",
+    "p1": "Durante años enseñé alemán y español en distintos contextos — desde el jardín de infancia del Colegio Alemán en Guadalajara hasta escuelas de formación profesional en Hamburgo — y esa mezcla de experiencias me enseñó algo clave: no hay una sola forma de aprender un idioma. Cada estudiante necesita su propio ritmo y su propia metodología.",
+    "p2": "Desde 2022 doy clases de forma independiente, diseñando cada curso a medida — sin listas interminables de vocabulario, con conversación real desde el primer día. Te acompaño paso a paso en cada etapa del camino.",
+    "p3": "Vivo entre dos idiomas y dos culturas, y eso es exactamente lo que quiero compartir contigo: no solo gramática, sino la fluidez para desenvolverte con confianza.",
+    "closing": "Fuera del aula soy mamá, y cuando no estoy dando clases probablemente me encuentres haciendo yoga, cerca del mar, o paseando a algún perro — ese que ves en la foto del inicio también forma parte del equipo.",
+    "credentials": {
+      "nativeValue": "Nativa",
+      "nativeLabel": "Alemán",
+      "masterValue": "Máster",
+      "masterLabel": "Pedagogía · Uni. Hamburgo",
+      "expValue": "DE · MX · ES",
+      "expLabel": "Experiencia internacional"
+    },
+    "faroAlt": "Faro de Pellworm, isla natal de Gesa"
+  },
+  "clases": {
+    "eyebrow": "Clases",
+    "heading": "Elige el ritmo que se adapte a ti",
+    "intro": "Clases individuales o en grupo, para todos los niveles. Sin permanencia — eliges el paquete que mejor se ajuste a tu forma de aprender.",
+    "individualLabel": "Clases individuales",
+    "grupalLabel": "Clases grupales",
+    "badge": "Recomendado",
+    "perPackage": "/paquete",
+    "perSession": "/sesión",
+    "individual": {
+      "suelta": {
+        "title": "Clase Suelta",
+        "f1": "Duración de 1 hora",
+        "f2": "Clase individual"
+      },
+      "p4": {
+        "title": "Paquete 4 horas",
+        "f1": "Duración de 4 horas",
+        "f2": "Clase individual",
+        "perHour": "24€ por hora"
+      },
+      "p8": {
+        "title": "Paquete 8 horas",
+        "f1": "Duración de 8 horas",
+        "f2": "Clase individual",
+        "perHour": "23,75€ por hora"
+      },
+      "p12": {
+        "title": "Paquete 12 horas",
+        "f1": "Duración de 12 horas",
+        "f2": "Clase individual",
+        "perHour": "23,50€ por hora — mejor precio"
+      }
+    },
+    "grupal": {
+      "pareja": {
+        "title": "Paquete Pareja",
+        "f1": "Duración de 8 horas",
+        "f2": "Clase para 2 personas",
+        "perHour": "8€ por persona/hora"
+      },
+      "reducido": {
+        "title": "Grupo Reducido",
+        "f1": "Duración de 8 horas",
+        "f2": "Clase de 3 a 4 personas",
+        "perHour": "desde 3,25€ por persona/hora"
+      },
+      "conversacion": {
+        "title": "Grupo de Conversación",
+        "f1": "Duración de 1 hora",
+        "f2": "Una vez por semana",
+        "f3": "Temas varios por sesión"
+      }
+    }
+  },
+  "testimonios": {
+    "eyebrow": "Testimonios",
+    "heading": "Lo que dicen mis alumnos",
+    "prevLabel": "Anterior",
+    "nextLabel": "Siguiente",
+    "items": [
+      {
+        "quote": "Texto de ejemplo — aquí va la experiencia real de un alumno contando cómo le fue en las clases y qué logró aprender.",
+        "name": "Ejemplo Alumno",
+        "detail": "Nivel A2 · Clases individuales",
+        "initials": "EA"
+      },
+      {
+        "quote": "Otro texto de ejemplo — este espacio está listo para recibir un testimonio real cuando lo tengas disponible.",
+        "name": "Ejemplo Alumna",
+        "detail": "Nivel B1 · Grupo de conversación",
+        "initials": "EA"
+      },
+      {
+        "quote": "Tercer texto de ejemplo — la estructura ya soporta 3 tarjetas, se puede ajustar fácilmente si hay más o menos testimonios reales.",
+        "name": "Ejemplo Alumno",
+        "detail": "Nivel B2 · Paquete pareja",
+        "initials": "EA"
+      },
+      {
+        "quote": "Cuarto testimonio de ejemplo — para probar que el carrusel se desliza correctamente.",
+        "name": "Ejemplo Alumna",
+        "detail": "Nivel A1 · Clases individuales",
+        "initials": "EA"
+      },
+      {
+        "quote": "Quinto testimonio de ejemplo — el diseño soporta cualquier cantidad sin romperse.",
+        "name": "Ejemplo Alumno",
+        "detail": "Nivel C1 · Grupo reducido",
+        "initials": "EA"
+      }
+    ]
+  },
+  "contacto": {
+    "eyebrow": "Contacto",
+    "heading": "Hablemos",
+    "intro": "¿Tienes dudas sobre las clases o quieres reservar tu primera sesión? Escríbeme y te respondo lo antes posible.",
+    "infoEmailLabel": "Email",
+    "infoPhoneLabel": "Teléfono",
+    "infoLocationLabel": "Ubicación",
+    "formNameLabel": "Nombre",
+    "formEmailLabel": "Email",
+    "formMessageLabel": "Mensaje",
+    "namePlaceholder": "Tu nombre",
+    "emailPlaceholder": "tu@email.com",
+    "messagePlaceholder": "Cuéntame en qué nivel estás o qué te gustaría lograr...",
+    "submitButton": "Enviar mensaje",
+    "formNote": "Te responderé en menos de 24-48 horas.",
+    "sendingText": "Enviando...",
+    "successText": "¡Mensaje enviado! Te responderé pronto.",
+    "errorText": "Algo salió mal. Intenta de nuevo o escríbeme directo por email."
   }
 }

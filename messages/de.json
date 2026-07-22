@@ -14,5 +14,122 @@
     "ctaPrimary": "Kurs buchen",
     "ctaSecondary": "Methode ansehen",
     "scrollHint": "SCROLLEN"
+  },
+  "about": {
+    "eyebrow": "Über mich",
+    "intro": "Ich bin Gesa, muttersprachliche Deutschlehrerin mit einem Master in Pädagogik der Universität Hamburg.",
+    "p1": "Über die Jahre habe ich Deutsch und Spanisch in ganz unterschiedlichen Kontexten unterrichtet — vom Kindergarten der Deutschen Schule Guadalajara bis zu Berufsschulen in Hamburg — und diese Mischung an Erfahrungen hat mir etwas Wichtiges gezeigt: Es gibt nicht den einen richtigen Weg, eine Sprache zu lernen. Jede Schülerin und jeder Schüler braucht das eigene Tempo und die eigene Methode.",
+    "p2": "Seit 2022 unterrichte ich selbstständig und gestalte jeden Kurs individuell — keine endlosen Vokabellisten, sondern echte Konversation vom ersten Tag an. Ich begleite dich Schritt für Schritt.",
+    "p3": "Ich lebe zwischen zwei Sprachen und zwei Kulturen, und genau das möchte ich mit dir teilen: nicht nur Grammatik, sondern die Sicherheit, dich souverän auszudrücken.",
+    "closing": "Außerhalb des Unterrichts bin ich Mama, und wenn ich nicht unterrichte, findest du mich wahrscheinlich beim Yoga, am Meer oder beim Gassigehen — der Hund auf dem Startseitenfoto gehört übrigens auch zum Team.",
+    "credentials": {
+      "nativeValue": "Muttersprache",
+      "nativeLabel": "Deutsch",
+      "masterValue": "Master",
+      "masterLabel": "Pädagogik · Uni Hamburg",
+      "expValue": "DE · MX · ES",
+      "expLabel": "Internationale Erfahrung"
+    },
+    "faroAlt": "Leuchtturm von Pellworm, Gesas Heimatinsel"
+  },
+  "clases": {
+    "eyebrow": "Kurse",
+    "heading": "Finde dein Lerntempo",
+    "intro": "Einzel- oder Gruppenunterricht, für jedes Niveau. Ohne Vertragsbindung — wähle das Paket, das am besten zu deiner Lernweise passt.",
+    "individualLabel": "Einzelunterricht",
+    "grupalLabel": "Gruppenunterricht",
+    "badge": "Empfohlen",
+    "perPackage": "/Paket",
+    "perSession": "/Sitzung",
+    "individual": {
+      "suelta": {
+        "title": "Einzelstunde",
+        "f1": "1 Stunde",
+        "f2": "Einzelunterricht"
+      },
+      "p4": {
+        "title": "4-Stunden-Paket",
+        "f1": "4 Stunden insgesamt",
+        "f2": "Einzelunterricht",
+        "perHour": "24 € pro Stunde"
+      },
+      "p8": {
+        "title": "8-Stunden-Paket",
+        "f1": "8 Stunden insgesamt",
+        "f2": "Einzelunterricht",
+        "perHour": "23,75 € pro Stunde"
+      },
+      "p12": {
+        "title": "12-Stunden-Paket",
+        "f1": "12 Stunden insgesamt",
+        "f2": "Einzelunterricht",
+        "perHour": "23,50 € pro Stunde — bester Preis"
+      }
+    },
+    "grupal": {
+      "pareja": {
+        "title": "Paar-Paket",
+        "f1": "8 Stunden insgesamt",
+        "f2": "Unterricht für 2 Personen",
+        "perHour": "8 € pro Person/Stunde"
+      },
+      "reducido": {
+        "title": "Kleingruppe",
+        "f1": "8 Stunden insgesamt",
+        "f2": "Gruppe von 3 bis 4 Personen",
+        "perHour": "ab 3,25 € pro Person/Stunde"
+      },
+      "conversacion": {
+        "title": "Konversationsgruppe",
+        "f1": "1 Stunde",
+        "f2": "Einmal pro Woche",
+        "f3": "Wechselnde Themen pro Sitzung"
+      }
+    }
+  },
+  "testimonios": {
+    "eyebrow": "Erfahrungen",
+    "heading": "Das sagen meine Schüler",
+    "prevLabel": "Zurück",
+    "nextLabel": "Weiter",
+    "items": [
+      {
+        "quote": "Beispieltext — hier steht später die echte Erfahrung einer Schülerin oder eines Schülers über den Unterricht und die Lernerfolge.",
+        "name": "Beispiel Schüler",
+        "detail": "Niveau A2 · Einzelunterricht",
+        "initials": "BS"
+      },
+      {
+        "quote": "Ein weiteres Beispiel — dieser Platz ist bereit für ein echtes Testimonial, sobald eines verfügbar ist.",
+        "name": "Beispiel Schülerin",
+        "detail": "Niveau B1 · Konversationsgruppe",
+        "initials": "BS"
+      },
+      {
+        "quote": "Drittes Beispiel — das Layout unterstützt bereits 3 Karten und lässt sich leicht anpassen, je nachdem wie viele echte Erfahrungen es gibt.",
+        "name": "Beispiel Schüler",
+        "detail": "Niveau B2 · Paar-Paket",
+        "initials": "BS"
+      }
+    ]
+  },
+  "contacto": {
+    "eyebrow": "Kontakt",
+    "heading": "Lass uns sprechen",
+    "intro": "Hast du Fragen zum Unterricht oder möchtest du deine erste Stunde buchen? Schreib mir und ich melde mich so schnell wie möglich.",
+    "infoEmailLabel": "E-Mail",
+    "infoPhoneLabel": "Telefon",
+    "infoLocationLabel": "Standort",
+    "formNameLabel": "Name",
+    "formEmailLabel": "E-Mail",
+    "formMessageLabel": "Nachricht",
+    "namePlaceholder": "Dein Name",
+    "emailPlaceholder": "du@email.com",
+    "messagePlaceholder": "Erzähl mir von deinem Niveau oder was du erreichen möchtest...",
+    "submitButton": "Nachricht senden",
+    "formNote": "Ich melde mich innerhalb von 24-48 Stunden.",
+    "sendingText": "Wird gesendet...",
+    "successText": "Nachricht gesendet! Ich melde mich bald.",
+    "errorText": "Etwas ist schiefgelaufen. Bitte versuche es erneut oder schreib mir direkt eine E-Mail."
   }
 }

@@ -1,0 +1,24 @@
+.viewport {
+  --visible: 3;
+  overflow: hidden;
+}
+
+.track {
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card {
+  flex: 0 0 calc((100% - (var(--visible) - 1) * 1.4rem) / var(--visible));
+}
+
+@media (max-width: 860px) {
+  .viewport {
+    --visible: 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .viewport {
+    --visible: 1;
+  }
+}
