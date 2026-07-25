@@ -131,5 +131,47 @@
     "sendingText": "Envoi en cours...",
     "successText": "Message envoyé ! Je vous répondrai bientôt.",
     "errorText": "Une erreur s'est produite. Réessayez ou écrivez-moi directement par email."
+  },
+  "buyButton": "Acheter",
+  "modal": {
+    "eyebrow": "Inscription",
+    "heading": "Réservez votre forfait",
+    "closeLabel": "Fermer",
+    "nameLabel": "Nom complet",
+    "namePlaceholder": "Votre nom",
+    "emailLabel": "Email",
+    "emailPlaceholder": "vous@email.com",
+    "levelLabel": "Niveau actuel",
+    "levelPlaceholder": "Sélectionnez votre niveau",
+    "levels": {
+      "beginner": "Débutant (sans expérience)",
+      "a1": "A1",
+      "a2": "A2",
+      "b1": "B1",
+      "b2": "B2",
+      "c1": "C1"
+    },
+    "notesLabel": "Remarques (facultatif)",
+    "notesPlaceholder": "Horaires préférés, objectifs, ou tout détail que vous souhaitez partager...",
+    "continueButton": "Continuer vers le paiement",
+    "submittingText": "Traitement en cours...",
+    "errorText": "Une erreur s'est produite. Réessayez.",
+    "secureNote": "Paiement sécurisé traité par Stripe"
+  },
+  "enrollmentEmail": {
+    "subject": "Confirmation de votre inscription à Deutsch Flow !",
+    "greeting": "Bonjour",
+    "bodyIntro": "Votre paiement a été traité avec succès. Voici les détails de votre inscription :",
+    "planLabel": "Forfait",
+    "priceLabel": "Prix",
+    "thanks": "Merci d'avoir choisi Deutsch Flow ! Gesa vous contactera bientôt pour organiser vos cours.",
+    "contactNote": "Pour toute question, répondez simplement à cet email."
+  },
+  "footer": {
+    "sobreMi": "À propos",
+    "clases": "Cours",
+    "testimonios": "Témoignages",
+    "contacto": "Contact",
+    "copyright": "© 2026 Deutsch Flow. Tous droits réservés."
   }
 }

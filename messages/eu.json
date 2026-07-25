@@ -131,5 +131,47 @@
     "sendingText": "Bidaltzen...",
     "successText": "Mezua bidalita! Laster erantzungo dizut.",
     "errorText": "Zerbait gaizki joan da. Saiatu berriro edo idatzi zuzenean emailez."
+  },
+  "buyButton": "Erosi",
+  "modal": {
+    "eyebrow": "Izena ematea",
+    "heading": "Erreserbatu zure paketea",
+    "closeLabel": "Itxi",
+    "nameLabel": "Izen-abizenak",
+    "namePlaceholder": "Zure izena",
+    "emailLabel": "Emaila",
+    "emailPlaceholder": "zu@email.com",
+    "levelLabel": "Zure maila",
+    "levelPlaceholder": "Aukeratu zure maila",
+    "levels": {
+      "beginner": "Hasiberria (esperientziarik gabe)",
+      "a1": "A1",
+      "a2": "A2",
+      "b1": "B1",
+      "b2": "B2",
+      "c1": "C1"
+    },
+    "notesLabel": "Oharrak (aukerakoa)",
+    "notesPlaceholder": "Ordutegi hobetsiak, helburuak, edo partekatu nahi duzun edozein xehetasun...",
+    "continueButton": "Jarraitu ordainketara",
+    "submittingText": "Prozesatzen...",
+    "errorText": "Zerbait gaizki joan da. Saiatu berriro.",
+    "secureNote": "Ordainketa segurua, Stripek kudeatua"
+  },
+  "enrollmentEmail": {
+    "subject": "Zure Deutsch Flow izen-emate baieztapena!",
+    "greeting": "Kaixo",
+    "bodyIntro": "Zure ordainketa ondo prozesatu da. Hona hemen zure izen-ematearen xehetasunak:",
+    "planLabel": "Paketea",
+    "priceLabel": "Prezioa",
+    "thanks": "Eskerrik asko Deutsch Flow aukeratzeagatik! Gesak laster jarriko da zurekin harremanetan zure eskolak koordinatzeko.",
+    "contactNote": "Zalantzarik izanez gero, erantzun email honi."
+  },
+  "footer": {
+    "sobreMi": "Nitaz",
+    "clases": "Eskolak",
+    "testimonios": "Iritziak",
+    "contacto": "Kontaktua",
+    "copyright": "© 2026 Deutsch Flow. Eskubide guztiak erreserbatuta."
   }
 }

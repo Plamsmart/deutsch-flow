@@ -131,5 +131,47 @@
     "sendingText": "Wird gesendet...",
     "successText": "Nachricht gesendet! Ich melde mich bald.",
     "errorText": "Etwas ist schiefgelaufen. Bitte versuche es erneut oder schreib mir direkt eine E-Mail."
+  },
+  "buyButton": "Kaufen",
+  "modal": {
+    "eyebrow": "Anmeldung",
+    "heading": "Reserviere dein Paket",
+    "closeLabel": "Schließen",
+    "nameLabel": "Vollständiger Name",
+    "namePlaceholder": "Dein Name",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "du@email.com",
+    "levelLabel": "Aktuelles Niveau",
+    "levelPlaceholder": "Wähle dein Niveau",
+    "levels": {
+      "beginner": "Anfänger (keine Erfahrung)",
+      "a1": "A1",
+      "a2": "A2",
+      "b1": "B1",
+      "b2": "B2",
+      "c1": "C1"
+    },
+    "notesLabel": "Notizen (optional)",
+    "notesPlaceholder": "Bevorzugte Zeiten, Ziele oder alles, was du teilen möchtest...",
+    "continueButton": "Weiter zur Zahlung",
+    "submittingText": "Wird verarbeitet...",
+    "errorText": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+    "secureNote": "Sichere Zahlung, abgewickelt von Stripe"
+  },
+  "enrollmentEmail": {
+    "subject": "Deine Deutsch Flow Anmeldebestätigung!",
+    "greeting": "Hallo",
+    "bodyIntro": "Deine Zahlung wurde erfolgreich verarbeitet. Hier sind deine Anmeldedaten:",
+    "planLabel": "Paket",
+    "priceLabel": "Preis",
+    "thanks": "Danke, dass du dich für Deutsch Flow entschieden hast! Gesa wird sich bald bei dir melden, um deine Kurse zu koordinieren.",
+    "contactNote": "Bei Fragen antworte einfach auf diese E-Mail."
+  },
+  "footer": {
+    "sobreMi": "Über mich",
+    "clases": "Kurse",
+    "testimonios": "Erfahrungen",
+    "contacto": "Kontakt",
+    "copyright": "© 2026 Deutsch Flow. Alle Rechte vorbehalten."
   }
 }

@@ -1,5 +1,7 @@
 import { Fraunces, Work_Sans } from "next/font/google";
 import { getTranslations } from "next-intl/server";
+import type { PlanId } from "@/lib/plans";
+import BuyButton from "./BuyButton";
 import styles from "./Clases.module.css";
 
 const fraunces = Fraunces({
@@ -15,7 +17,7 @@ const workSans = Work_Sans({
 });
 
 type Plan = {
-  key: string;
+  key: PlanId;
   featureKeys: string[];
   amount: string;
   unit: "perPackage" | "perSession" | null;
@@ -97,6 +99,12 @@ export default async function Clases() {
             </span>
           )}
         </div>
+
+        <BuyButton
+          planId={plan.key}
+          planTitle={t(`${base}.title`)}
+          priceLabel={plan.amount}
+        />
       </div>
     );
   }

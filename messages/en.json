@@ -131,5 +131,47 @@
     "sendingText": "Sending...",
     "successText": "Message sent! I'll get back to you soon.",
     "errorText": "Something went wrong. Please try again or email me directly."
+  },
+  "buyButton": "Buy",
+  "modal": {
+    "eyebrow": "Enrollment",
+    "heading": "Reserve your package",
+    "closeLabel": "Close",
+    "nameLabel": "Full name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@email.com",
+    "levelLabel": "Current level",
+    "levelPlaceholder": "Select your level",
+    "levels": {
+      "beginner": "Beginner (no experience)",
+      "a1": "A1",
+      "a2": "A2",
+      "b1": "B1",
+      "b2": "B2",
+      "c1": "C1"
+    },
+    "notesLabel": "Notes (optional)",
+    "notesPlaceholder": "Preferred schedule, goals, or any detail you'd like to share...",
+    "continueButton": "Continue to payment",
+    "submittingText": "Processing...",
+    "errorText": "Something went wrong. Please try again.",
+    "secureNote": "Secure payment processed by Stripe"
+  },
+  "enrollmentEmail": {
+    "subject": "Your Deutsch Flow enrollment confirmation!",
+    "greeting": "Hi",
+    "bodyIntro": "Your payment was processed successfully. Here are your enrollment details:",
+    "planLabel": "Package",
+    "priceLabel": "Price",
+    "thanks": "Thank you for choosing Deutsch Flow! Gesa will be in touch soon to coordinate your classes.",
+    "contactNote": "If you have any questions, just reply to this email."
+  },
+  "footer": {
+    "sobreMi": "About",
+    "clases": "Classes",
+    "testimonios": "Testimonials",
+    "contacto": "Contact",
+    "copyright": "© 2026 Deutsch Flow. All rights reserved."
   }
 }
