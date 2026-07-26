@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import Stripe from "stripe";
@@ -71,21 +69,12 @@ function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
-// La postal (imagen fija, siempre en alemán) todavía no tiene una URL pública
-// porque el sitio no está desplegado, así que la leemos del filesystem del
-// servidor y la incrustamos como data URI en base64 directamente en el HTML
-// del email. Se lee una sola vez al cargar este módulo (no en cada request),
-// porque el archivo nunca cambia en tiempo de ejecución. El día que el sitio
-// tenga un dominio real, esto se puede cambiar por una <img src="https://...">
-// a una URL pública normal — es mejor para la entregabilidad del email (los
-// proveedores de correo en general confían más en imágenes servidas desde una
-// URL real que en imágenes embebidas en base64) — pero mientras tanto, esta
-// solución funciona bien.
-const POSTAL_IMAGE_DATA_URI = `data:image/png;base64,${fs
-  .readFileSync(
-    path.join(process.cwd(), "public", "images", "DflowPostal-fixed3.png"),
-  )
-  .toString("base64")}`;
+// La postal (imagen fija, siempre en alemán) se sirve directamente desde la
+// URL de producción de Vercel — esta es la solución definitiva, no un parche
+// temporal. Si en el futuro se conecta un dominio propio (ej. deutschflow.com)
+// en vez del subdominio *.vercel.app, hay que actualizar esta URL también.
+const POSTAL_IMAGE_URL =
+  "https://deutsch-flow-delta.vercel.app/images/DflowPostal-fixed3.png";
 
 function buildPostalEmailHtml({
   studentName,
@@ -118,7 +107,7 @@ function buildPostalEmailHtml({
         <!-- La postal (imagen fija, siempre en alemán) -->
         <tr>
           <td style="padding:0; line-height:0; font-size:0;">
-            <img src="${POSTAL_IMAGE_DATA_URI}" alt="Deutsch Flow — Herzlich willkommen" width="600" style="width:100%; max-width:600px; display:block; border:0;">
+            <img src="${POSTAL_IMAGE_URL}" alt="Deutsch Flow — Herzlich willkommen" width="600" style="width:100%; max-width:600px; display:block; border:0;">
           </td>
         </tr>
 
