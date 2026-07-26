@@ -173,5 +173,11 @@
     "testimonios": "Erfahrungen",
     "contacto": "Kontakt",
     "copyright": "© 2026 Deutsch Flow. Alle Rechte vorbehalten."
+  },
+  "paymentSuccess": {
+    "closeLabel": "Schließen",
+    "eyebrow": "Zahlung bestätigt",
+    "heading": "Willkommen an Bord!",
+    "body": "Deine Anmeldung wurde erfolgreich verarbeitet. Wir haben dir eine Bestätigungspostkarte mit allen Details an deine E-Mail geschickt."
   }
 }

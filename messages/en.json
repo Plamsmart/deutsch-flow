@@ -173,5 +173,11 @@
     "testimonios": "Testimonials",
     "contacto": "Contact",
     "copyright": "© 2026 Deutsch Flow. All rights reserved."
+  },
+  "paymentSuccess": {
+    "closeLabel": "Close",
+    "eyebrow": "Payment confirmed",
+    "heading": "Welcome aboard!",
+    "body": "Your enrollment was processed successfully. We've sent a confirmation postcard to your email with all the details."
   }
 }

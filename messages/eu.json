@@ -173,5 +173,11 @@
     "testimonios": "Iritziak",
     "contacto": "Kontaktua",
     "copyright": "© 2026 Deutsch Flow. Eskubide guztiak erreserbatuta."
+  },
+  "paymentSuccess": {
+    "closeLabel": "Itxi",
+    "eyebrow": "Ordainketa berretsita",
+    "heading": "Ongi etorri!",
+    "body": "Zure izen-ematea ondo prozesatu da. Xehetasun guztiekin baieztapen-postal bat bidali dizugu zure emailera."
   }
 }

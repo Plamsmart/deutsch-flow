@@ -1,0 +1,17 @@
+.modal {
+  background: linear-gradient(160deg, #06232a 0%, #005461 100%);
+}
+
+.progressFill {
+  transform-origin: left;
+  animation: shrink 7s linear forwards;
+}
+
+@keyframes shrink {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}

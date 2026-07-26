@@ -185,5 +185,11 @@
     "testimonios": "Testimonios",
     "contacto": "Contacto",
     "copyright": "© 2026 Deutsch Flow. Todos los derechos reservados."
+  },
+  "paymentSuccess": {
+    "closeLabel": "Cerrar",
+    "eyebrow": "Pago confirmado",
+    "heading": "¡Bienvenido a bordo!",
+    "body": "Tu inscripción se procesó correctamente. Te enviamos una postal de confirmación a tu email con todos los detalles."
   }
 }
