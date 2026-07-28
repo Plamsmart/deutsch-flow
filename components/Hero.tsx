@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Fraunces, Work_Sans } from "next/font/google";
 import { getTranslations } from "next-intl/server";
+import CalBookingButton from "./CalBookingButton";
 import styles from "./Hero.module.css";
 
 const fraunces = Fraunces({
@@ -50,6 +51,16 @@ export default async function Hero() {
             />
           </div>
 
+          <div>
+            <Image
+              src="/images/faroPellworm.png"
+              alt="Faro de Pellworm"
+              width={120}
+              height={120}
+              className={`absolute -bottom-[40%] -left-[50%] w-[50%] origin-center drop-shadow-[0_6px_10px_rgba(0,0,0,0.4)] transition-[filter] duration-300 ${styles.lighthouseImg}`}
+            />
+          </div>
+
           <div
             className={`absolute -top-[40%] -right-[45%] z-[4] h-[70%] w-[70%] cursor-default ${styles.cluster}`}
           >
@@ -60,13 +71,13 @@ export default async function Hero() {
               height={160}
               className={`absolute inset-0 h-full w-full object-contain opacity-90 transition-opacity duration-300 ${styles.starsImg}`}
             />
-            <Image
+            {/* <Image
               src="/images/hummingbird.png"
               alt="Colibrí decorativo"
               width={250}
               height={250}
               className={`absolute top-[42%] left-[40%] w-[18%] origin-center drop-shadow-[0_6px_10px_rgba(0,0,0,0.4)] transition-[filter] duration-300 ${styles.hummingbirdImg}`}
-            />
+            /> */}
           </div>
         </div>
 
@@ -75,12 +86,7 @@ export default async function Hero() {
         </p>
 
         <div className="flex items-center gap-[1.8rem]">
-          <a
-            href="#contacto"
-            className="inline-block rounded-sm bg-[#00b7b5] px-[2.3rem] py-4 text-base font-medium text-[#04282d] shadow-[0_4px_20px_rgba(0,183,181,0.3)] transition-[transform,box-shadow,background] duration-[250ms] ease-out hover:-translate-y-0.5 hover:bg-[#33cfcd] hover:shadow-[0_8px_26px_rgba(0,183,181,0.4)] motion-reduce:transition-none"
-          >
-            {tHero("ctaPrimary")}
-          </a>
+          <CalBookingButton label={tHero("ctaPrimary")} />
           <a
             href="#clases"
             className="border-b border-[rgba(244,244,244,0.35)] pb-0.5 text-[0.95rem] font-normal text-[#f4f4f4] transition-colors duration-200 hover:border-[#f4f4f4] motion-reduce:transition-none"
