@@ -51,7 +51,7 @@ export default async function Hero() {
             />
           </div>
 
-          <div>
+          {/* <div>
             <Image
               src="/images/faroPellworm.png"
               alt="Faro de Pellworm"
@@ -59,7 +59,7 @@ export default async function Hero() {
               height={120}
               className={`absolute -bottom-[40%] -left-[50%] w-[50%] origin-center drop-shadow-[0_6px_10px_rgba(0,0,0,0.4)] transition-[filter] duration-300 ${styles.lighthouseImg}`}
             />
-          </div>
+          </div> */}
 
           <div
             className={`absolute -top-[40%] -right-[45%] z-[4] h-[70%] w-[70%] cursor-default ${styles.cluster}`}
