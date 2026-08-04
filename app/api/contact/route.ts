@@ -75,7 +75,7 @@ export async function POST(request: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     const { error } = await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: "Deutsch Flow <hallo@deutschflow.eu>",
       to: process.env.CONTACT_EMAIL_TO!,
       replyTo: email,
       subject: `Nuevo mensaje desde Deutsch Flow de ${name}`,

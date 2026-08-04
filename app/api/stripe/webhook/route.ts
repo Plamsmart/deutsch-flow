@@ -249,7 +249,7 @@ export async function POST(request: Request) {
     const t: EnrollmentEmailMessages = messages.enrollmentEmail;
 
     await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: "Deutsch Flow <hallo@deutschflow.eu>",
       to: enrollment.student_email,
       subject: t.subject,
       html: buildPostalEmailHtml({
@@ -272,7 +272,7 @@ export async function POST(request: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: "Deutsch Flow <hallo@deutschflow.eu>",
       to: process.env.CONTACT_EMAIL_TO!,
       subject: `Nueva inscripción pagada: ${enrollment.plan_title} - ${enrollment.student_name}`,
       text: [
