@@ -96,7 +96,8 @@ export default function Contacto() {
       </div>
 
       <section
-        className={`${fraunces.variable} ${workSans.variable} bg-[#005461] px-8 pt-24 pb-16 font-[family-name:var(--font-work-sans)] max-[560px]:px-[1.2rem] max-[560px]:pt-16 max-[560px]:pb-12`}
+        id="contacto"
+        className={`${fraunces.variable} ${workSans.variable} scroll-mt-24 bg-[#005461] px-8 pt-24 pb-16 font-[family-name:var(--font-work-sans)] max-[560px]:px-[1.2rem] max-[560px]:pt-16 max-[560px]:pb-12`}
       >
         <div className="mx-auto max-w-[1050px]">
           <div className="mx-auto mb-14 max-w-[560px] text-center">

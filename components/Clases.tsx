@@ -111,7 +111,8 @@ export default async function Clases() {
 
   return (
     <section
-      className={`${fraunces.variable} ${workSans.variable} bg-[#f4f4f4] px-8 py-24 font-[family-name:var(--font-work-sans)] max-[560px]:px-[1.2rem] max-[560px]:py-16`}
+      id="clases"
+      className={`${fraunces.variable} ${workSans.variable} scroll-mt-24 bg-[#f4f4f4] px-8 py-24 font-[family-name:var(--font-work-sans)] max-[560px]:px-[1.2rem] max-[560px]:py-16`}
     >
       <div className="mx-auto max-w-[1100px]">
         <div className="mx-auto mb-16 max-w-[560px] text-center">

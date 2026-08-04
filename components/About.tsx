@@ -26,7 +26,8 @@ export default async function About() {
 
   return (
     <section
-      className={`${fraunces.variable} ${workSans.variable} flex min-h-screen items-center bg-[#dcf0ee] px-8 py-20 font-[family-name:var(--font-work-sans)] max-[680px]:px-[1.2rem] max-[680px]:py-14`}
+      id="sobre-mi"
+      className={`${fraunces.variable} ${workSans.variable} scroll-mt-24 flex min-h-screen items-center bg-[#dcf0ee] px-8 py-20 font-[family-name:var(--font-work-sans)] max-[680px]:px-[1.2rem] max-[680px]:py-14`}
     >
       <div className="mx-auto w-full max-w-[880px]">
         <div className={styles.bento}>

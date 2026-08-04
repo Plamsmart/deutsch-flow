@@ -47,7 +47,8 @@ export default function Testimonios() {
 
   return (
     <section
-      className={`${fraunces.variable} ${workSans.variable} overflow-hidden bg-[#dcf0ee] py-24 font-[family-name:var(--font-work-sans)] max-[560px]:py-16`}
+      id="testimonios"
+      className={`${fraunces.variable} ${workSans.variable} scroll-mt-24 overflow-hidden bg-[#dcf0ee] py-24 font-[family-name:var(--font-work-sans)] max-[560px]:py-16`}
     >
       {/*
         TODO: Estos son testimonios de EJEMPLO (nombres genéricos, texto placeholder).
