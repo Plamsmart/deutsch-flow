@@ -69,12 +69,8 @@ function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
-// La postal (imagen fija, siempre en alemán) se sirve directamente desde la
-// URL de producción de Vercel — esta es la solución definitiva, no un parche
-// temporal. Si en el futuro se conecta un dominio propio (ej. deutschflow.com)
-// en vez del subdominio *.vercel.app, hay que actualizar esta URL también.
-const POSTAL_IMAGE_URL =
-  "https://deutsch-flow-delta.vercel.app/images/DflowPostal-fixed3.png";
+// La postal (imagen fija, siempre en alemán) se sirve desde el dominio propio.
+const POSTAL_IMAGE_URL = "https://www.deutschflow.eu/images/DflowPostal-fixed3.png";
 
 function buildPostalEmailHtml({
   studentName,
