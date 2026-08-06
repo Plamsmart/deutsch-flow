@@ -27,25 +27,12 @@ export default async function Footer() {
     >
       <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-[1.6rem] border-b border-[rgba(244,244,244,0.12)] pb-[1.8rem] max-[600px]:flex-col max-[600px]:text-center">
         <div className="flex items-center gap-[0.7rem]">
-          <div className="font-[family-name:var(--font-fraunces)] text-[1.3rem] font-medium tracking-[0.02em] text-[#f4f4f4]">
-            Deutsch{" "}
-            <span className="relative">
-              Flow
-              <svg
-                className={`absolute -bottom-[5px] left-0 h-[9px] w-full overflow-visible ${styles.flowWord}`}
-                viewBox="0 0 100 10"
-                preserveAspectRatio="none"
-              >
-                <path d="M2,6 Q25,2 50,6 T98,5" />
-              </svg>
-            </span>
-          </div>
           <Image
-            src="/images/lighthouse-icon.png"
+            src="/images/flowOlas.png"
             alt="Deutsch Flow"
-            width={100}
-            height={135}
-            className="ml-[0.2rem] h-auto w-[58px] opacity-95"
+            width={1516}
+            height={639}
+            className="h-18 w-auto"
           />
         </div>
 
