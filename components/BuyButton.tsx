@@ -53,6 +53,7 @@ export default function BuyButton({
     level: "",
     notes: "",
   });
+  const [acceptedCancellation, setAcceptedCancellation] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
   function openModal() {
@@ -280,9 +281,28 @@ export default function BuyButton({
                   />
                 </div>
 
+                <div className="mb-4 flex items-start gap-2">
+                  <input
+                    type="checkbox"
+                    id={`${planId}-cancellation`}
+                    name="acceptedCancellation"
+                    checked={acceptedCancellation}
+                    onChange={(event) =>
+                      setAcceptedCancellation(event.target.checked)
+                    }
+                    className="mt-0.5 h-4 w-4 shrink-0 accent-[#00b7b5]"
+                  />
+                  <label
+                    htmlFor={`${planId}-cancellation`}
+                    className="text-[0.72rem] text-[#005461] opacity-80"
+                  >
+                    {tModal("cancellationCheckbox")}
+                  </label>
+                </div>
+
                 <button
                   type="submit"
-                  disabled={status === "submitting"}
+                  disabled={status === "submitting" || !acceptedCancellation}
                   className="w-full rounded-[10px] bg-[#00b7b5] py-3 text-[0.95rem] font-semibold text-[#005461] transition-colors duration-200 hover:bg-[#33cfcd] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {status === "submitting"

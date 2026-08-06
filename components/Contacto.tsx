@@ -26,7 +26,7 @@ type ContactFormData = {
 
 type Status = "idle" | "sending" | "success" | "error";
 
-const CONTACT_EMAIL = "gesa.nom.gn@gmail.com";
+const CONTACT_EMAIL = "mehrlernen.gesa@gmail.com";
 const CONTACT_PHONE_DISPLAY = "684 80 90 44";
 const CONTACT_PHONE_HREF = "+34684809044";
 const CONTACT_LOCATION = "Irún, Guipuzkoa";

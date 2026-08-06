@@ -36,6 +36,8 @@
     "eyebrow": "Cours",
     "heading": "Choisissez le rythme qui vous convient",
     "intro": "Cours individuels ou en groupe, pour tous les niveaux. Sans engagement — choisissez la formule qui correspond à votre façon d'apprendre.",
+    "durationNote": "Les cours durent 55 minutes par heure réservée",
+    "cancellationNote": "Vous pouvez annuler ou reporter votre cours gratuitement jusqu'à 24 heures à l'avance. En dessous de 24 heures, un report reste possible, mais aucun remboursement ne sera effectué.",
     "individualLabel": "Cours individuels",
     "grupalLabel": "Cours en groupe",
     "badge": "Recommandé",
@@ -136,6 +138,7 @@
   "modal": {
     "eyebrow": "Inscription",
     "heading": "Réservez votre forfait",
+    "cancellationCheckbox": "J'ai lu et j'accepte la politique d'annulation (24h pour annuler ou reporter gratuitement ; au-delà, report uniquement).",
     "closeLabel": "Fermer",
     "nameLabel": "Nom complet",
     "namePlaceholder": "Votre nom",

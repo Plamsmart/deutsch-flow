@@ -26,8 +26,20 @@ type Plan = {
 };
 
 const individualPlans: Plan[] = [
-  { key: "suelta", featureKeys: ["f1", "f2"], amount: "25€", unit: null, hasPerHour: false },
-  { key: "p4", featureKeys: ["f1", "f2"], amount: "96€", unit: "perPackage", hasPerHour: true },
+  {
+    key: "suelta",
+    featureKeys: ["f1", "f2"],
+    amount: "25€",
+    unit: null,
+    hasPerHour: false,
+  },
+  {
+    key: "p4",
+    featureKeys: ["f1", "f2"],
+    amount: "96€",
+    unit: "perPackage",
+    hasPerHour: true,
+  },
   {
     key: "p8",
     featureKeys: ["f1", "f2"],
@@ -36,12 +48,30 @@ const individualPlans: Plan[] = [
     hasPerHour: true,
     featured: true,
   },
-  { key: "p12", featureKeys: ["f1", "f2"], amount: "282€", unit: "perPackage", hasPerHour: true },
+  {
+    key: "p12",
+    featureKeys: ["f1", "f2"],
+    amount: "282€",
+    unit: "perPackage",
+    hasPerHour: true,
+  },
 ];
 
 const grupalPlans: Plan[] = [
-  { key: "pareja", featureKeys: ["f1", "f2"], amount: "128€", unit: "perPackage", hasPerHour: true },
-  { key: "reducido", featureKeys: ["f1", "f2"], amount: "104€", unit: "perPackage", hasPerHour: true },
+  {
+    key: "pareja",
+    featureKeys: ["f1", "f2"],
+    amount: "128€",
+    unit: "perPackage",
+    hasPerHour: true,
+  },
+  {
+    key: "reducido",
+    featureKeys: ["f1", "f2"],
+    amount: "104€",
+    unit: "perPackage",
+    hasPerHour: true,
+  },
   {
     key: "conversacion",
     featureKeys: ["f1", "f2", "f3"],
@@ -53,8 +83,10 @@ const grupalPlans: Plan[] = [
 
 const cardBase =
   "relative flex flex-col rounded-[18px] border border-[rgba(0,84,97,0.1)] bg-white px-[1.5rem] py-[1.8rem] transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(0,84,97,0.1)]";
-const featuredExtra = "border-[#00b7b5] shadow-[0_10px_26px_rgba(0,183,181,0.15)]";
-const gridBase = "grid gap-[1.2rem] max-[900px]:grid-cols-2 max-[560px]:grid-cols-1";
+const featuredExtra =
+  "border-[#00b7b5] shadow-[0_10px_26px_rgba(0,183,181,0.15)]";
+const gridBase =
+  "grid gap-[1.2rem] max-[900px]:grid-cols-2 max-[560px]:grid-cols-1";
 
 export default async function Clases() {
   const t = await getTranslations("clases");
@@ -143,6 +175,46 @@ export default async function Clases() {
         </div>
         <div className={`${gridBase} grid-cols-3`}>
           {grupalPlans.map((plan) => renderPlan("grupal", plan))}
+        </div>
+
+        <div className="mt-10 flex flex-col items-center gap-3">
+          <div className="inline-flex items-center gap-2 rounded-xl border border-[rgba(0,183,181,0.3)] bg-[rgba(0,183,181,0.08)] px-5 py-3">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-6 w-6 shrink-0 text-[#00b7b5]"
+            >
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v5l3 3" />
+            </svg>
+            <p className="text-[0.9rem] font-medium text-[#005461]">
+              {t("durationNote")}
+            </p>
+          </div>
+
+          <div className="inline-flex items-start gap-2 px-5 py-3">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-6 w-6 shrink-0 text-[#00b7b5]"
+            >
+              <rect x="3" y="5" width="18" height="16" rx="2" />
+              <path d="M3 10h18" />
+              <path d="M8 3v4" />
+              <path d="M16 3v4" />
+            </svg>
+            <p className="text-[0.9rem] font-medium text-[#005461]">
+              {t("cancellationNote")}
+            </p>
+          </div>
         </div>
       </div>
     </section>

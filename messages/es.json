@@ -36,6 +36,8 @@
     "eyebrow": "Clases",
     "heading": "Elige el ritmo que se adapte a ti",
     "intro": "Clases individuales o en grupo, para todos los niveles. Sin permanencia — eliges el paquete que mejor se ajuste a tu forma de aprender.",
+    "durationNote": "Las clases tienen una duración de 55 minutos por hora contratada",
+    "cancellationNote": "Puedes cancelar o reprogramar tu clase sin costo hasta 24 horas antes. Con menos de 24 horas de aviso, se puede reprogramar, pero no se reembolsa.",
     "individualLabel": "Clases individuales",
     "grupalLabel": "Clases grupales",
     "badge": "Recomendado",
@@ -148,6 +150,7 @@
   "modal": {
     "eyebrow": "Inscripción",
     "heading": "Reserva tu paquete",
+    "cancellationCheckbox": "He leído y acepto la política de cancelación (24h para cancelar o reprogramar sin costo; después, solo reprogramación).",
     "closeLabel": "Cerrar",
     "nameLabel": "Nombre completo",
     "namePlaceholder": "Tu nombre",

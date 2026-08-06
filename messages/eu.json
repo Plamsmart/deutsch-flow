@@ -36,6 +36,8 @@
     "eyebrow": "Eskolak",
     "heading": "Aukeratu zure erritmora egokitzen dena",
     "intro": "Banakako edo taldeko eskolak, maila guztietarako. Konpromisorik gabe — zure ikasteko erarik onena zaion paketea aukeratu.",
+    "durationNote": "Eskolek 55 minutuko iraupena dute kontratatutako ordu bakoitzeko",
+    "cancellationNote": "Zure eskola dohainik utzi edo atzeratu dezakezu 24 ordu lehenago arte. 24 ordu baino gutxiagorekin, atzeratu daiteke, baina ez da dirua itzuliko.",
     "individualLabel": "Banakako eskolak",
     "grupalLabel": "Taldeko eskolak",
     "badge": "Gomendatua",
@@ -136,6 +138,7 @@
   "modal": {
     "eyebrow": "Izena ematea",
     "heading": "Erreserbatu zure paketea",
+    "cancellationCheckbox": "Bertan behera uzteko politika irakurri eta onartzen dut (24 ordu dohainik uzteko edo atzeratzeko; ondoren, atzerapena bakarrik).",
     "closeLabel": "Itxi",
     "nameLabel": "Izen-abizenak",
     "namePlaceholder": "Zure izena",

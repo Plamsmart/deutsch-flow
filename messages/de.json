@@ -36,6 +36,8 @@
     "eyebrow": "Kurse",
     "heading": "Finde dein Lerntempo",
     "intro": "Einzel- oder Gruppenunterricht, für jedes Niveau. Ohne Vertragsbindung — wähle das Paket, das am besten zu deiner Lernweise passt.",
+    "durationNote": "Die Unterrichtsstunden dauern 55 Minuten pro gebuchter Stunde",
+    "cancellationNote": "Du kannst deinen Unterricht bis 24 Stunden vorher kostenlos stornieren oder verschieben. Bei weniger als 24 Stunden Vorlauf ist eine Verschiebung möglich, aber keine Rückerstattung.",
     "individualLabel": "Einzelunterricht",
     "grupalLabel": "Gruppenunterricht",
     "badge": "Empfohlen",
@@ -136,6 +138,7 @@
   "modal": {
     "eyebrow": "Anmeldung",
     "heading": "Reserviere dein Paket",
+    "cancellationCheckbox": "Ich habe die Stornierungsbedingungen gelesen und akzeptiere sie (24 Std. für kostenlose Stornierung oder Verschiebung; danach nur Verschiebung möglich).",
     "closeLabel": "Schließen",
     "nameLabel": "Vollständiger Name",
     "namePlaceholder": "Dein Name",

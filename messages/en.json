@@ -36,6 +36,8 @@
     "eyebrow": "Classes",
     "heading": "Choose the pace that fits you",
     "intro": "One-on-one or group classes, for every level. No commitment — pick whichever package matches how you like to learn.",
+    "durationNote": "Classes last 55 minutes per hour booked",
+    "cancellationNote": "You can cancel or reschedule your class free of charge up to 24 hours in advance. With less than 24 hours' notice, rescheduling is possible, but no refund will be issued.",
     "individualLabel": "Individual classes",
     "grupalLabel": "Group classes",
     "badge": "Recommended",
@@ -136,6 +138,7 @@
   "modal": {
     "eyebrow": "Enrollment",
     "heading": "Reserve your package",
+    "cancellationCheckbox": "I have read and accept the cancellation policy (24h to cancel or reschedule free of charge; after that, rescheduling only).",
     "closeLabel": "Close",
     "nameLabel": "Full name",
     "namePlaceholder": "Your name",
