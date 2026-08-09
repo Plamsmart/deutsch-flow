@@ -30,3 +30,16 @@ export const PLAN_TITLES: Record<PlanId, string> = {
   reducido: "Grupo Reducido",
   conversacion: "Grupo de Conversación",
 };
+
+// Horas totales incluidas en cada plan. Debe coincidir con los textos "f1"
+// de cada tarjeta en components/Clases.tsx (ej. "Duración de 8 horas").
+// Usado hoy solo para la columna calculada del panel de admin.
+export const PLAN_HOURS: Record<PlanId, number> = {
+  suelta: 1,
+  p4: 4,
+  p8: 8,
+  p12: 12,
+  pareja: 8,
+  reducido: 8,
+  conversacion: 1,
+};
