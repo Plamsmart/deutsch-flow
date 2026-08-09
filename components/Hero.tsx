@@ -23,7 +23,7 @@ export default async function Hero() {
 
   return (
     <section
-      className={`${fraunces.variable} ${workSans.variable} relative flex min-h-screen flex-col overflow-hidden bg-[#0a0a0a] font-[family-name:var(--font-work-sans)]`}
+      className={`${fraunces.variable} ${workSans.variable} relative flex min-h-screen flex-col overflow-hidden bg-[#0a0a0a] font-[family-name:var(--font-work-sans)] pt-[100px]`}
     >
       <LotteWalkerProvider>
         <div className="relative z-[2] flex flex-1 flex-col items-center justify-center px-8 pt-24 pb-12 text-center md:pt-28">
