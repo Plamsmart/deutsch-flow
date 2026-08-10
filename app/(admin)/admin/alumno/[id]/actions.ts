@@ -4,15 +4,17 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 
 // Server Functions son alcanzables por POST directo, no solo desde la UI de
-// esta página — cada una revalida la sesión de Gesa acá adentro, sin confiar
-// únicamente en que proxy.ts haya filtrado la request antes de llegar.
+// esta página — cada una revalida acá adentro que quien llama es Gesa
+// específicamente, sin confiar únicamente en que proxy.ts haya filtrado la
+// request antes de llegar. Desde la Fase 3 los alumnos también tienen
+// sesiones válidas de Supabase Auth, así que "hay un user" ya no alcanza.
 async function requireAuthenticatedClient() {
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) {
+  if (!user || user.email !== process.env.ADMIN_EMAIL) {
     throw new Error("No autorizado.");
   }
 

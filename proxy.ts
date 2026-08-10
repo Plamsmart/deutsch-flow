@@ -6,19 +6,23 @@ import { routing } from "./i18n/routing";
 const intlMiddleware = createMiddleware(routing);
 
 export default async function proxy(request: NextRequest) {
-  // Las rutas /admin viven fuera de app/(public)/[locale] (el panel es solo
-  // para Gesa, sin traducir), así que quedan completamente al margen del
+  // Las rutas /admin y /mi-cuenta viven fuera de app/(public)/[locale]
+  // (paneles sin traducir), así que quedan completamente al margen del
   // middleware de next-intl. Si no las excluyéramos acá, next-intl trataría
-  // "admin" como si fuera un locale inválido y redirigiría /admin a
-  // /es/admin, rompiendo el panel.
+  // "admin"/"mi-cuenta" como si fueran locales inválidos y redirigiría a
+  // /es/admin o /es/mi-cuenta, rompiendo ambos paneles.
   if (request.nextUrl.pathname.startsWith("/admin")) {
-    return updateSessionAndProtectAdmin(request);
+    return protectAdmin(request);
+  }
+
+  if (request.nextUrl.pathname.startsWith("/mi-cuenta")) {
+    return protectStudent(request);
   }
 
   return intlMiddleware(request);
 }
 
-async function updateSessionAndProtectAdmin(request: NextRequest) {
+function createSupabaseMiddlewareClient(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });
 
   const supabase = createServerClient(
@@ -42,6 +46,12 @@ async function updateSessionAndProtectAdmin(request: NextRequest) {
     },
   );
 
+  return { supabase, getResponse: () => supabaseResponse };
+}
+
+async function protectAdmin(request: NextRequest) {
+  const { supabase, getResponse } = createSupabaseMiddlewareClient(request);
+
   // IMPORTANTE: getUser() (no getSession()) es lo que efectivamente valida
   // el token contra Supabase Auth en cada request — es lo que hace que esto
   // sirva como gate real, no solo un chequeo de "hay una cookie presente".
@@ -51,13 +61,40 @@ async function updateSessionAndProtectAdmin(request: NextRequest) {
 
   const isLoginPage = request.nextUrl.pathname === "/admin/login";
 
-  if (!user && !isLoginPage) {
+  // Desde la Fase 3, los alumnos también tienen cuentas de Supabase Auth —
+  // tener una sesión válida ya no alcanza para entrar a /admin. El email
+  // autenticado tiene que coincidir EXACTAMENTE con ADMIN_EMAIL; cualquier
+  // otra sesión válida (ej. un alumno logueado) se trata igual que "sin
+  // sesión" acá.
+  const isAdmin = user?.email === process.env.ADMIN_EMAIL;
+
+  if (!isAdmin && !isLoginPage) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = "/admin/login";
     return NextResponse.redirect(loginUrl);
   }
 
-  return supabaseResponse;
+  return getResponse();
+}
+
+async function protectStudent(request: NextRequest) {
+  const { supabase, getResponse } = createSupabaseMiddlewareClient(request);
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const isAuthPage =
+    request.nextUrl.pathname === "/mi-cuenta/login" ||
+    request.nextUrl.pathname === "/mi-cuenta/registro";
+
+  if (!user && !isAuthPage) {
+    const loginUrl = request.nextUrl.clone();
+    loginUrl.pathname = "/mi-cuenta/login";
+    return NextResponse.redirect(loginUrl);
+  }
+
+  return getResponse();
 }
 
 export const config = {

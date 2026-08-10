@@ -72,10 +72,11 @@ export default async function AlumnoDetailPage({
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Mismo respaldo que en /admin: proxy.ts ya protege /admin/*, este chequeo
-  // es la segunda capa por si la página se renderizara sin pasar por el
+  // Mismo respaldo que en /admin: proxy.ts ya protege /admin/* exigiendo que
+  // el email autenticado sea exactamente ADMIN_EMAIL, este chequeo es la
+  // segunda capa por si la página se renderizara sin pasar por el
   // middleware.
-  if (!user) {
+  if (!user || user.email !== process.env.ADMIN_EMAIL) {
     redirect("/admin/login");
   }
 

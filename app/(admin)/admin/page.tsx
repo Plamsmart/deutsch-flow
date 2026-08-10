@@ -50,11 +50,12 @@ export default async function AdminPage() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // proxy.ts ya protege /admin redirigiendo a /admin/login sin sesión, pero
-  // este chequeo queda como respaldo por si esta página llegara a
-  // renderizarse sin pasar por el middleware (ej. un cambio futuro al
-  // matcher de proxy.ts).
-  if (!user) {
+  // proxy.ts ya protege /admin redirigiendo a /admin/login si no hay sesión
+  // o si el email autenticado no es exactamente ADMIN_EMAIL (desde la Fase
+  // 3, los alumnos también tienen cuentas de Supabase Auth). Este chequeo
+  // queda como respaldo por si esta página llegara a renderizarse sin pasar
+  // por el middleware (ej. un cambio futuro al matcher de proxy.ts).
+  if (!user || user.email !== process.env.ADMIN_EMAIL) {
     redirect("/admin/login");
   }
 
@@ -92,7 +93,15 @@ export default async function AdminPage() {
           <h1 className="font-[family-name:var(--font-fraunces)] text-[1.8rem] font-medium text-[#005461]">
             Alumnos inscritos
           </h1>
-          <SignOutButton />
+          <div className="flex items-center gap-4">
+            <Link
+              href="/admin/calendario"
+              className="text-[0.9rem] font-medium text-[#00b7b5] hover:underline"
+            >
+              Calendario
+            </Link>
+            <SignOutButton />
+          </div>
         </div>
 
         <div className="overflow-x-auto rounded-[16px] border border-[rgba(0,84,97,0.1)] bg-white shadow-[0_6px_20px_rgba(0,84,97,0.06)]">
