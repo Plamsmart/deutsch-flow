@@ -1,0 +1,19 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(4, 40, 45, 0.55);
+  pointer-events: auto;
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+.panel {
+  pointer-events: auto;
+  will-change: transform;
+  transform: translateZ(0);
+}

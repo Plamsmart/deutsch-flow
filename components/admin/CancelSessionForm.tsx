@@ -1,4 +1,4 @@
-import { cancelSession } from "./actions";
+import { cancelSession } from "@/app/(admin)/admin/actions";
 
 // Sin "use client": es un formulario simple ligado directamente a un Server
 // Function, funciona con progressive enhancement sin necesitar JS del lado

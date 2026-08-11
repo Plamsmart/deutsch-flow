@@ -3,8 +3,8 @@ import Link from "next/link";
 import { Fraunces, Work_Sans } from "next/font/google";
 import { createClient } from "@/lib/supabase/server";
 import { PLAN_HOURS, type PlanId } from "@/lib/plans";
-import CompleteSessionForm from "./CompleteSessionForm";
-import CancelSessionForm from "./CancelSessionForm";
+import CompleteSessionForm from "@/components/admin/CompleteSessionForm";
+import CancelSessionForm from "@/components/admin/CancelSessionForm";
 import AddSessionForm from "./AddSessionForm";
 
 const fraunces = Fraunces({

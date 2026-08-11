@@ -1,4 +1,4 @@
-import { addSession } from "./actions";
+import { addSession } from "@/app/(admin)/admin/actions";
 
 // Tampoco necesita "use client": formulario no controlado, con
 // progressive enhancement, ligado directo al Server Function.

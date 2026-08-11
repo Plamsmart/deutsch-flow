@@ -1,17 +1,19 @@
 "use client";
 
-import { useMemo } from "react";
-import { useRouter } from "next/navigation";
+import { useMemo, useState } from "react";
 import {
   Calendar,
   dateFnsLocalizer,
   type EventPropGetter,
+  type SlotInfo,
   type View,
 } from "react-big-calendar";
 import { format, parse, startOfWeek, getDay } from "date-fns";
 import { es } from "date-fns/locale";
 import { Fraunces, Work_Sans } from "next/font/google";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import EventDetailModal from "./EventDetailModal";
+import AddSessionModal from "./AddSessionModal";
 import styles from "./CalendarView.module.css";
 
 const fraunces = Fraunces({
@@ -67,13 +69,19 @@ export type CalendarSessionInput = {
   plan_title: string;
 };
 
-type CalendarEvent = {
+export type CalendarEvent = {
   id: string;
   enrollmentId: string;
   title: string;
   start: Date;
   end: Date;
   status: "scheduled" | "completed" | "cancelled";
+};
+
+export type EnrollmentOption = {
+  id: string;
+  student_name: string;
+  plan_title: string;
 };
 
 const STATUS_COLORS: Record<
@@ -100,16 +108,24 @@ const eventPropGetter: EventPropGetter<CalendarEvent> = (event) => {
 
 export default function CalendarView({
   sessions,
+  enrollments = [],
   variant = "admin",
 }: {
   sessions: CalendarSessionInput[];
-  // "admin" ve las clases de todos los alumnos y navega al detalle de cada
-  // uno al hacer click; "student" es la versión reducida de /mi-cuenta, que
-  // ya sólo recibe las clases del alumno logueado (filtradas por RLS) y no
-  // tiene a dónde navegar al hacer click.
+  // Solo hace falta en variant="admin", para llenar el <select> de alumno
+  // del modal de "agregar clase" al hacer click en un hueco vacío.
+  enrollments?: EnrollmentOption[];
+  // "admin" ve las clases de todos los alumnos y puede gestionarlas (abrir
+  // detalle/completar/cancelar/eliminar, y agregar nuevas haciendo click en
+  // un hueco vacío); "student" es la versión reducida de /mi-cuenta, que ya
+  // sólo recibe las clases del alumno logueado (filtradas por RLS) y no
+  // tiene ninguna acción disponible al hacer click.
   variant?: "admin" | "student";
 }) {
-  const router = useRouter();
+  const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
+  const [selectedSlotStart, setSelectedSlotStart] = useState<Date | null>(
+    null,
+  );
 
   const events = useMemo<CalendarEvent[]>(
     () =>
@@ -130,6 +146,13 @@ export default function CalendarView({
     [sessions],
   );
 
+  // Se busca por id en vez de guardar el evento clickeado entero: así, si una
+  // mutación (completar/cancelar/eliminar) revalida la página y `sessions`
+  // llega actualizado, el modal abierto refleja el estado nuevo solo, y si el
+  // evento fue eliminado deja de encontrarse y el modal se cierra solo.
+  const selectedEvent =
+    events.find((event) => event.id === selectedEventId) ?? null;
+
   return (
     <div
       className={`${fraunces.variable} ${workSans.variable} ${styles.calendarWrapper}`}
@@ -145,13 +168,33 @@ export default function CalendarView({
         culture="es"
         messages={MESSAGES}
         eventPropGetter={eventPropGetter}
+        selectable={variant === "admin"}
         onSelectEvent={
           variant === "admin"
-            ? (event) => router.push(`/admin/alumno/${event.enrollmentId}`)
+            ? (event) => setSelectedEventId(event.id)
+            : undefined
+        }
+        onSelectSlot={
+          variant === "admin"
+            ? (slotInfo: SlotInfo) => setSelectedSlotStart(slotInfo.start)
             : undefined
         }
         style={{ height: "100%" }}
       />
+
+      {variant === "admin" && (
+        <>
+          <EventDetailModal
+            event={selectedEvent}
+            onClose={() => setSelectedEventId(null)}
+          />
+          <AddSessionModal
+            slotStart={selectedSlotStart}
+            enrollments={enrollments}
+            onClose={() => setSelectedSlotStart(null)}
+          />
+        </>
+      )}
     </div>
   );
 }

@@ -8,6 +8,11 @@ import { createClient } from "@/lib/supabase/server";
 // específicamente, sin confiar únicamente en que proxy.ts haya filtrado la
 // request antes de llegar. Desde la Fase 3 los alumnos también tienen
 // sesiones válidas de Supabase Auth, así que "hay un user" ya no alcanza.
+//
+// Ubicación: este archivo vivía en admin/alumno/[id]/actions.ts, pero ahora
+// también lo usa el calendario (admin/calendario + components/admin/*), así
+// que se movió a admin/actions.ts — un lugar neutral que no pertenece a
+// ninguna de las dos vistas en particular.
 async function requireAuthenticatedClient() {
   const supabase = await createClient();
   const {
@@ -19,6 +24,13 @@ async function requireAuthenticatedClient() {
   }
 
   return supabase;
+}
+
+// Tanto la página de detalle del alumno como el calendario muestran clases,
+// así que cualquier mutación revalida las dos.
+function revalidateSessionViews(enrollmentId: string) {
+  revalidatePath(`/admin/alumno/${enrollmentId}`);
+  revalidatePath("/admin/calendario");
 }
 
 export async function completeSession(formData: FormData) {
@@ -52,7 +64,7 @@ export async function completeSession(formData: FormData) {
     throw new Error("No se pudo marcar la clase como completada.");
   }
 
-  revalidatePath(`/admin/alumno/${enrollmentId}`);
+  revalidateSessionViews(enrollmentId);
 }
 
 export async function cancelSession(formData: FormData) {
@@ -76,7 +88,33 @@ export async function cancelSession(formData: FormData) {
     throw new Error("No se pudo cancelar la clase.");
   }
 
-  revalidatePath(`/admin/alumno/${enrollmentId}`);
+  revalidateSessionViews(enrollmentId);
+}
+
+export async function deleteSession(formData: FormData) {
+  const supabase = await requireAuthenticatedClient();
+
+  const sessionId = formData.get("sessionId");
+  const enrollmentId = formData.get("enrollmentId");
+
+  if (typeof sessionId !== "string" || typeof enrollmentId !== "string") {
+    throw new Error("Datos inválidos.");
+  }
+
+  // DELETE real, no un cambio de status: a diferencia de cancelar, esto
+  // borra el registro por completo (ej. para sacar clases cargadas por
+  // error).
+  const { error } = await supabase
+    .from("class_sessions")
+    .delete()
+    .eq("id", sessionId);
+
+  if (error) {
+    console.error("[admin] Error eliminando la clase:", error);
+    throw new Error("No se pudo eliminar la clase.");
+  }
+
+  revalidateSessionViews(enrollmentId);
 }
 
 export async function addSession(formData: FormData) {
@@ -120,5 +158,5 @@ export async function addSession(formData: FormData) {
     throw new Error("No se pudo agregar la clase.");
   }
 
-  revalidatePath(`/admin/alumno/${enrollmentId}`);
+  revalidateSessionViews(enrollmentId);
 }

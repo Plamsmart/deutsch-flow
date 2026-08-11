@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { completeSession } from "./actions";
+import { completeSession } from "@/app/(admin)/admin/actions";
 
 export default function CompleteSessionForm({
   sessionId,

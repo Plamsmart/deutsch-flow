@@ -73,6 +73,27 @@ export default async function CalendarioPage() {
       plan_title: row.enrollments!.plan_title,
     }));
 
+  // Para el <select> de alumno del modal de "agregar clase" al hacer click
+  // en un hueco vacío del calendario.
+  const { data: enrollmentsData, error: enrollmentsError } = await supabase
+    .from("enrollments")
+    .select("id, student_name, plan_title")
+    .eq("status", "paid")
+    .order("student_name", { ascending: true });
+
+  if (enrollmentsError) {
+    console.error(
+      "[admin] Error trayendo enrollments para el calendario:",
+      enrollmentsError,
+    );
+  }
+
+  const enrollments = (enrollmentsData ?? []) as {
+    id: string;
+    student_name: string;
+    plan_title: string;
+  }[];
+
   return (
     <main
       className={`${fraunces.variable} ${workSans.variable} min-h-screen bg-[#f4f4f4] px-6 py-10 font-[family-name:var(--font-work-sans)] md:px-10`}
@@ -90,7 +111,7 @@ export default async function CalendarioPage() {
           </h1>
         </div>
 
-        <CalendarView sessions={sessions} />
+        <CalendarView sessions={sessions} enrollments={enrollments} />
       </div>
     </main>
   );
