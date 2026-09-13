@@ -86,3 +86,13 @@
 .calendarWrapper :global(.rbc-current-time-indicator) {
   background-color: #00b7b5;
 }
+
+/* react-big-calendar dibuja la hora (ej. "10:00 – 10:55") en un elemento
+   aparte del contenido del evento (.rbc-event-label), fuera de nuestro
+   componente de renderizado — para los huecos "busy" hay que ocultarla acá,
+   no alcanza con no renderizar texto en components.event. Solo afecta a
+   eventos con la className "busySlotEvent" (ver eventPropGetter), las
+   clases propias del alumno siguen mostrando su hora normal. */
+.calendarWrapper :global(.busySlotEvent .rbc-event-label) {
+  display: none;
+}

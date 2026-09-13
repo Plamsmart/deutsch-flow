@@ -116,6 +116,28 @@ export default async function Clases() {
           ))}
         </ul>
 
+        {/* Solo "conversacion" tiene esta clave — el resto de los planes no
+            la definen en messages/, así que se chequea con t.has() antes de
+            renderizarla. */}
+        {t.has(`${base}.nota`) && (
+          <p className="mb-[1.2rem] flex items-center gap-1.5 text-[0.76rem] italic text-[#005461] opacity-70">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-3.5 w-3.5 shrink-0"
+            >
+              <circle cx="12" cy="12" r="9" />
+              <line x1="12" y1="8" x2="12" y2="8.01" />
+              <line x1="12" y1="11" x2="12" y2="16" />
+            </svg>
+            {t(`${base}.nota`)}
+          </p>
+        )}
+
         <div className="flex items-baseline gap-[0.3rem] border-t border-[rgba(0,84,97,0.1)] pt-[1.1rem]">
           <span className="font-[family-name:var(--font-fraunces)] text-[1.9rem] font-medium text-[#005461]">
             {plan.amount}

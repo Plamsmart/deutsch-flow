@@ -4,14 +4,15 @@
     "clases": "Clases",
     "testimonios": "Testimonios",
     "contacto": "Contacto",
-    "logoAlt": "Deutsch Flow"
+    "logoAlt": "Deutsch Flow",
+    "miCuenta": "Mi cuenta"
   },
   "hero": {
     "eyebrow": "Clases de alemán online · 1 a 1",
     "titleStart": "Aprende alemán con",
     "titleEmphasis": "flow",
     "titleEnd": "desde donde estés.",
-    "subtitle": "Clases personalizadas para hablar con confianza desde la primera semana. Sin memorizar listas interminables — con conversación real.",
+    "subtitle": "Clases personalizadas para hablar con confianza desde la primera semana.",
     "ctaPrimary": "Reserva tu clase",
     "ctaSecondary": "Ver metodología",
     "scrollHint": "DESLIZA"
@@ -20,7 +21,7 @@
     "eyebrow": "Sobre mí",
     "intro": "Soy Gesa, profesora de alemán nativa con formación en pedagogía por la Universidad de Hamburgo.",
     "p1": "Durante años enseñé alemán y español en distintos contextos — desde el jardín de infancia del Colegio Alemán en Guadalajara hasta escuelas de formación profesional en Hamburgo — y esa mezcla de experiencias me enseñó algo clave: no hay una sola forma de aprender un idioma. Cada estudiante necesita su propio ritmo y su propia metodología.",
-    "p2": "Desde 2022 doy clases de forma independiente, diseñando cada curso a medida — sin listas interminables de vocabulario, con conversación real desde el primer día. Te acompaño paso a paso en cada etapa del camino.",
+    "p2": "Desde 2022 doy clases de forma independiente, diseñando cada curso a medida, con conversación real desde el primer día. Te acompaño paso a paso en cada etapa del camino.",
     "p3": "Vivo entre dos idiomas y dos culturas, y eso es exactamente lo que quiero compartir contigo: no solo gramática, sino la fluidez para desenvolverte con confianza.",
     "closing": "Fuera del aula soy mamá, y cuando no estoy dando clases probablemente me encuentres haciendo yoga, cerca del mar, o paseando a algún perro — ese que ves en la foto del inicio también forma parte del equipo.",
     "credentials": {
@@ -84,6 +85,7 @@
       },
       "conversacion": {
         "title": "Grupo de Conversación",
+        "nota": "Mínimo 3 participantes",
         "f1": "Duración de 1 hora",
         "f2": "Una vez por semana",
         "f3": "Temas varios por sesión"

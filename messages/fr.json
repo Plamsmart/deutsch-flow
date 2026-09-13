@@ -4,14 +4,15 @@
     "clases": "Cours",
     "testimonios": "Témoignages",
     "contacto": "Contact",
-    "logoAlt": "Deutsch Flow"
+    "logoAlt": "Deutsch Flow",
+    "miCuenta": "Mon compte"
   },
   "hero": {
     "eyebrow": "Cours d'allemand en ligne · Individuels",
     "titleStart": "Apprenez l'allemand avec",
     "titleEmphasis": "flow",
     "titleEnd": "où que vous soyez.",
-    "subtitle": "Des cours personnalisés pour parler avec confiance dès la première semaine. Sans listes de vocabulaire interminables — de la vraie conversation.",
+    "subtitle": "Des cours personnalisés pour parler avec confiance dès la première semaine.",
     "ctaPrimary": "Réservez votre cours",
     "ctaSecondary": "Voir la méthode",
     "scrollHint": "DÉFILER"
@@ -20,7 +21,7 @@
     "eyebrow": "À propos de moi",
     "intro": "Je suis Gesa, professeure d'allemand native, titulaire d'un master en pédagogie de l'Université de Hambourg.",
     "p1": "Au fil des années, j'ai enseigné l'allemand et l'espagnol dans des contextes très différents — de la maternelle du Colegio Alemán à Guadalajara aux écoles professionnelles de Hambourg — et ce mélange d'expériences m'a appris une chose essentielle : il n'y a pas une seule façon d'apprendre une langue. Chaque élève a besoin de son propre rythme et de sa propre méthode.",
-    "p2": "Depuis 2022, j'enseigne en indépendante, en concevant chaque cours sur mesure — pas de listes de vocabulaire interminables, mais de la vraie conversation dès le premier jour. Je vous accompagne pas à pas.",
+    "p2": "Depuis 2022, j'enseigne en indépendante, en concevant chaque cours sur mesure, mais de la vraie conversation dès le premier jour. Je vous accompagne pas à pas.",
     "p3": "Je vis entre deux langues et deux cultures, et c'est exactement ce que je veux partager avec vous : pas seulement la grammaire, mais l'aisance de vous exprimer avec confiance.",
     "closing": "En dehors des cours, je suis maman, et quand je n'enseigne pas, vous me trouverez probablement en train de faire du yoga, près de la mer, ou en balade avec un chien — celui de la photo d'accueil fait aussi partie de l'équipe.",
     "credentials": {
@@ -84,6 +85,7 @@
       },
       "conversacion": {
         "title": "Groupe de Conversation",
+        "nota": "Minimum 3 personnes",
         "f1": "Durée d'1 heure",
         "f2": "Une fois par semaine",
         "f3": "Thèmes variés à chaque séance"

@@ -4,14 +4,15 @@
     "clases": "Classes",
     "testimonios": "Testimonials",
     "contacto": "Contact",
-    "logoAlt": "Deutsch Flow"
+    "logoAlt": "Deutsch Flow",
+    "miCuenta": "My account"
   },
   "hero": {
     "eyebrow": "Online German classes · 1-on-1",
     "titleStart": "Learn German with",
     "titleEmphasis": "flow",
     "titleEnd": "from wherever you are.",
-    "subtitle": "Personalized classes to speak with confidence from week one. No endless vocabulary lists — just real conversation.",
+    "subtitle": "Personalized classes to speak with confidence from week one.",
     "ctaPrimary": "Book your class",
     "ctaSecondary": "See the method",
     "scrollHint": "SCROLL"
@@ -20,7 +21,7 @@
     "eyebrow": "About me",
     "intro": "I'm Gesa, a native German teacher with a degree in pedagogy from the University of Hamburg.",
     "p1": "Over the years I've taught German and Spanish in very different settings — from the kindergarten at Colegio Alemán in Guadalajara to vocational schools in Hamburg — and that mix of experience taught me something key: there's no single way to learn a language. Every student needs their own pace and their own method.",
-    "p2": "Since 2022 I've been teaching independently, designing every course around the student — no endless vocabulary lists, just real conversation from day one. I'll guide you step by step along the way.",
+    "p2": "Since 2022 I've been teaching independently, designing every course around the student, just real conversation from day one. I'll guide you step by step along the way.",
     "p3": "I live between two languages and two cultures, and that's exactly what I want to share with you: not just grammar, but the fluency to hold your own with confidence.",
     "closing": "Outside the classroom I'm a mom, and when I'm not teaching you'll probably find me doing yoga, near the sea, or walking a dog — the one you see in the homepage photo is part of the team too.",
     "credentials": {
@@ -84,6 +85,7 @@
       },
       "conversacion": {
         "title": "Conversation Group",
+        "nota": "Minimum 3 participants",
         "f1": "1 hour",
         "f2": "Once a week",
         "f3": "Different topics each session"

@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { PLAN_HOURS, type PlanId } from "@/lib/plans";
 import CalendarView, {
   type CalendarSessionInput,
+  type BusySlotInput,
 } from "@/components/admin/CalendarView";
 import SignOutButton from "./SignOutButton";
 
@@ -36,6 +37,11 @@ type RawSessionRow = {
   status: "scheduled" | "completed" | "cancelled";
   hours_counted: number | null;
   enrollments: { student_name: string; plan_title: string } | null;
+};
+
+type BusySlotRow = {
+  scheduled_at: string;
+  duration_minutes: number;
 };
 
 function formatDate(isoDate: string | null) {
@@ -108,6 +114,40 @@ export default async function MiCuentaPage() {
       plan_title: row.enrollments!.plan_title,
     }));
 
+  // get_busy_slots() es una función de Postgres pensada específicamente para
+  // esto: devuelve scheduled_at/duration_minutes de TODAS las clases
+  // 'scheduled'/'completed' de TODOS los alumnos, sin nombre ni ningún otro
+  // dato identificable — así el alumno puede ver qué huecos están libres sin
+  // que se filtren datos de otros.
+  const { data: busySlotsData, error: busySlotsError } =
+    await supabase.rpc("get_busy_slots");
+
+  if (busySlotsError) {
+    console.error("[mi-cuenta] Error trayendo get_busy_slots:", busySlotsError);
+  }
+
+  const busySlotRows = (busySlotsData ?? []) as BusySlotRow[];
+
+  // get_busy_slots() incluye las clases propias del alumno también (son
+  // 'scheduled'/'completed' como cualquier otra) — se descartan acá para no
+  // mostrar el mismo horario dos veces: una vez a color como propia, y otra
+  // vez encima como "Ocupado" genérico. Se compara por timestamp (no por
+  // string) para no depender de que ambas queries serialicen la fecha
+  // exactamente igual.
+  const ownScheduledTimes = new Set(
+    sessionRows.map((row) => new Date(row.scheduled_at).getTime()),
+  );
+
+  const busySlots: BusySlotInput[] = busySlotRows
+    .filter(
+      (row) => !ownScheduledTimes.has(new Date(row.scheduled_at).getTime()),
+    )
+    .map((row, index) => ({
+      id: `busy-${row.scheduled_at}-${index}`,
+      scheduled_at: row.scheduled_at,
+      duration_minutes: row.duration_minutes,
+    }));
+
   return (
     <main
       className={`${fraunces.variable} ${workSans.variable} min-h-screen bg-[#f4f4f4] px-6 py-10 font-[family-name:var(--font-work-sans)] md:px-10`}
@@ -122,9 +162,9 @@ export default async function MiCuentaPage() {
 
         {enrollments.length === 0 ? (
           <div className="rounded-[16px] border border-[rgba(0,84,97,0.1)] bg-white p-6 text-center text-[0.9rem] text-[#005461] opacity-80 shadow-[0_6px_20px_rgba(0,84,97,0.06)]">
-            No encontramos inscripciones asociadas a este email. Si compraste
-            un paquete con un email distinto al de esta cuenta, escribile a
-            Gesa para que lo revise.
+            No encontramos inscripciones asociadas a este email. Si compraste un
+            paquete con un email distinto al de esta cuenta, escribile a Gesa
+            para que lo revise.
           </div>
         ) : (
           <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -200,12 +240,16 @@ export default async function MiCuentaPage() {
           </div>
         )}
 
-        {calendarSessions.length > 0 && (
+        {(calendarSessions.length > 0 || busySlots.length > 0) && (
           <>
             <h2 className="mb-4 font-[family-name:var(--font-fraunces)] text-[1.3rem] font-medium text-[#005461]">
               Mis clases
             </h2>
-            <CalendarView sessions={calendarSessions} variant="student" />
+            <CalendarView
+              sessions={calendarSessions}
+              busySlots={busySlots}
+              variant="student"
+            />
           </>
         )}
       </div>

@@ -4,14 +4,15 @@
     "clases": "Eskolak",
     "testimonios": "Iritziak",
     "contacto": "Kontaktua",
-    "logoAlt": "Deutsch Flow"
+    "logoAlt": "Deutsch Flow",
+    "miCuenta": "Nire kontua"
   },
   "hero": {
     "eyebrow": "Alemaniera eskola onlinean · Banaka",
     "titleStart": "Ikasi alemaniera",
     "titleEmphasis": "flow",
     "titleEnd": "zauden lekutik.",
-    "subtitle": "Lehen astetik konfiantzaz hitz egiteko eskola pertsonalizatuak. Hiztegi zerrenda amaigabeak alde batera utzi — benetako elkarrizketa.",
+    "subtitle": "Lehen astetik konfiantzaz hitz egiteko eskola pertsonalizatuak.",
     "ctaPrimary": "Erreserbatu zure eskola",
     "ctaSecondary": "Metodoa ikusi",
     "scrollHint": "MUGITU"
@@ -20,7 +21,7 @@
     "eyebrow": "Nitaz",
     "intro": "Gesa naiz, alemaniera irakasle natiboa, Hamburgoko Unibertsitatean pedagogian masterduna.",
     "p1": "Urteetan zehar alemaniera eta gaztelania irakatsi dut testuinguru ezberdinetan — Guadalajarako Alemaniar Eskolako haur hezkuntzatik Hamburgoko lanbide heziketako eskoletara — eta esperientzia nahasketa horrek gauza garrantzitsu bat erakutsi zidan: ez dago hizkuntza bat ikasteko modu bakarra. Ikasle bakoitzak bere erritmoa eta bere metodoa behar ditu.",
-    "p2": "2022tik autonomo gisa ematen ditut eskolak, ikastaro bakoitza neurrira diseinatuz — hiztegi zerrenda amaigabeik gabe, benetako elkarrizketarekin lehen egunetik. Urrats bat urrats zurekin egongo naiz.",
+    "p2": "2022tik autonomo gisa ematen ditut eskolak, ikastaro bakoitza neurrira diseinatuz, benetako elkarrizketarekin lehen egunetik. Urrats bat urrats zurekin egongo naiz.",
     "p3": "Bi hizkuntzen eta bi kulturen artean bizi naiz, eta hori da zurekin partekatu nahi dudana: ez soilik gramatika, baizik eta konfiantzaz adierazteko erraztasuna.",
     "closing": "Ikasgelatik kanpo ama naiz, eta klaserik ematen ez dudanean seguruenik yoga egiten, itsasoaren ondoan edo txakur batekin paseatzen aurkituko nauzu — hasierako argazkiko txakurra ere taldekoa da.",
     "credentials": {
@@ -84,6 +85,7 @@
       },
       "conversacion": {
         "title": "Elkarrizketa Taldea",
+        "nota": "Gutxienez 3 pertsona",
         "f1": "Ordu 1eko iraupena",
         "f2": "Astean behin",
         "f3": "Gai ezberdinak saio bakoitzean"
