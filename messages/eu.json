@@ -162,7 +162,11 @@
     "continueButton": "Jarraitu ordainketara",
     "submittingText": "Prozesatzen...",
     "errorText": "Zerbait gaizki joan da. Saiatu berriro.",
-    "secureNote": "Ordainketa segurua, Stripek kudeatua"
+    "secureNote": "Ordainketa segurua, Stripek kudeatua",
+    "paymentMethodLabel": "Ordainketa metodoa",
+    "paymentStripe": "Txartela (berehalako ordainketa)",
+    "paymentTransfer": "Banku transferentzia",
+    "transferSuccessText": "Prest! Begiratu zure emaila kontuaren datuak ikusteko eta transferentzia osatzeko."
   },
   "enrollmentEmail": {
     "subject": "Zure Deutsch Flow izen-emate baieztapena!",
@@ -185,5 +189,46 @@
     "eyebrow": "Ordainketa berretsita",
     "heading": "Ongi etorri!",
     "body": "Zure izen-ematea ondo prozesatu da. Xehetasun guztiekin baieztapen-postal bat bidali dizugu zure emailera."
+  },
+  "coffeeBreak": {
+    "badge": "☕ Oso ezaguna",
+    "title": "German Coffee Break",
+    "subtitle": "Alemanezko elkarrizketa lasaia",
+    "capacityNote": "Gutxienez 3 · Gehienez 5 pertsona",
+    "ctaButton": "Tokia erreserbatu",
+    "modal": {
+      "eyebrow": "Tokia erreserbatu",
+      "heading": "Erreserbatu zure tokia",
+      "planDetail": "12€ / saioa · Gutx. 3, geh. 5 pertsona",
+      "nameLabel": "Izen-abizenak",
+      "namePlaceholder": "Zure izena",
+      "emailLabel": "Emaila",
+      "emailPlaceholder": "zu@email.com",
+      "notesLabel": "Oharrak (aukerakoa)",
+      "notesPlaceholder": "Ordutegi hobetsia, zalantzak, etab.",
+      "submitButton": "Nire tokia erreserbatu",
+      "submittingText": "Bidaltzen...",
+      "helperNote": "Taldea beteta dagoenean jarriko gara zurekin harremanetan.",
+      "errorText": "Zerbait gaizki joan da. Saiatu berriro.",
+      "successText": "Prest! Laster jarriko gara zurekin harremanetan zure tokia berresteko."
+    }
+  },
+  "coffeeBreakEmail": {
+    "subject": "German Coffee Break-eko zure tokiaren baieztapena!",
+    "greeting": "Kaixo",
+    "body": "German Coffee Break-en tokia erreserbatzeko zure eskaera jaso dugu. Taldea beteta dagoenean (gutxienez 3 pertsona) jarriko gara zurekin harremanetan ordutegia berresteko.",
+    "thanks": "Eskerrik asko gurekin alemaniera praktikatzeko interesagatik!",
+    "contactNote": "Zalantzarik izanez gero, erantzun email honi."
+  },
+  "transferEmail": {
+    "subject": "Zure transferentzia bidezko ordainketa osatzeko datuak",
+    "greeting": "Kaixo",
+    "body": "Zure izen-ematea jaso dugu eta banku transferentzia bidez ordaintzea aukeratu duzu. Hona hemen ordainketa osatzeko datuak:",
+    "ibanLabel": "IBAN",
+    "holderLabel": "Titularra",
+    "amountLabel": "Transferitu beharreko zenbatekoa",
+    "referenceLabel": "Mesedez, sartu zure izena transferentziaren kontzeptuan, zure ordainketa identifikatu ahal izateko",
+    "thanks": "Transferentzia berresten dugunean, zurekin harremanetan jarriko gara zure eskolak koordinatzeko.",
+    "contactNote": "Zalantzarik izanez gero, erantzun email honi."
   }
 }

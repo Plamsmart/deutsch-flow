@@ -162,7 +162,11 @@
     "continueButton": "Continue to payment",
     "submittingText": "Processing...",
     "errorText": "Something went wrong. Please try again.",
-    "secureNote": "Secure payment processed by Stripe"
+    "secureNote": "Secure payment processed by Stripe",
+    "paymentMethodLabel": "Payment method",
+    "paymentStripe": "Card (instant payment)",
+    "paymentTransfer": "Bank transfer",
+    "transferSuccessText": "Done! Check your email for the account details to complete your transfer."
   },
   "enrollmentEmail": {
     "subject": "Your Deutsch Flow enrollment confirmation!",
@@ -185,5 +189,46 @@
     "eyebrow": "Payment confirmed",
     "heading": "Welcome aboard!",
     "body": "Your enrollment was processed successfully. We've sent a confirmation postcard to your email with all the details."
+  },
+  "coffeeBreak": {
+    "badge": "☕ Very popular",
+    "title": "German Coffee Break",
+    "subtitle": "Relaxed conversation in German",
+    "capacityNote": "Minimum 3 · Maximum 5 people",
+    "ctaButton": "Reserve a spot",
+    "modal": {
+      "eyebrow": "Reserve your spot",
+      "heading": "Save your seat",
+      "planDetail": "€12 / session · Min. 3, max. 5 people",
+      "nameLabel": "Full name",
+      "namePlaceholder": "Your name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@email.com",
+      "notesLabel": "Comments (optional)",
+      "notesPlaceholder": "Preferred time, questions, etc.",
+      "submitButton": "Reserve my spot",
+      "submittingText": "Sending...",
+      "helperNote": "We'll reach out to confirm once the group is full.",
+      "errorText": "Something went wrong. Please try again.",
+      "successText": "Done! We'll contact you soon to confirm your spot."
+    }
+  },
+  "coffeeBreakEmail": {
+    "subject": "Your German Coffee Break spot confirmation!",
+    "greeting": "Hi",
+    "body": "We received your request to reserve a spot in the German Coffee Break. We'll reach out once the group is full (minimum 3 people) to confirm the schedule.",
+    "thanks": "Thanks for your interest in practicing German with us!",
+    "contactNote": "If you have any questions, just reply to this email."
+  },
+  "transferEmail": {
+    "subject": "Details to complete your bank transfer payment",
+    "greeting": "Hi",
+    "body": "We received your enrollment and you chose to pay by bank transfer. Here are the details to complete the payment:",
+    "ibanLabel": "IBAN",
+    "holderLabel": "Account holder",
+    "amountLabel": "Amount to transfer",
+    "referenceLabel": "Please include your name in the transfer reference, so we can identify your payment",
+    "thanks": "Once we confirm the transfer, we'll reach out to coordinate your classes.",
+    "contactNote": "If you have any questions, just reply to this email."
   }
 }

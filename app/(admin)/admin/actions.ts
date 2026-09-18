@@ -117,6 +117,56 @@ export async function deleteSession(formData: FormData) {
   revalidateSessionViews(enrollmentId);
 }
 
+export async function confirmCoffeeBreakSignup(formData: FormData) {
+  const supabase = await requireAuthenticatedClient();
+
+  const signupId = formData.get("signupId");
+
+  if (typeof signupId !== "string") {
+    throw new Error("Datos inválidos.");
+  }
+
+  const { error } = await supabase
+    .from("coffee_break_signups")
+    .update({ status: "confirmed" })
+    .eq("id", signupId);
+
+  if (error) {
+    console.error(
+      "[admin] Error confirmando el registro de Coffee Break:",
+      error,
+    );
+    throw new Error("No se pudo confirmar el registro.");
+  }
+
+  revalidatePath("/admin/coffee-break");
+}
+
+export async function markTransferAsPaid(formData: FormData) {
+  const supabase = await requireAuthenticatedClient();
+
+  const enrollmentId = formData.get("enrollmentId");
+
+  if (typeof enrollmentId !== "string") {
+    throw new Error("Datos inválidos.");
+  }
+
+  const { error } = await supabase
+    .from("enrollments")
+    .update({ status: "paid", paid_at: new Date().toISOString() })
+    .eq("id", enrollmentId);
+
+  if (error) {
+    console.error(
+      "[admin] Error marcando la transferencia como pagada:",
+      error,
+    );
+    throw new Error("No se pudo marcar la inscripción como pagada.");
+  }
+
+  revalidatePath("/admin");
+}
+
 export async function addSession(formData: FormData) {
   const supabase = await requireAuthenticatedClient();
 

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>German Coffee Break — mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep-teal: #005461;
+    --teal: #018790;
+    --turquoise: #00b7b5;
+    --off-white: #f4f4f4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Work Sans', sans-serif;
+    background: #f4f4f4;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .plan-card {
+    position: relative;
+    background: #ffffff;
+    border: 2px solid var(--turquoise);
+    box-shadow: 0 14px 34px rgba(0,183,181,0.18);
+    border-radius: 18px;
+    padding: 1.8rem 1.6rem;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+  }
+
+  .plan-card:hover {
+    box-shadow:
+      0 0 0 1px rgba(0,183,181,0.4),
+      0 6px 16px rgba(0,183,181,0.25),
+      0 20px 50px rgba(0,183,181,0.4),
+      0 0 60px rgba(0,183,181,0.25);
+    border-color: #33cfcd;
+    transform: translateY(-4px);
+  }
+
+  .badge {
+    position: absolute;
+    top: -0.7rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--turquoise);
+    color: #ffffff;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .icon-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.3rem;
+    margin-top: 0.4rem;
+  }
+
+  .coffee-icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+  }
+
+  .coffee-icon path, .coffee-icon line {
+    stroke: var(--deep-teal);
+    stroke-width: 1.6;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .plan-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: var(--deep-teal);
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 0.78rem;
+    color: var(--teal);
+    opacity: 0.85;
+    margin-bottom: 1rem;
+  }
+
+  .plan-features {
+    list-style: none;
+    margin-bottom: 0.9rem;
+    flex: 1;
+  }
+
+  .plan-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: #142023;
+    opacity: 0.78;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+  }
+
+  .plan-features li::before {
+    content: "✓";
+    color: var(--turquoise);
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .capacity-note {
+    font-size: 0.76rem;
+    color: var(--deep-teal);
+    background: rgba(0,183,181,0.08);
+    border: 1px solid rgba(0,183,181,0.25);
+    border-radius: 10px;
+    padding: 0.5rem 0.7rem;
+    margin-bottom: 1.1rem;
+    text-align: center;
+  }
+
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    border-top: 1px solid rgba(0,84,97,0.1);
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .plan-price .amount {
+    font-family: 'Fraunces', serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--deep-teal);
+  }
+
+  .plan-price .unit {
+    font-size: 0.78rem;
+    color: var(--teal);
+    opacity: 0.75;
+  }
+
+  .cta-btn {
+    width: 100%;
+    background: var(--deep-teal);
+    color: var(--off-white);
+    border: none;
+    border-radius: 10px;
+    padding: 0.8rem;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .cta-btn:hover { background: var(--teal); }
+</style>
+</head>
+<body>
+
+<div class="plan-card">
+  <span class="badge">☕ Muy popular</span>
+
+  <div class="icon-title-row">
+    <svg class="coffee-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8,18 L8,34 Q8,40 14,40 L28,40 Q34,40 34,34 L34,18 Z"/>
+      <path d="M34,20 L38,20 Q42,20 42,25 Q42,30 38,30 L34,30"/>
+      <path d="M14,10 Q13,13 15,15 Q17,17 16,20" opacity="0.6"/>
+      <path d="M21,8 Q20,11 22,13 Q24,15 23,18" opacity="0.6"/>
+      <path d="M28,10 Q27,13 29,15 Q31,17 30,20" opacity="0.6"/>
+    </svg>
+    <h3>German Coffee Break</h3>
+  </div>
+  <p class="subtitle">Conversación relajada en alemán</p>
+
+  <ul class="plan-features">
+    <li>Duración de 1 hora</li>
+    <li>Una vez por semana</li>
+    <li>Temas varios por sesión</li>
+  </ul>
+
+  <div class="capacity-note">Mínimo 3 · Máximo 5 personas</div>
+
+  <div class="plan-price">
+    <span class="amount">12€</span>
+    <span class="unit">/sesión</span>
+  </div>
+
+  <button class="cta-btn">Apartar lugar</button>
+</div>
+
+</body>
+</html>

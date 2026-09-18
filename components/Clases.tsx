@@ -2,6 +2,7 @@ import { Fraunces, Work_Sans } from "next/font/google";
 import { getTranslations } from "next-intl/server";
 import type { PlanId } from "@/lib/plans";
 import BuyButton from "./BuyButton";
+import CoffeeBreakButton from "./CoffeeBreakButton";
 import styles from "./Clases.module.css";
 
 const fraunces = Fraunces({
@@ -57,6 +58,10 @@ const individualPlans: Plan[] = [
   },
 ];
 
+// "conversacion" (Grupo de Conversación) ya no se arma con renderPlan(): la
+// tarjeta "German Coffee Break" la reemplaza visualmente (mismos f1/f2/f3 de
+// clases.grupal.conversacion, pero con marca/precio/capacidad propios desde
+// el namespace "coffeeBreak") — ver renderCoffeeBreakCard() más abajo.
 const grupalPlans: Plan[] = [
   {
     key: "pareja",
@@ -72,13 +77,6 @@ const grupalPlans: Plan[] = [
     unit: "perPackage",
     hasPerHour: true,
   },
-  {
-    key: "conversacion",
-    featureKeys: ["f1", "f2", "f3"],
-    amount: "10€",
-    unit: "perSession",
-    hasPerHour: false,
-  },
 ];
 
 const cardBase =
@@ -90,6 +88,7 @@ const gridBase =
 
 export default async function Clases() {
   const t = await getTranslations("clases");
+  const tCoffee = await getTranslations("coffeeBreak");
 
   function renderPlan(group: "individual" | "grupal", plan: Plan) {
     const base = `${group}.${plan.key}`;
@@ -163,6 +162,73 @@ export default async function Clases() {
     );
   }
 
+  // Tarjeta destacada "German Coffee Break": reemplaza visualmente al plan
+  // "conversacion" en el grid grupal. Reutiliza los f1/f2/f3 ya existentes
+  // de clases.grupal.conversacion (duración/frecuencia/temas, sin cambios),
+  // pero el resto de los textos (marca, precio, capacidad) vienen del
+  // namespace "coffeeBreak" agregado para esto. No usa BuyButton/Stripe:
+  // CoffeeBreakButton inserta directo en Supabase vía RLS pública.
+  function renderCoffeeBreakCard() {
+    return (
+      <div
+        key="coffee-break"
+        className="relative flex flex-col rounded-[18px] border-2 border-[#00b7b5] bg-white px-[1.5rem] py-[1.8rem] shadow-[0_14px_34px_rgba(0,183,181,0.18)] transition-[transform,box-shadow,border-color] duration-[350ms] ease-out hover:-translate-y-1 hover:border-[#33cfcd] hover:shadow-[0_0_0_1px_rgba(0,183,181,0.4),0_6px_16px_rgba(0,183,181,0.25),0_20px_50px_rgba(0,183,181,0.4),0_0_60px_rgba(0,183,181,0.25)]"
+      >
+        <span className={styles.badge}>{tCoffee("badge")}</span>
+
+        <div className="mt-1 mb-[0.3rem] flex items-center gap-[0.7rem]">
+          <svg
+            viewBox="0 0 48 48"
+            fill="none"
+            stroke="#005461"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-[30px] w-[30px] shrink-0"
+          >
+            <path d="M8,18 L8,34 Q8,40 14,40 L28,40 Q34,40 34,34 L34,18 Z" />
+            <path d="M34,20 L38,20 Q42,20 42,25 Q42,30 38,30 L34,30" />
+            <path d="M14,10 Q13,13 15,15 Q17,17 16,20" opacity="0.6" />
+            <path d="M21,8 Q20,11 22,13 Q24,15 23,18" opacity="0.6" />
+            <path d="M28,10 Q27,13 29,15 Q31,17 30,20" opacity="0.6" />
+          </svg>
+          <h3 className="font-[family-name:var(--font-fraunces)] text-[1.2rem] leading-[1.2] font-medium text-[#005461]">
+            {tCoffee("title")}
+          </h3>
+        </div>
+        <p className="mb-4 text-[0.78rem] text-[#018790] opacity-85">
+          {tCoffee("subtitle")}
+        </p>
+
+        <ul className="mb-[0.9rem] flex-1 list-none">
+          {["f1", "f2", "f3"].map((fk) => (
+            <li
+              key={fk}
+              className={`mb-2 flex items-start gap-2 text-[0.88rem] leading-[1.5] font-light text-[#142023] opacity-[0.78] ${styles.feature}`}
+            >
+              {t(`grupal.conversacion.${fk}`)}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mb-[1.1rem] rounded-[10px] border border-[rgba(0,183,181,0.25)] bg-[rgba(0,183,181,0.08)] px-[0.7rem] py-[0.5rem] text-center text-[0.76rem] text-[#005461]">
+          {tCoffee("capacityNote")}
+        </div>
+
+        <div className="mb-4 flex items-baseline gap-[0.3rem] border-t border-[rgba(0,84,97,0.1)] pt-[1rem]">
+          <span className="font-[family-name:var(--font-fraunces)] text-[1.7rem] font-medium text-[#005461]">
+            12€
+          </span>
+          <span className="text-[0.8rem] text-[#018790] opacity-75">
+            {t("perSession")}
+          </span>
+        </div>
+
+        <CoffeeBreakButton />
+      </div>
+    );
+  }
+
   return (
     <section
       id="clases"
@@ -197,6 +263,7 @@ export default async function Clases() {
         </div>
         <div className={`${gridBase} grid-cols-3`}>
           {grupalPlans.map((plan) => renderPlan("grupal", plan))}
+          {renderCoffeeBreakCard()}
         </div>
 
         <div className="mt-10 flex flex-col items-center gap-3">

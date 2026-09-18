@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modal Apartar Lugar — mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep-teal: #005461;
+    --teal: #018790;
+    --turquoise: #00b7b5;
+    --off-white: #f4f4f4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Work Sans', sans-serif;
+    background: #0a0a0a;
+    min-height: 100vh;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(4,40,45,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    z-index: 200;
+  }
+
+  .modal {
+    background: #ffffff;
+    border-radius: 22px;
+    width: 100%;
+    max-width: 420px;
+    padding: 2.2rem;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0,84,97,0.08);
+    color: var(--deep-teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
+
+  .plan-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: var(--off-white);
+    border-radius: 14px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .plan-summary .coffee-icon {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+  }
+  .plan-summary .coffee-icon path {
+    stroke: var(--deep-teal);
+    stroke-width: 1.8;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .plan-summary-text .plan-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    color: var(--deep-teal);
+    font-weight: 500;
+  }
+  .plan-summary-text .plan-detail {
+    font-size: 0.76rem;
+    color: var(--teal);
+    opacity: 0.8;
+  }
+
+  .eyebrow {
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--turquoise);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+
+  .modal h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--deep-teal);
+    margin-bottom: 1.4rem;
+  }
+
+  .field { margin-bottom: 1.1rem; }
+  .field label {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--ink, #142023);
+    opacity: 0.7;
+    margin-bottom: 0.35rem;
+  }
+  .field input, .field textarea {
+    width: 100%;
+    background: var(--off-white);
+    border: 1px solid rgba(0,84,97,0.15);
+    border-radius: 10px;
+    padding: 0.7rem 0.9rem;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.92rem;
+    color: #142023;
+    outline: none;
+  }
+  .field input:focus, .field textarea:focus { border-color: var(--turquoise); }
+  .field textarea { resize: vertical; min-height: 60px; }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--deep-teal);
+    color: var(--off-white);
+    border: none;
+    border-radius: 10px;
+    padding: 0.85rem;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.96rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.3rem;
+  }
+  .submit-btn:hover { background: var(--teal); }
+
+  .helper-note {
+    font-size: 0.72rem;
+    color: var(--deep-teal);
+    opacity: 0.6;
+    text-align: center;
+    margin-top: 0.9rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="overlay">
+  <div class="modal">
+    <button class="close-btn">✕</button>
+
+    <div class="plan-summary">
+      <svg class="coffee-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8,18 L8,34 Q8,40 14,40 L28,40 Q34,40 34,34 L34,18 Z"/>
+        <path d="M34,20 L38,20 Q42,20 42,25 Q42,30 38,30 L34,30"/>
+      </svg>
+      <div class="plan-summary-text">
+        <div class="plan-name">German Coffee Break</div>
+        <div class="plan-detail">12€ / sesión · Mín. 3, máx. 5 personas</div>
+      </div>
+    </div>
+
+    <span class="eyebrow">Apartar lugar</span>
+    <h3>Reserva tu espacio</h3>
+
+    <form onsubmit="event.preventDefault(); alert('Maqueta — esto guardaría en Supabase');">
+      <div class="field">
+        <label for="name">Nombre completo</label>
+        <input type="text" id="name" placeholder="Tu nombre" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="tu@email.com" required>
+      </div>
+      <div class="field">
+        <label for="notes">Comentarios (opcional)</label>
+        <textarea id="notes" placeholder="Horario preferido, dudas, etc."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Apartar mi lugar</button>
+      <p class="helper-note">Te contactaremos para confirmar cuando el grupo esté completo.</p>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

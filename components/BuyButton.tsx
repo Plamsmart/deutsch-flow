@@ -27,7 +27,9 @@ type EnrollmentFormData = {
   notes: string;
 };
 
-type Status = "idle" | "submitting" | "error";
+type PaymentMethod = "stripe" | "transfer";
+
+type Status = "idle" | "submitting" | "error" | "success";
 
 const LEVEL_KEYS = ["beginner", "a1", "a2", "b1", "b2", "c1"] as const;
 
@@ -54,6 +56,7 @@ export default function BuyButton({
     notes: "",
   });
   const [acceptedCancellation, setAcceptedCancellation] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("stripe");
   const panelRef = useRef<HTMLDivElement>(null);
 
   function openModal() {
@@ -103,21 +106,39 @@ export default function BuyButton({
     setStatus("submitting");
 
     try {
-      const response = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ planId, ...formData }),
-      });
+      if (paymentMethod === "stripe") {
+        const response = await fetch("/api/checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ planId, ...formData }),
+        });
 
-      const data = await response.json();
+        const data = await response.json();
 
-      if (!response.ok || !data.url) {
-        throw new Error("Checkout request failed");
+        if (!response.ok || !data.url) {
+          throw new Error("Checkout request failed");
+        }
+
+        window.location.href = data.url;
+        return;
       }
 
-      window.location.href = data.url;
+      // Transferencia: a diferencia de Stripe, no hay redirección — la
+      // inscripción queda "pending" hasta que Gesa confirme manualmente en
+      // el panel de admin que vio la transferencia entrar a su cuenta.
+      const response = await fetch("/api/enroll-transfer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ planId, ...formData, paymentMethod }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Transfer enrollment request failed");
+      }
+
+      setStatus("success");
     } catch (error) {
-      console.error("Error iniciando el checkout:", error);
+      console.error("Error iniciando la inscripción:", error);
       setStatus("error");
     }
   }
@@ -281,6 +302,36 @@ export default function BuyButton({
                   />
                 </div>
 
+                <div className="mb-4">
+                  <label className="mb-1 block text-[0.78rem] text-[#005461] opacity-80">
+                    {tModal("paymentMethodLabel")}
+                  </label>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod("stripe")}
+                      className={`rounded-[10px] border px-3 py-2 text-[0.85rem] font-medium transition-colors duration-200 ${
+                        paymentMethod === "stripe"
+                          ? "border-[#00b7b5] bg-[rgba(0,183,181,0.1)] text-[#005461]"
+                          : "border-[rgba(0,84,97,0.18)] text-[#005461] opacity-70 hover:opacity-100"
+                      }`}
+                    >
+                      {tModal("paymentStripe")}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod("transfer")}
+                      className={`rounded-[10px] border px-3 py-2 text-[0.85rem] font-medium transition-colors duration-200 ${
+                        paymentMethod === "transfer"
+                          ? "border-[#00b7b5] bg-[rgba(0,183,181,0.1)] text-[#005461]"
+                          : "border-[rgba(0,84,97,0.18)] text-[#005461] opacity-70 hover:opacity-100"
+                      }`}
+                    >
+                      {tModal("paymentTransfer")}
+                    </button>
+                  </div>
+                </div>
+
                 <div className="mb-4 flex items-start gap-2">
                   <input
                     type="checkbox"
@@ -302,7 +353,11 @@ export default function BuyButton({
 
                 <button
                   type="submit"
-                  disabled={status === "submitting" || !acceptedCancellation}
+                  disabled={
+                    status === "submitting" ||
+                    status === "success" ||
+                    !acceptedCancellation
+                  }
                   className="w-full rounded-[10px] bg-[#00b7b5] py-3 text-[0.95rem] font-semibold text-[#005461] transition-colors duration-200 hover:bg-[#33cfcd] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {status === "submitting"
@@ -316,9 +371,17 @@ export default function BuyButton({
                   </p>
                 )}
 
-                <p className="mt-3 text-center text-[0.72rem] text-[#005461] opacity-60">
-                  {tModal("secureNote")}
-                </p>
+                {status === "success" && (
+                  <p className="mt-3 text-center text-[0.8rem] text-[#00b7b5]">
+                    {tModal("transferSuccessText")}
+                  </p>
+                )}
+
+                {paymentMethod === "stripe" && (
+                  <p className="mt-3 text-center text-[0.72rem] text-[#005461] opacity-60">
+                    {tModal("secureNote")}
+                  </p>
+                )}
               </form>
             </div>
           </div>,

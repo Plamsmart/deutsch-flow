@@ -4,6 +4,7 @@ import { Fraunces, Work_Sans } from "next/font/google";
 import { createClient } from "@/lib/supabase/server";
 import { PLAN_HOURS, type PlanId } from "@/lib/plans";
 import SignOutButton from "./SignOutButton";
+import { markTransferAsPaid } from "./actions";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -26,6 +27,8 @@ type EnrollmentRow = {
   price_cents: number;
   level: string;
   paid_at: string | null;
+  status: "pending" | "paid";
+  payment_method: "stripe" | "transfer";
 };
 
 function formatPrice(priceCents: number) {
@@ -70,12 +73,18 @@ export default async function AdminPage() {
   // "cerrado" en vez de exponer datos por accidente. Verificar en el
   // dashboard de Supabase (Authentication > Policies) que "enrollments"
   // tenga esa policy antes de dar por terminada esta fase.
+  // Además de las inscripciones ya pagadas, traemos las "pending" que
+  // eligieron pagar por transferencia (payment_method='transfer'): a
+  // diferencia de una compra con tarjeta que quedó a medias (pending +
+  // stripe, sin intención real de pago confirmada), una transferencia
+  // "pending" SÍ es una inscripción real esperando que Gesa confirme que el
+  // dinero entró — por eso necesita aparecer con su propio indicador.
   const { data, error } = await supabase
     .from("enrollments")
     .select(
-      "id, student_name, student_email, plan_id, plan_title, price_cents, level, paid_at",
+      "id, student_name, student_email, plan_id, plan_title, price_cents, level, paid_at, status, payment_method",
     )
-    .eq("status", "paid")
+    .or("status.eq.paid,and(status.eq.pending,payment_method.eq.transfer)")
     .order("paid_at", { ascending: false });
 
   if (error) {
@@ -100,12 +109,18 @@ export default async function AdminPage() {
             >
               Calendario
             </Link>
+            <Link
+              href="/admin/coffee-break"
+              className="text-[0.9rem] font-medium text-[#00b7b5] hover:underline"
+            >
+              Coffee Break
+            </Link>
             <SignOutButton />
           </div>
         </div>
 
         <div className="overflow-x-auto rounded-[16px] border border-[rgba(0,84,97,0.1)] bg-white shadow-[0_6px_20px_rgba(0,84,97,0.06)]">
-          <table className="w-full min-w-[820px] border-collapse text-left text-[0.9rem]">
+          <table className="w-full min-w-[960px] border-collapse text-left text-[0.9rem]">
             <thead>
               <tr className="border-b border-[rgba(0,84,97,0.1)] text-[0.72rem] tracking-[0.05em] text-[#018790] uppercase">
                 <th className="px-4 py-3 font-semibold">Alumno</th>
@@ -115,6 +130,7 @@ export default async function AdminPage() {
                 <th className="px-4 py-3 font-semibold">Nivel</th>
                 <th className="px-4 py-3 font-semibold">Horas</th>
                 <th className="px-4 py-3 font-semibold">Fecha de pago</th>
+                <th className="px-4 py-3 font-semibold">Estado</th>
                 <th className="px-4 py-3 font-semibold">Detalle</th>
               </tr>
             </thead>
@@ -122,7 +138,7 @@ export default async function AdminPage() {
               {enrollments.length === 0 && (
                 <tr>
                   <td
-                    colSpan={8}
+                    colSpan={9}
                     className="px-4 py-6 text-center text-[#005461] opacity-60"
                   >
                     Todavía no hay inscripciones pagadas.
@@ -148,6 +164,33 @@ export default async function AdminPage() {
                   </td>
                   <td className="px-4 py-3">
                     {formatDate(enrollment.paid_at)}
+                  </td>
+                  <td className="px-4 py-3">
+                    {enrollment.status === "pending" &&
+                    enrollment.payment_method === "transfer" ? (
+                      <div className="flex flex-col items-start gap-1.5">
+                        <span className="rounded-full bg-[rgba(0,84,97,0.1)] px-2.5 py-1 text-[0.72rem] font-medium whitespace-nowrap text-[#005461]">
+                          Pendiente transferencia
+                        </span>
+                        <form action={markTransferAsPaid}>
+                          <input
+                            type="hidden"
+                            name="enrollmentId"
+                            value={enrollment.id}
+                          />
+                          <button
+                            type="submit"
+                            className="rounded-[8px] bg-[#00b7b5] px-3 py-1.5 text-[0.72rem] font-semibold whitespace-nowrap text-[#005461] transition-colors duration-200 hover:bg-[#33cfcd]"
+                          >
+                            Marcar como pagado
+                          </button>
+                        </form>
+                      </div>
+                    ) : (
+                      <span className="text-[0.8rem] text-[#005461] opacity-40">
+                        —
+                      </span>
+                    )}
                   </td>
                   <td className="px-4 py-3">
                     <Link

@@ -162,7 +162,11 @@
     "continueButton": "Weiter zur Zahlung",
     "submittingText": "Wird verarbeitet...",
     "errorText": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
-    "secureNote": "Sichere Zahlung, abgewickelt von Stripe"
+    "secureNote": "Sichere Zahlung, abgewickelt von Stripe",
+    "paymentMethodLabel": "Zahlungsmethode",
+    "paymentStripe": "Karte (sofortige Zahlung)",
+    "paymentTransfer": "Banküberweisung",
+    "transferSuccessText": "Fertig! Schau in deinem E-Mail-Postfach nach den Kontodaten, um deine Überweisung abzuschließen."
   },
   "enrollmentEmail": {
     "subject": "Deine Deutsch Flow Anmeldebestätigung!",
@@ -185,5 +189,46 @@
     "eyebrow": "Zahlung bestätigt",
     "heading": "Willkommen an Bord!",
     "body": "Deine Anmeldung wurde erfolgreich verarbeitet. Wir haben dir eine Bestätigungspostkarte mit allen Details an deine E-Mail geschickt."
+  },
+  "coffeeBreak": {
+    "badge": "☕ Sehr beliebt",
+    "title": "German Coffee Break",
+    "subtitle": "Entspannte Konversation auf Deutsch",
+    "capacityNote": "Mindestens 3 · Höchstens 5 Personen",
+    "ctaButton": "Platz reservieren",
+    "modal": {
+      "eyebrow": "Platz reservieren",
+      "heading": "Sichere dir deinen Platz",
+      "planDetail": "12€ / Sitzung · Min. 3, max. 5 Personen",
+      "nameLabel": "Vollständiger Name",
+      "namePlaceholder": "Dein Name",
+      "emailLabel": "E-Mail",
+      "emailPlaceholder": "du@email.com",
+      "notesLabel": "Anmerkungen (optional)",
+      "notesPlaceholder": "Bevorzugte Zeit, Fragen, etc.",
+      "submitButton": "Meinen Platz reservieren",
+      "submittingText": "Wird gesendet...",
+      "helperNote": "Wir melden uns, sobald die Gruppe voll ist.",
+      "errorText": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+      "successText": "Fertig! Wir melden uns bald, um deinen Platz zu bestätigen."
+    }
+  },
+  "coffeeBreakEmail": {
+    "subject": "Bestätigung deines Platzes im German Coffee Break!",
+    "greeting": "Hallo",
+    "body": "Wir haben deine Anfrage für einen Platz im German Coffee Break erhalten. Wir melden uns, sobald die Gruppe voll ist (mindestens 3 Personen), um den Termin zu bestätigen.",
+    "thanks": "Danke für dein Interesse, mit uns Deutsch zu üben!",
+    "contactNote": "Bei Fragen antworte einfach auf diese E-Mail."
+  },
+  "transferEmail": {
+    "subject": "Daten zur Fertigstellung deiner Überweisung",
+    "greeting": "Hallo",
+    "body": "Wir haben deine Anmeldung erhalten und du hast dich für eine Banküberweisung entschieden. Hier sind die Daten zur Fertigstellung der Zahlung:",
+    "ibanLabel": "IBAN",
+    "holderLabel": "Kontoinhaber",
+    "amountLabel": "Zu überweisender Betrag",
+    "referenceLabel": "Bitte gib deinen Namen im Verwendungszweck an, damit wir deine Zahlung zuordnen können",
+    "thanks": "Sobald wir die Überweisung bestätigt haben, melden wir uns, um deine Kurse zu koordinieren.",
+    "contactNote": "Bei Fragen antworte einfach auf diese E-Mail."
   }
 }

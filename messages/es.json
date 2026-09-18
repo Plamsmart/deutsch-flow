@@ -174,7 +174,11 @@
     "continueButton": "Continuar al pago",
     "submittingText": "Procesando...",
     "errorText": "Algo salió mal. Intenta de nuevo.",
-    "secureNote": "Pago seguro procesado por Stripe"
+    "secureNote": "Pago seguro procesado por Stripe",
+    "paymentMethodLabel": "Método de pago",
+    "paymentStripe": "Tarjeta (pago inmediato)",
+    "paymentTransfer": "Transferencia bancaria",
+    "transferSuccessText": "¡Listo! Revisa tu email para ver los datos de la cuenta y completar tu transferencia."
   },
   "enrollmentEmail": {
     "subject": "¡Confirmación de tu inscripción a Deutsch Flow!",
@@ -197,5 +201,46 @@
     "eyebrow": "Pago confirmado",
     "heading": "¡Bienvenido a bordo!",
     "body": "Tu inscripción se procesó correctamente. Te enviamos una postal de confirmación a tu email con todos los detalles."
+  },
+  "coffeeBreak": {
+    "badge": "☕ Muy popular",
+    "title": "German Coffee Break",
+    "subtitle": "Conversación relajada en alemán",
+    "capacityNote": "Mínimo 3 · Máximo 5 personas",
+    "ctaButton": "Apartar lugar",
+    "modal": {
+      "eyebrow": "Apartar lugar",
+      "heading": "Reserva tu espacio",
+      "planDetail": "12€ / sesión · Mín. 3, máx. 5 personas",
+      "nameLabel": "Nombre completo",
+      "namePlaceholder": "Tu nombre",
+      "emailLabel": "Email",
+      "emailPlaceholder": "tu@email.com",
+      "notesLabel": "Comentarios (opcional)",
+      "notesPlaceholder": "Horario preferido, dudas, etc.",
+      "submitButton": "Apartar mi lugar",
+      "submittingText": "Enviando...",
+      "helperNote": "Te contactaremos para confirmar cuando el grupo esté completo.",
+      "errorText": "Algo salió mal. Intenta de nuevo.",
+      "successText": "¡Listo! Te contactaremos pronto para confirmar tu lugar."
+    }
+  },
+  "coffeeBreakEmail": {
+    "subject": "¡Confirmación de tu lugar en German Coffee Break!",
+    "greeting": "Hola",
+    "body": "Recibimos tu solicitud para apartar un lugar en el German Coffee Break. Te contactaremos en cuanto el grupo esté completo (mínimo 3 personas) para confirmar el horario.",
+    "thanks": "¡Gracias por tu interés en practicar alemán con nosotros!",
+    "contactNote": "Si tienes alguna duda, responde a este email."
+  },
+  "transferEmail": {
+    "subject": "Datos para completar tu pago por transferencia",
+    "greeting": "Hola",
+    "body": "Recibimos tu inscripción y elegiste pagar por transferencia bancaria. Aquí tienes los datos para completar el pago:",
+    "ibanLabel": "IBAN",
+    "holderLabel": "Titular",
+    "amountLabel": "Importe a transferir",
+    "referenceLabel": "Por favor incluye tu nombre en el concepto de la transferencia, para poder identificar tu pago",
+    "thanks": "En cuanto confirmemos la transferencia, te avisaremos para coordinar tus clases.",
+    "contactNote": "Si tienes alguna duda, responde a este email."
   }
 }
