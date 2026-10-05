@@ -93,6 +93,8 @@
     }
   },
   "testimonios": {
+    "emptyText": "Soon you'll find my students' experiences here.",
+    "ratingLabel": "{rating} out of 5 stars",
     "eyebrow": "Testimonials",
     "heading": "What my students say",
     "prevLabel": "Previous",

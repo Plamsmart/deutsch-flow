@@ -5,6 +5,9 @@
 
 .track {
   transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  /* "safe": centra cuando sobra espacio (1-2 reseñas) y cae a inicio cuando
+     las tarjetas desbordan, sin cortar la primera. */
+  justify-content: safe center;
 }
 
 .card {

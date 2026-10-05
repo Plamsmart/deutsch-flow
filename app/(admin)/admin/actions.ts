@@ -210,3 +210,143 @@ export async function addSession(formData: FormData) {
 
   revalidateSessionViews(enrollmentId);
 }
+
+const TESTIMONIAL_BUCKET = "testimonial-photos";
+
+function testimonialPhotoPrefix() {
+  return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${TESTIMONIAL_BUCKET}/`;
+}
+
+function revalidateTestimonialViews() {
+  revalidatePath("/[locale]", "page");
+  revalidatePath("/admin/resenas");
+}
+
+// Best-effort: un fallo al borrar el archivo no debe impedir el cambio en la
+// base (la reseña ya quedó actualizada/borrada cuando esto corre).
+async function removeTestimonialPhoto(
+  supabase: Awaited<ReturnType<typeof requireAuthenticatedClient>>,
+  photoUrl: string | null,
+) {
+  if (!photoUrl || !photoUrl.startsWith(testimonialPhotoPrefix())) return;
+
+  const path = photoUrl.slice(testimonialPhotoPrefix().length);
+  const { error } = await supabase.storage
+    .from(TESTIMONIAL_BUCKET)
+    .remove([path]);
+
+  if (error) {
+    console.error("[admin] Error borrando la foto de la reseña:", error);
+  }
+}
+
+function parseTestimonialForm(formData: FormData) {
+  const studentName = formData.get("studentName");
+  const ratingRaw = formData.get("rating");
+  const comment = formData.get("comment");
+  const detail = formData.get("detail");
+  const photoUrl = formData.get("photoUrl");
+
+  if (typeof studentName !== "string" || !studentName.trim()) {
+    throw new Error("El nombre del alumno es obligatorio.");
+  }
+
+  const rating = Number(ratingRaw);
+  if (!Number.isInteger(rating) || rating < 1 || rating > 5) {
+    throw new Error("La calificación debe ser un número entero entre 1 y 5.");
+  }
+
+  if (typeof comment !== "string" || !comment.trim()) {
+    throw new Error("El comentario es obligatorio.");
+  }
+
+  if (typeof photoUrl === "string" && photoUrl && !photoUrl.startsWith(testimonialPhotoPrefix())) {
+    throw new Error("La foto debe venir del bucket de reseñas.");
+  }
+
+  return {
+    student_name: studentName.trim(),
+    rating,
+    comment: comment.trim(),
+    detail: typeof detail === "string" && detail.trim() ? detail.trim() : null,
+    photo_url: typeof photoUrl === "string" && photoUrl ? photoUrl : null,
+  };
+}
+
+export async function addTestimonial(formData: FormData) {
+  const supabase = await requireAuthenticatedClient();
+  const values = parseTestimonialForm(formData);
+
+  const { error } = await supabase.from("testimonials").insert(values);
+
+  if (error) {
+    console.error("[admin] Error agregando la reseña:", error);
+    throw new Error("No se pudo agregar la reseña.");
+  }
+
+  revalidateTestimonialViews();
+}
+
+export async function updateTestimonial(formData: FormData) {
+  const supabase = await requireAuthenticatedClient();
+
+  const id = formData.get("id");
+  if (typeof id !== "string") {
+    throw new Error("Datos inválidos.");
+  }
+
+  const values = parseTestimonialForm(formData);
+
+  // La foto anterior se lee de la base, no del formulario, para no confiar en
+  // una URL mandada por el cliente al decidir qué archivo borrar.
+  const { data: previous } = await supabase
+    .from("testimonials")
+    .select("photo_url")
+    .eq("id", id)
+    .single();
+
+  const { error } = await supabase
+    .from("testimonials")
+    .update(values)
+    .eq("id", id);
+
+  if (error) {
+    console.error("[admin] Error actualizando la reseña:", error);
+    throw new Error("No se pudo actualizar la reseña.");
+  }
+
+  const previousPhoto = (previous as { photo_url: string | null } | null)
+    ?.photo_url;
+  if (previousPhoto && previousPhoto !== values.photo_url) {
+    await removeTestimonialPhoto(supabase, previousPhoto);
+  }
+
+  revalidateTestimonialViews();
+}
+
+export async function deleteTestimonial(formData: FormData) {
+  const supabase = await requireAuthenticatedClient();
+
+  const id = formData.get("id");
+  if (typeof id !== "string") {
+    throw new Error("Datos inválidos.");
+  }
+
+  const { data: existing } = await supabase
+    .from("testimonials")
+    .select("photo_url")
+    .eq("id", id)
+    .single();
+
+  const { error } = await supabase.from("testimonials").delete().eq("id", id);
+
+  if (error) {
+    console.error("[admin] Error eliminando la reseña:", error);
+    throw new Error("No se pudo eliminar la reseña.");
+  }
+
+  const photo = (existing as { photo_url: string | null } | null)?.photo_url;
+  await removeTestimonialPhoto(supabase, photo ?? null);
+
+  revalidateTestimonialViews();
+}

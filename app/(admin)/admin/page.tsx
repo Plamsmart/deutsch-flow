@@ -115,6 +115,12 @@ export default async function AdminPage() {
             >
               Coffee Break
             </Link>
+            <Link
+              href="/admin/resenas"
+              className="text-[0.9rem] font-medium text-[#00b7b5] hover:underline"
+            >
+              Reseñas
+            </Link>
             <SignOutButton />
           </div>
         </div>

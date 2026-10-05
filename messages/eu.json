@@ -93,6 +93,8 @@
     }
   },
   "testimonios": {
+    "emptyText": "Laster hemen aurkituko dituzu nire ikasleen esperientziak.",
+    "ratingLabel": "5 izarretatik {rating}",
     "eyebrow": "Iritziak",
     "heading": "Nire ikasleek diotena",
     "prevLabel": "Aurrekoa",
