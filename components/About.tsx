@@ -35,7 +35,7 @@ export default async function About() {
             <div className="relative aspect-square w-[38%] max-[340px]:w-[45%]">
               <div className={styles.photoRing} />
               <Image
-                src="/images/gesa-portrait.png"
+                src="/images/actual.png"
                 alt="Gesa Nommsen"
                 fill
                 sizes="(max-width: 340px) 45vw, 200px"
