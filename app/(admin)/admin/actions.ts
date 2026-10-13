@@ -1,7 +1,15 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { Resend } from "resend";
+import { hasLocale } from "next-intl";
+import { routing } from "@/i18n/routing";
 import { createClient } from "@/lib/supabase/server";
+import esMessages from "@/messages/es.json";
+import deMessages from "@/messages/de.json";
+import enMessages from "@/messages/en.json";
+import frMessages from "@/messages/fr.json";
+import euMessages from "@/messages/eu.json";
 
 // Server Functions son alcanzables por POST directo, no solo desde la UI de
 // esta página — cada una revalida acá adentro que quien llama es Gesa
@@ -31,6 +39,103 @@ async function requireAuthenticatedClient() {
 function revalidateSessionViews(enrollmentId: string) {
   revalidatePath(`/admin/alumno/${enrollmentId}`);
   revalidatePath("/admin/calendario");
+}
+
+// --- Emails al alumno cuando Gesa confirma algo desde el panel (pago por
+// transferencia, lugar en Coffee Break) — mismo remitente y diseño tipo
+// "postal" que los demás emails al alumno (app/api/stripe/webhook/route.ts),
+// pero sin la tarjeta de plan/precio: acá el cuerpo ya viene armado como
+// texto corrido (greeting + body + signoff), interpolado a mano porque este
+// archivo no usa useTranslations/getTranslations, solo indexa el JSON de
+// mensajes directamente.
+type SimpleEmailMessages = {
+  subject: string;
+  greeting: string;
+  body: string;
+  signoff: string;
+};
+
+const POSTAL_IMAGE_URL =
+  "https://www.deutschflow.eu/images/DflowPostal-fixed3.png";
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function buildSimplePostalEmailHtml({
+  greeting,
+  body,
+  signoff,
+}: {
+  greeting: string;
+  body: string;
+  signoff: string;
+}): string {
+  return `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin:0; padding:0; background:#faf7f0; font-family: Georgia, 'Times New Roman', serif;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf7f0;">
+  <tr>
+    <td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%; background:#faf7f0;">
+        <tr>
+          <td style="padding:0; line-height:0; font-size:0;">
+            <img src="${POSTAL_IMAGE_URL}" alt="Deutsch Flow" width="600" style="width:100%; max-width:600px; display:block; border:0;">
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 0 28px;">
+            <div style="border-top: 2px dashed #1a3a5c; opacity: 0.35;"></div>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 26px 32px 34px 32px;">
+            <p style="margin:0 0 18px 0; font-size:16px; color:#1a3a5c; line-height:1.5;">
+              ${escapeHtml(greeting)}
+            </p>
+            <p style="margin:0 0 22px 0; font-size:15px; color:#1a3a5c; line-height:1.6; opacity:0.85;">
+              ${escapeHtml(body)}
+            </p>
+            <p style="margin:0; font-size:15px; color:#1a3a5c; line-height:1.6; font-style: italic;">
+              ${escapeHtml(signoff)}
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>`;
+}
+
+// Importados estáticamente (no con import() dinámico + path relativo): así
+// tsc verifica que los 5 archivos existen de verdad, en vez de confiar en
+// contar niveles de "../" a mano — un import() dinámico con un locale
+// interpolado no lo valida el compilador (tipa como Promise<any>), y este
+// archivo es el único lugar que intentaba ese patrón desde dentro de un
+// "use server" (en las rutas API sí está probado, acá no lo estaba).
+const MESSAGES_BY_LOCALE: Record<string, typeof esMessages> = {
+  es: esMessages,
+  de: deMessages,
+  en: enMessages,
+  fr: frMessages,
+  eu: euMessages,
+};
+
+// Respaldo "es" si el locale guardado falta o no es uno de los soportados
+// (ej. filas viejas de antes de que existiera la columna).
+function resolveStoredLocale(locale: string | null): string {
+  return locale && hasLocale(routing.locales, locale) ? locale : "es";
 }
 
 export async function completeSession(formData: FormData) {
@@ -126,20 +231,67 @@ export async function confirmCoffeeBreakSignup(formData: FormData) {
     throw new Error("Datos inválidos.");
   }
 
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("coffee_break_signups")
     .update({ status: "confirmed" })
-    .eq("id", signupId);
+    .eq("id", signupId)
+    .select("name, email, locale")
+    .single();
 
-  if (error) {
+  if (error || !data) {
     console.error(
-      "[admin] Error confirmando el registro de Coffee Break:",
-      error,
+      "[confirmCoffeeBreakSignup] El update no devolvió la fila esperada:",
+      error ?? "sin datos (0 filas) — revisá la policy de SELECT de admin en coffee_break_signups",
     );
     throw new Error("No se pudo confirmar el registro.");
   }
 
   revalidatePath("/admin/coffee-break");
+
+  const signup = data as {
+    name: string;
+    email: string;
+    locale: string | null;
+  };
+
+  // El email es secundario: si falla, el registro ya quedó confirmado y no
+  // se revierte — solo se deja constancia en el log. El try/catch cubre
+  // fallos inesperados (ej. una clave de mensaje faltante); el resultado de
+  // Resend en sí se chequea explícitamente más abajo, no solo con throw.
+  try {
+    const locale = resolveStoredLocale(signup.locale);
+    const t: SimpleEmailMessages =
+      MESSAGES_BY_LOCALE[locale].coffeeBreakConfirmedEmail;
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const { data: emailData, error: emailError } = await resend.emails.send({
+      from: "Deutsch Flow <hallo@deutschflow.eu>",
+      to: signup.email,
+      replyTo: process.env.CONTACT_EMAIL_TO!,
+      subject: t.subject,
+      html: buildSimplePostalEmailHtml({
+        greeting: t.greeting.replace("{name}", signup.name),
+        body: t.body.replace("{name}", signup.name),
+        signoff: t.signoff,
+      }),
+    });
+
+    if (emailError) {
+      console.error("[confirmCoffeeBreakSignup] Resend error:", emailError);
+    } else {
+      console.log(
+        "[confirmCoffeeBreakSignup] Email enviado a",
+        signup.email,
+        "id:",
+        emailData?.id,
+      );
+    }
+  } catch (emailError) {
+    console.error(
+      "[confirmCoffeeBreakSignup] Error inesperado enviando el email:",
+      emailError,
+    );
+  }
 }
 
 export async function markTransferAsPaid(formData: FormData) {
@@ -151,20 +303,69 @@ export async function markTransferAsPaid(formData: FormData) {
     throw new Error("Datos inválidos.");
   }
 
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("enrollments")
     .update({ status: "paid", paid_at: new Date().toISOString() })
-    .eq("id", enrollmentId);
+    .eq("id", enrollmentId)
+    .select("student_name, student_email, plan_title, locale")
+    .single();
 
-  if (error) {
+  if (error || !data) {
     console.error(
-      "[admin] Error marcando la transferencia como pagada:",
-      error,
+      "[markTransferAsPaid] El update no devolvió la fila esperada:",
+      error ?? "sin datos (0 filas) — revisá la policy de SELECT de admin en enrollments",
     );
     throw new Error("No se pudo marcar la inscripción como pagada.");
   }
 
   revalidatePath("/admin");
+
+  const enrollment = data as {
+    student_name: string;
+    student_email: string;
+    plan_title: string;
+    locale: string | null;
+  };
+
+  // El email es secundario: si falla, el estado ya quedó actualizado y no
+  // se revierte — solo se deja constancia en el log. El try/catch cubre
+  // fallos inesperados (ej. una clave de mensaje faltante); el resultado de
+  // Resend en sí se chequea explícitamente más abajo, no solo con throw.
+  try {
+    const locale = resolveStoredLocale(enrollment.locale);
+    const t: SimpleEmailMessages = MESSAGES_BY_LOCALE[locale].transferPaidEmail;
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const { data: emailData, error: emailError } = await resend.emails.send({
+      from: "Deutsch Flow <hallo@deutschflow.eu>",
+      to: enrollment.student_email,
+      replyTo: process.env.CONTACT_EMAIL_TO!,
+      subject: t.subject,
+      html: buildSimplePostalEmailHtml({
+        greeting: t.greeting.replace("{name}", enrollment.student_name),
+        body: t.body
+          .replace("{name}", enrollment.student_name)
+          .replace("{plan}", enrollment.plan_title),
+        signoff: t.signoff,
+      }),
+    });
+
+    if (emailError) {
+      console.error("[markTransferAsPaid] Resend error:", emailError);
+    } else {
+      console.log(
+        "[markTransferAsPaid] Email enviado a",
+        enrollment.student_email,
+        "id:",
+        emailData?.id,
+      );
+    }
+  } catch (emailError) {
+    console.error(
+      "[markTransferAsPaid] Error inesperado enviando el email:",
+      emailError,
+    );
+  }
 }
 
 export async function addSession(formData: FormData) {

@@ -141,6 +141,7 @@
   },
   "buyButton": "Buy",
   "modal": {
+    "submitRequestButton": "Send request",
     "eyebrow": "Enrollment",
     "heading": "Reserve your package",
     "cancellationCheckbox": "I have read and accept the cancellation policy (24h to cancel or reschedule free of charge; after that, rescheduling only).",
@@ -231,6 +232,24 @@
     "amountLabel": "Amount to transfer",
     "referenceLabel": "Please include your name in the transfer reference, so we can identify your payment",
     "thanks": "Once we confirm the transfer, we'll reach out to coordinate your classes.",
-    "contactNote": "If you have any questions, just reply to this email."
+    "contactNote": "Once you've made the transfer, write to Gesa at {email} so she can confirm the payment (you can also reply directly to this email)."
+  },
+  "requestSent": {
+    "closeLabel": "Close",
+    "eyebrow": "Request sent",
+    "heading": "Welcome aboard!",
+    "body": "We've received your request. We've just emailed you the bank transfer details. As soon as Gesa confirms your payment, we set sail together! If you can't find the email, please check your spam folder."
+  },
+  "transferPaidEmail": {
+    "subject": "Payment received! Your spot is confirmed",
+    "greeting": "Hi {name},",
+    "body": "Gesa has confirmed receipt of your payment for “{plan}”. Your spot is confirmed! She'll contact you soon to agree on your class schedule. You can check your classes and hours in your account.",
+    "signoff": "See you soon!"
+  },
+  "coffeeBreakConfirmedEmail": {
+    "subject": "Your German Coffee Break spot is confirmed",
+    "greeting": "Hi {name},",
+    "body": "Good news! Your spot at the German Coffee Break is confirmed. Gesa will write to you with the details of the meeting.",
+    "signoff": "See you soon!"
   }
 }

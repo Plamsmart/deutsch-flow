@@ -4,8 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import type { ChangeEvent, SubmitEvent } from "react";
 import { createPortal } from "react-dom";
 import { Fraunces, Work_Sans } from "next/font/google";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import type { PlanId } from "@/lib/plans";
+import { STRIPE_CHECKOUT_ENABLED } from "@/lib/payments";
+import BoatModal from "./BoatModal";
 import styles from "./BuyButton.module.css";
 
 const fraunces = Fraunces({
@@ -29,7 +31,7 @@ type EnrollmentFormData = {
 
 type PaymentMethod = "stripe" | "transfer";
 
-type Status = "idle" | "submitting" | "error" | "success";
+type Status = "idle" | "submitting" | "error";
 
 const LEVEL_KEYS = ["beginner", "a1", "a2", "b1", "b2", "c1"] as const;
 
@@ -46,6 +48,7 @@ export default function BuyButton({
   // (hermanos de "clases"), no sub-claves de "clases".
   const t = useTranslations();
   const tModal = useTranslations("modal");
+  const locale = useLocale();
 
   const [isOpen, setIsOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
@@ -57,7 +60,16 @@ export default function BuyButton({
   });
   const [acceptedCancellation, setAcceptedCancellation] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("stripe");
+  const [showBoat, setShowBoat] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+
+  // Con Stripe desactivado el método efectivo es siempre "transfer", sin
+  // importar el estado del selector (que ni siquiera se renderiza en ese
+  // caso) — así no hace falta sincronizar paymentMethod cuando cambia el
+  // interruptor.
+  const effectivePaymentMethod: PaymentMethod = STRIPE_CHECKOUT_ENABLED
+    ? paymentMethod
+    : "transfer";
 
   function openModal() {
     setIsOpen(true);
@@ -106,11 +118,11 @@ export default function BuyButton({
     setStatus("submitting");
 
     try {
-      if (paymentMethod === "stripe") {
+      if (effectivePaymentMethod === "stripe") {
         const response = await fetch("/api/checkout", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ planId, ...formData }),
+          body: JSON.stringify({ planId, ...formData, locale }),
         });
 
         const data = await response.json();
@@ -129,14 +141,27 @@ export default function BuyButton({
       const response = await fetch("/api/enroll-transfer", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ planId, ...formData, paymentMethod }),
+        body: JSON.stringify({
+          planId,
+          ...formData,
+          paymentMethod: effectivePaymentMethod,
+          locale,
+        }),
       });
 
       if (!response.ok) {
         throw new Error("Transfer enrollment request failed");
       }
 
-      setStatus("success");
+      // Éxito: se cierra el modal de compra y se resetea para la próxima
+      // vez que se abra, y se muestra el modal del barco (requestSent) en
+      // su lugar — queda montado aparte, fuera del bloque condicional del
+      // modal de compra, así que sigue visible aunque este ya se cerró.
+      setIsOpen(false);
+      setStatus("idle");
+      setFormData({ name: "", email: "", level: "", notes: "" });
+      setAcceptedCancellation(false);
+      setShowBoat(true);
     } catch (error) {
       console.error("Error iniciando la inscripción:", error);
       setStatus("error");
@@ -302,35 +327,37 @@ export default function BuyButton({
                   />
                 </div>
 
-                <div className="mb-4">
-                  <label className="mb-1 block text-[0.78rem] text-[#005461] opacity-80">
-                    {tModal("paymentMethodLabel")}
-                  </label>
-                  <div className="grid grid-cols-2 gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setPaymentMethod("stripe")}
-                      className={`rounded-[10px] border px-3 py-2 text-[0.85rem] font-medium transition-colors duration-200 ${
-                        paymentMethod === "stripe"
-                          ? "border-[#00b7b5] bg-[rgba(0,183,181,0.1)] text-[#005461]"
-                          : "border-[rgba(0,84,97,0.18)] text-[#005461] opacity-70 hover:opacity-100"
-                      }`}
-                    >
-                      {tModal("paymentStripe")}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setPaymentMethod("transfer")}
-                      className={`rounded-[10px] border px-3 py-2 text-[0.85rem] font-medium transition-colors duration-200 ${
-                        paymentMethod === "transfer"
-                          ? "border-[#00b7b5] bg-[rgba(0,183,181,0.1)] text-[#005461]"
-                          : "border-[rgba(0,84,97,0.18)] text-[#005461] opacity-70 hover:opacity-100"
-                      }`}
-                    >
-                      {tModal("paymentTransfer")}
-                    </button>
+                {STRIPE_CHECKOUT_ENABLED && (
+                  <div className="mb-4">
+                    <label className="mb-1 block text-[0.78rem] text-[#005461] opacity-80">
+                      {tModal("paymentMethodLabel")}
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setPaymentMethod("stripe")}
+                        className={`rounded-[10px] border px-3 py-2 text-[0.85rem] font-medium transition-colors duration-200 ${
+                          paymentMethod === "stripe"
+                            ? "border-[#00b7b5] bg-[rgba(0,183,181,0.1)] text-[#005461]"
+                            : "border-[rgba(0,84,97,0.18)] text-[#005461] opacity-70 hover:opacity-100"
+                        }`}
+                      >
+                        {tModal("paymentStripe")}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPaymentMethod("transfer")}
+                        className={`rounded-[10px] border px-3 py-2 text-[0.85rem] font-medium transition-colors duration-200 ${
+                          paymentMethod === "transfer"
+                            ? "border-[#00b7b5] bg-[rgba(0,183,181,0.1)] text-[#005461]"
+                            : "border-[rgba(0,84,97,0.18)] text-[#005461] opacity-70 hover:opacity-100"
+                        }`}
+                      >
+                        {tModal("paymentTransfer")}
+                      </button>
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <div className="mb-4 flex items-start gap-2">
                   <input
@@ -353,16 +380,14 @@ export default function BuyButton({
 
                 <button
                   type="submit"
-                  disabled={
-                    status === "submitting" ||
-                    status === "success" ||
-                    !acceptedCancellation
-                  }
+                  disabled={status === "submitting" || !acceptedCancellation}
                   className="w-full rounded-[10px] bg-[#00b7b5] py-3 text-[0.95rem] font-semibold text-[#005461] transition-colors duration-200 hover:bg-[#33cfcd] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {status === "submitting"
                     ? tModal("submittingText")
-                    : tModal("continueButton")}
+                    : STRIPE_CHECKOUT_ENABLED
+                      ? tModal("continueButton")
+                      : tModal("submitRequestButton")}
                 </button>
 
                 {status === "error" && (
@@ -371,13 +396,7 @@ export default function BuyButton({
                   </p>
                 )}
 
-                {status === "success" && (
-                  <p className="mt-3 text-center text-[0.8rem] text-[#00b7b5]">
-                    {tModal("transferSuccessText")}
-                  </p>
-                )}
-
-                {paymentMethod === "stripe" && (
+                {effectivePaymentMethod === "stripe" && (
                   <p className="mt-3 text-center text-[0.72rem] text-[#005461] opacity-60">
                     {tModal("secureNote")}
                   </p>
@@ -387,6 +406,12 @@ export default function BuyButton({
           </div>,
           document.body,
         )}
+
+      <BoatModal
+        open={showBoat}
+        onClose={() => setShowBoat(false)}
+        namespace="requestSent"
+      />
     </>
   );
 }

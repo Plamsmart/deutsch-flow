@@ -4,6 +4,7 @@ import Stripe from "stripe";
 import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { PLAN_PRICES, PLAN_TITLES, type PlanId } from "@/lib/plans";
+import { STRIPE_CHECKOUT_ENABLED } from "@/lib/payments";
 
 // ---------------------------------------------------------------------------
 // Esto es la PARTE 1 (modal + creación de la sesión de pago). Toda
@@ -19,6 +20,7 @@ type CheckoutPayload = {
   email?: string;
   level?: string;
   notes?: string;
+  locale?: string;
 };
 
 function isPlanId(value: string): value is PlanId {
@@ -26,6 +28,15 @@ function isPlanId(value: string): value is PlanId {
 }
 
 export async function POST(request: Request) {
+  // Interruptor temporal (lib/payments.ts): con el pago con tarjeta
+  // desactivado, se corta acá antes de tocar Supabase o Stripe.
+  if (!STRIPE_CHECKOUT_ENABLED) {
+    return NextResponse.json(
+      { error: "El pago con tarjeta no está disponible por el momento." },
+      { status: 503 },
+    );
+  }
+
   let body: CheckoutPayload;
 
   try {
@@ -57,16 +68,21 @@ export async function POST(request: Request) {
   // El sitio es de una sola página (todas las secciones, incluida "Clases",
   // viven en /{locale}, no hay una ruta /clases separada), así que las URLs
   // de retorno de Stripe apuntan de vuelta al home en el locale actual con el
-  // hash de la sección. El locale se saca del "referer" (contiene el path
-  // completo); el origin preferimos tomarlo del header "origin" y si no está
-  // presente, del propio "referer". Este mismo locale se guarda en Supabase y
-  // en la metadata de Stripe para que el webhook (Parte 2) sepa en qué idioma
+  // hash de la sección. Este mismo locale se guarda en Supabase y en la
+  // metadata de Stripe para que el webhook (Parte 2) sepa en qué idioma
   // enviarle el email de confirmación al alumno.
+  //
+  // Prioridad para resolver el locale: 1) el que manda el cliente
+  // explícitamente (useLocale() en BuyButton) si es uno de los soportados;
+  // 2) el segmento del "referer" (respaldo, por si el body no lo trae o
+  // trae un valor inválido); 3) el default. El origin se saca del header
+  // "origin" y, si no está presente, del propio "referer".
   const originHeader = request.headers.get("origin");
   const refererHeader = request.headers.get("referer");
 
   let origin = originHeader;
   let locale: string = routing.defaultLocale;
+  let refererLocale: string | null = null;
 
   if (refererHeader) {
     try {
@@ -75,11 +91,17 @@ export async function POST(request: Request) {
 
       const firstSegment = refererUrl.pathname.split("/").filter(Boolean)[0];
       if (firstSegment && hasLocale(routing.locales, firstSegment)) {
-        locale = firstSegment;
+        refererLocale = firstSegment;
       }
     } catch {
       // referer malformado: seguimos con los valores por defecto.
     }
+  }
+
+  if (typeof body.locale === "string" && hasLocale(routing.locales, body.locale)) {
+    locale = body.locale;
+  } else if (refererLocale) {
+    locale = refererLocale;
   }
 
   if (!origin) {

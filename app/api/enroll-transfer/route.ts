@@ -20,6 +20,7 @@ type TransferPayload = {
   email?: string;
   level?: string;
   notes?: string;
+  locale?: string;
 };
 
 type TransferEmailMessages = {
@@ -74,22 +75,32 @@ export async function POST(request: Request) {
   const planTitle = PLAN_TITLES[planId];
   const priceCents = PLAN_PRICES[planId];
 
-  // Mismo criterio que app/api/checkout/route.ts para sacar el locale del
-  // referer: el email al alumno (con los datos bancarios) se manda en su
-  // idioma; el aviso a Gesa siempre va en español.
+  // Prioridad para resolver el locale: 1) el que manda el cliente
+  // explícitamente (useLocale() en BuyButton) si es uno de los soportados;
+  // 2) el segmento del "referer" (respaldo, mismo criterio que
+  // app/api/checkout/route.ts); 3) el default. El email al alumno (con los
+  // datos bancarios) se manda en ese idioma; el aviso a Gesa siempre va en
+  // español.
   const refererHeader = request.headers.get("referer");
   let locale: string = routing.defaultLocale;
+  let refererLocale: string | null = null;
 
   if (refererHeader) {
     try {
       const refererUrl = new URL(refererHeader);
       const firstSegment = refererUrl.pathname.split("/").filter(Boolean)[0];
       if (firstSegment && hasLocale(routing.locales, firstSegment)) {
-        locale = firstSegment;
+        refererLocale = firstSegment;
       }
     } catch {
       // referer malformado: seguimos con el locale por defecto.
     }
+  }
+
+  if (typeof body.locale === "string" && hasLocale(routing.locales, body.locale)) {
+    locale = body.locale;
+  } else if (refererLocale) {
+    locale = refererLocale;
   }
 
   const supabase = createClient(
@@ -159,18 +170,19 @@ export async function POST(request: Request) {
 
   // EMAIL 2: al alumno, en su idioma, con los datos bancarios (mismo criterio
   // de carga dinámica del JSON de mensajes que app/api/stripe/webhook/route.ts
-  // para el email de la postal). No se setea reply_to acá: el destinatario
-  // ES el alumno, así que un reply_to a su propio email no tendría sentido —
-  // queda el comportamiento default de Resend (responde a "from").
+  // para el email de la postal). Lleva reply_to a Gesa (CONTACT_EMAIL_TO):
+  // si el alumno responde para avisar que ya transfirió, le llega a ella.
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const messages = (await import(`../../../messages/${locale}.json`))
       .default;
     const t: TransferEmailMessages = messages.transferEmail;
+    const gesaEmail = process.env.CONTACT_EMAIL_TO!;
 
     const { error } = await resend.emails.send({
       from: "Deutsch Flow <hallo@deutschflow.eu>",
       to: email,
+      replyTo: gesaEmail,
       subject: t.subject,
       text: [
         `${t.greeting} ${name},`,
@@ -184,7 +196,11 @@ export async function POST(request: Request) {
         t.referenceLabel,
         "",
         t.thanks,
-        t.contactNote,
+        // {email} es el único parámetro ICU en este texto — se reemplaza a
+        // mano porque este archivo arma el email con strings planos, no con
+        // el formatter de next-intl (no hay useTranslations/getTranslations
+        // acá, solo se indexa el JSON de mensajes directamente).
+        t.contactNote.replace("{email}", gesaEmail),
       ].join("\n"),
     });
 

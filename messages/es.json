@@ -153,6 +153,7 @@
   },
   "buyButton": "Comprar",
   "modal": {
+    "submitRequestButton": "Enviar solicitud",
     "eyebrow": "Inscripción",
     "heading": "Reserva tu paquete",
     "cancellationCheckbox": "He leído y acepto la política de cancelación (24h para cancelar o reprogramar sin costo; después, solo reprogramación).",
@@ -243,6 +244,24 @@
     "amountLabel": "Importe a transferir",
     "referenceLabel": "Por favor incluye tu nombre en el concepto de la transferencia, para poder identificar tu pago",
     "thanks": "En cuanto confirmemos la transferencia, te avisaremos para coordinar tus clases.",
-    "contactNote": "Si tienes alguna duda, responde a este email."
+    "contactNote": "Cuando hayas hecho la transferencia, escribe a Gesa a {email} (también puedes responder directamente a este correo) para que pueda confirmar el pago."
+  },
+  "requestSent": {
+    "closeLabel": "Cerrar",
+    "eyebrow": "Solicitud enviada",
+    "heading": "¡Bienvenido a bordo!",
+    "body": "Hemos recibido tu solicitud. Te acabamos de enviar un email con los datos para la transferencia. En cuanto Gesa confirme el pago, ¡empezamos a navegar juntos! Si no lo ves, revisa la carpeta de spam."
+  },
+  "transferPaidEmail": {
+    "subject": "¡Pago recibido! Tu plaza está confirmada",
+    "greeting": "Hola {name},",
+    "body": "Gesa ha confirmado la recepción de tu pago para «{plan}». ¡Tu plaza está confirmada! Pronto se pondrá en contacto contigo para acordar el horario de las clases. Puedes consultar tus clases y horas en tu cuenta.",
+    "signoff": "¡Hasta pronto!"
+  },
+  "coffeeBreakConfirmedEmail": {
+    "subject": "Tu plaza en el German Coffee Break está confirmada",
+    "greeting": "Hola {name},",
+    "body": "¡Buenas noticias! Tu plaza en el German Coffee Break está confirmada. Gesa te escribirá con los detalles del encuentro.",
+    "signoff": "¡Nos vemos pronto!"
   }
 }

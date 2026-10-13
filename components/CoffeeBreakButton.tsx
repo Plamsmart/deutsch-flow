@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { ChangeEvent, SubmitEvent } from "react";
 import { createPortal } from "react-dom";
 import { Fraunces, Work_Sans } from "next/font/google";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import styles from "./CoffeeBreakButton.module.css";
 
 const fraunces = Fraunces({
@@ -35,6 +35,7 @@ export default function CoffeeBreakButton() {
   const t = useTranslations("coffeeBreak");
   const tModal = useTranslations("coffeeBreak.modal");
   const tCommonModal = useTranslations("modal");
+  const locale = useLocale();
 
   const [isOpen, setIsOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
@@ -98,6 +99,7 @@ export default function CoffeeBreakButton() {
           name: formData.name,
           email: formData.email,
           notes: formData.notes,
+          locale,
         }),
       });
 

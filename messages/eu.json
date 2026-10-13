@@ -141,6 +141,7 @@
   },
   "buyButton": "Erosi",
   "modal": {
+    "submitRequestButton": "Eskaera bidali",
     "eyebrow": "Izena ematea",
     "heading": "Erreserbatu zure paketea",
     "cancellationCheckbox": "Bertan behera uzteko politika irakurri eta onartzen dut (24 ordu dohainik uzteko edo atzeratzeko; ondoren, atzerapena bakarrik).",
@@ -231,6 +232,24 @@
     "amountLabel": "Transferitu beharreko zenbatekoa",
     "referenceLabel": "Mesedez, sartu zure izena transferentziaren kontzeptuan, zure ordainketa identifikatu ahal izateko",
     "thanks": "Transferentzia berresten dugunean, zurekin harremanetan jarriko gara zure eskolak koordinatzeko.",
-    "contactNote": "Zalantzarik izanez gero, erantzun email honi."
+    "contactNote": "Transferentzia egin ondoren, idatzi Gesari {email} helbidera, ordainketa baieztatu dezan (e-mail honi zuzenean erantzun ere diezaiokezu)."
+  },
+  "requestSent": {
+    "closeLabel": "Itxi",
+    "eyebrow": "Eskaera bidalita",
+    "heading": "Ongi etorri ontzira!",
+    "body": "Zure eskaera jaso dugu. Transferentziarako datuekin e-mail bat bidali berri dugu. Gesak ordainketa baieztatu bezain laster, elkarrekin nabigatzen hasiko gara! Ez baduzu ikusten, begiratu spam karpetan."
+  },
+  "transferPaidEmail": {
+    "subject": "Ordainketa jaso da! Zure plaza baieztatuta dago",
+    "greeting": "Kaixo {name},",
+    "body": "Gesak «{plan}» planaren ordainketa jaso duela baieztatu du. Zure plaza segurtatuta dago! Laster jarriko da zurekin harremanetan, ikasgaien ordutegia adosteko. Zure ikasgaiak eta orduak zure kontuan ikus ditzakezu.",
+    "signoff": "Laster arte!"
+  },
+  "coffeeBreakConfirmedEmail": {
+    "subject": "German Coffee Break-eko zure plaza baieztatuta dago",
+    "greeting": "Kaixo {name},",
+    "body": "Berri onak! German Coffee Break-eko zure plaza baieztatuta dago. Gesak topaketaren xehetasunekin idatziko dizu.",
+    "signoff": "Laster arte!"
   }
 }

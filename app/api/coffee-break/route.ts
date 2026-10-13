@@ -8,6 +8,7 @@ type CoffeeBreakPayload = {
   name?: string;
   email?: string;
   notes?: string;
+  locale?: string;
 };
 
 type CoffeeBreakEmailMessages = {
@@ -38,23 +39,33 @@ export async function POST(request: Request) {
     );
   }
 
-  // El locale se saca del "referer", mismo criterio que
-  // app/api/checkout/route.ts, para saber en qué idioma mandarle el email de
-  // confirmación a quien se apuntó — el email de aviso a Gesa siempre va en
-  // español, sin importar esto.
+  // Prioridad para resolver el locale: 1) el que manda el cliente
+  // explícitamente (useLocale() en CoffeeBreakButton) si es uno de los
+  // soportados; 2) el segmento del "referer" (respaldo, mismo criterio que
+  // app/api/checkout/route.ts); 3) el default. Se guarda en la fila para que
+  // confirmCoffeeBreakSignup (admin/actions.ts) sepa en qué idioma avisarle
+  // a esta persona cuando Gesa confirme su lugar — el email de aviso a Gesa
+  // acá abajo siempre va en español, sin importar esto.
   const refererHeader = request.headers.get("referer");
   let locale: string = routing.defaultLocale;
+  let refererLocale: string | null = null;
 
   if (refererHeader) {
     try {
       const refererUrl = new URL(refererHeader);
       const firstSegment = refererUrl.pathname.split("/").filter(Boolean)[0];
       if (firstSegment && hasLocale(routing.locales, firstSegment)) {
-        locale = firstSegment;
+        refererLocale = firstSegment;
       }
     } catch {
       // referer malformado: seguimos con el locale por defecto.
     }
+  }
+
+  if (typeof body.locale === "string" && hasLocale(routing.locales, body.locale)) {
+    locale = body.locale;
+  } else if (refererLocale) {
+    locale = refererLocale;
   }
 
   // Guardar en Supabase con la service_role key (mismo patrón que
@@ -70,7 +81,7 @@ export async function POST(request: Request) {
 
     const { error } = await supabase
       .from("coffee_break_signups")
-      .insert({ name, email, notes });
+      .insert({ name, email, notes, locale });
 
     if (error) throw error;
     savedToSupabase = true;
