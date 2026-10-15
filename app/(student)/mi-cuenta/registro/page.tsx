@@ -5,6 +5,7 @@ import type { FormEvent } from "react";
 import Link from "next/link";
 import { Fraunces, Work_Sans } from "next/font/google";
 import { createClient } from "@/lib/supabase/client";
+import { routing } from "@/i18n/routing";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -32,10 +33,20 @@ export default function RegistroPage() {
     setIsSubmitting(true);
     setError(null);
 
+    // El formulario de registro no es locale-aware (fijo en español, como el
+    // resto de /mi-cuenta), así que no hay un locale real que propagar acá —
+    // se usa el default del sitio para el modal de bienvenida que se muestra
+    // después de confirmar. emailRedirectTo apunta a la ruta de callback (no
+    // directo a la página final): ahí es donde se canjea el ?code= por una
+    // sesión antes de redirigir.
+    const confirmedUrl = `/${routing.defaultLocale}?confirmed=1`;
     const supabase = createClient();
     const { error: signUpError } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(confirmedUrl)}`,
+      },
     });
 
     if (signUpError) {

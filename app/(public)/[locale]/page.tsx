@@ -7,6 +7,7 @@ import Testimonios from "@/components/Testimonios";
 import Contacto from "@/components/Contacto";
 import Footer from "@/components/Footer";
 import PaymentSuccessModal from "@/components/PaymentSuccessModal";
+import AccountConfirmedModal from "@/components/AccountConfirmedModal";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Footer />
       <Suspense fallback={null}>
         <PaymentSuccessModal />
+        <AccountConfirmedModal />
       </Suspense>
     </>
   );

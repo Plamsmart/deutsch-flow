@@ -19,6 +19,13 @@ export default async function proxy(request: NextRequest) {
     return protectStudent(request);
   }
 
+  // app/auth/callback/route.ts canjea el ?code= del link de confirmación de
+  // email por una sesión — es público (todavía no hay sesión en ese punto)
+  // y no vive bajo /{locale}, así que también queda al margen de next-intl.
+  if (request.nextUrl.pathname.startsWith("/auth")) {
+    return NextResponse.next();
+  }
+
   return intlMiddleware(request);
 }
 

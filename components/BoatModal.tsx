@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import Link from "next/link";
 import { Fraunces, Work_Sans } from "next/font/google";
 import { useTranslations } from "next-intl";
 import styles from "./BoatModal.module.css";
@@ -19,24 +20,34 @@ const workSans = Work_Sans({
   variable: "--font-work-sans",
 });
 
-// Componente presentacional reutilizable (el "modal del barco"), usado tanto
-// por PaymentSuccessModal (vuelta de Stripe, ?checkout=success) como por
-// BuyButton (solicitud de transferencia enviada). `open` controla todo: el
-// componente devuelve null cuando está en false, así que quien lo use puede
-// dejarlo siempre presente en el árbol (sin envolverlo en `{open && ...}`)
-// sin riesgo de overlays apilados — nunca hay más de un <BoatModal> con
-// open=true al mismo tiempo en la práctica.
+// Componente presentacional reutilizable (el "modal del barco"), usado por
+// PaymentSuccessModal (vuelta de Stripe, ?checkout=success), BuyButton
+// (solicitud de transferencia enviada) y AccountConfirmedModal (confirmación
+// de email, ?confirmed=1). `open` controla todo: el componente devuelve null
+// cuando está en false, así que quien lo use puede dejarlo siempre presente
+// en el árbol (sin envolverlo en `{open && ...}`) sin riesgo de overlays
+// apilados — nunca hay más de un <BoatModal> con open=true al mismo tiempo
+// en la práctica.
+//
+// ctaHref es un <Link> de next/link PLANO (no el de @/i18n/navigation):
+// /mi-cuenta vive fuera de app/(public)/[locale] y no lleva prefijo de
+// locale, así que agregarle uno (como haría el Link de next-intl) apuntaría
+// a una ruta que no existe — mismo motivo por el que components/Navbar.tsx
+// usa next/link para ese mismo destino.
 export default function BoatModal({
   open,
   onClose,
   namespace,
+  ctaHref,
 }: {
   open: boolean;
   onClose: () => void;
-  namespace: "paymentSuccess" | "requestSent";
+  namespace: "paymentSuccess" | "requestSent" | "accountConfirmed";
+  ctaHref?: string;
 }) {
   const t = useTranslations(namespace);
   const panelRef = useRef<HTMLDivElement>(null);
+  const showCta = Boolean(ctaHref) && t.has("cta");
 
   useEffect(() => {
     if (!open) return;
@@ -125,6 +136,16 @@ export default function BoatModal({
         <p className="mb-[1.6rem] text-[0.92rem] leading-[1.6] font-light text-[#f4f4f4] opacity-75">
           {t("body")}
         </p>
+
+        {showCta && (
+          <Link
+            href={ctaHref!}
+            onClick={onClose}
+            className="inline-block rounded-[10px] bg-[#00b7b5] px-6 py-2.5 text-[0.9rem] font-semibold text-[#005461] transition-colors duration-200 hover:bg-[#33cfcd]"
+          >
+            {t("cta")}
+          </Link>
+        )}
       </div>
     </div>,
     document.body,

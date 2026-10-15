@@ -251,5 +251,12 @@
     "greeting": "Hi {name},",
     "body": "Good news! Your spot at the German Coffee Break is confirmed. Gesa will write to you with the details of the meeting.",
     "signoff": "See you soon!"
+  },
+  "accountConfirmed": {
+    "closeLabel": "Close",
+    "eyebrow": "Account confirmed",
+    "heading": "You're now part of the crew!",
+    "body": "Your email is verified and your student account is ready. In My account you can see your classes and your hours.",
+    "cta": "Go to My account"
   }
 }

@@ -251,5 +251,12 @@
     "greeting": "Kaixo {name},",
     "body": "Berri onak! German Coffee Break-eko zure plaza baieztatuta dago. Gesak topaketaren xehetasunekin idatziko dizu.",
     "signoff": "Laster arte!"
+  },
+  "accountConfirmed": {
+    "closeLabel": "Itxi",
+    "eyebrow": "Kontua baieztatuta",
+    "heading": "Orain tripulazioko kide zara!",
+    "body": "Zure e-maila egiaztatuta dago eta ikasle-kontua prest dago. Nire kontua atalean zure ikasgaiak eta orduak ikusi ahal izango dituzu.",
+    "cta": "Joan Nire kontura"
   }
 }

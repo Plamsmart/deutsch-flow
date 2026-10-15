@@ -251,5 +251,12 @@
     "greeting": "Hallo {name},",
     "body": "Gute Nachrichten! Dein Platz beim German Coffee Break ist bestätigt. Gesa schreibt dir mit den Details zum Treffen.",
     "signoff": "Bis bald!"
+  },
+  "accountConfirmed": {
+    "closeLabel": "Schließen",
+    "eyebrow": "Konto bestätigt",
+    "heading": "Du gehörst jetzt zur Crew!",
+    "body": "Deine E-Mail-Adresse ist bestätigt und dein Schülerkonto ist bereit. Unter „Mein Konto“ siehst du deine Stunden und deine Zeiten.",
+    "cta": "Zu Mein Konto"
   }
 }
