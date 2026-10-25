@@ -350,5 +350,71 @@
         ]
       }
     ]
+  },
+  "student": {
+    "emailLabel": "E-Mail",
+    "passwordLabel": "Passwort",
+    "fullNameLabel": "Vollständiger Name",
+    "germanLevelLabel": "Deutschniveau",
+    "levelPlaceholder": "Wähle dein Niveau",
+    "phoneLabel": "Telefon (optional)",
+    "signOutButton": "Abmelden",
+    "signingOutText": "Wird abgemeldet...",
+    "privacyNote": "Wir verwenden diese Daten nur, um deine Kurse zu organisieren.",
+    "privacyLinkLabel": "Datenschutzerklärung",
+    "levels": {
+      "from_scratch": "Ich fange von null an",
+      "beginner": "Anfänger (keine Erfahrung)",
+      "a1": "A1",
+      "a2": "A2",
+      "b1": "B1",
+      "b2": "B2",
+      "c1": "C1",
+      "unsure": "Ich weiß es nicht"
+    },
+    "registro": {
+      "heading": "Konto erstellen",
+      "phoneHelp": "Um die Kurse zu koordinieren, falls du das möchtest",
+      "errorFullNameRequired": "Gib deinen vollständigen Namen ein.",
+      "errorLevelRequired": "Wähle dein Deutschniveau.",
+      "errorUserExists": "Es gibt bereits ein Konto mit dieser E-Mail-Adresse. Melde dich stattdessen an.",
+      "errorGeneric": "Wir konnten dein Konto nicht erstellen. Überprüfe deine Angaben und versuche es erneut.",
+      "submitButton": "Konto erstellen",
+      "submittingText": "Konto wird erstellt...",
+      "alreadyHaveAccount": "Hast du schon ein Konto?",
+      "loginLink": "Anmelden",
+      "confirmationHeading": "Schau in dein E-Mail-Postfach",
+      "confirmationBody": "Wir haben dir eine Bestätigungs-E-Mail an {email} gesendet. Schau in deinem Posteingang (und im Spam-Ordner) nach, um dein Konto zu aktivieren.",
+      "confirmedLoginLink": "Ich habe meine E-Mail bestätigt — Anmelden"
+    },
+    "login": {
+      "heading": "Mein Konto",
+      "errorInvalidCredentials": "E-Mail oder Passwort falsch.",
+      "needsConfirmationBody": "Du hast deine E-Mail noch nicht bestätigt. Schau in deinem Posteingang (und im Spam-Ordner) nach oder lass dir die Bestätigung erneut senden.",
+      "resendSuccessText": "Wir haben dir die Bestätigungs-E-Mail erneut gesendet.",
+      "resendButton": "Bestätigungs-E-Mail erneut senden",
+      "resendingText": "Wird gesendet...",
+      "resendErrorText": "Wir konnten die E-Mail nicht erneut senden. Versuche es gleich noch einmal.",
+      "submitButton": "Anmelden",
+      "submittingText": "Wird angemeldet...",
+      "noAccountYet": "Du hast noch kein Konto?",
+      "registerLink": "Konto erstellen"
+    },
+    "account": {
+      "heading": "Mein Konto",
+      "myDataHeading": "Meine Daten",
+      "noEnrollments": "Wir haben keine Anmeldungen zu dieser E-Mail-Adresse gefunden. Wenn du ein Paket mit einer anderen E-Mail-Adresse gekauft hast, schreib Gesa, damit sie das überprüfen kann.",
+      "levelAndDate": "Niveau {level} · Gekauft am {date}",
+      "hoursTotal": "Gesamt",
+      "hoursUsed": "Verwendet",
+      "hoursRemaining": "Verbleibend",
+      "myClasses": "Meine Kurse"
+    },
+    "profile": {
+      "saveButton": "Daten speichern",
+      "savingText": "Wird gespeichert...",
+      "successText": "Daten aktualisiert.",
+      "errorText": "Konnte nicht gespeichert werden. Überprüfe deine Angaben und versuche es erneut."
+    }
   }
 }

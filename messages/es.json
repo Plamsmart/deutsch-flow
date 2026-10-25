@@ -362,5 +362,71 @@
         ]
       }
     ]
+  },
+  "student": {
+    "emailLabel": "Email",
+    "passwordLabel": "Contraseña",
+    "fullNameLabel": "Nombre completo",
+    "germanLevelLabel": "Nivel de alemán",
+    "levelPlaceholder": "Selecciona tu nivel",
+    "phoneLabel": "Teléfono (opcional)",
+    "signOutButton": "Cerrar sesión",
+    "signingOutText": "Cerrando sesión...",
+    "privacyNote": "Usamos estos datos solo para gestionar tus clases.",
+    "privacyLinkLabel": "Política de privacidad",
+    "levels": {
+      "from_scratch": "Empiezo desde cero",
+      "beginner": "Principiante (sin experiencia)",
+      "a1": "A1",
+      "a2": "A2",
+      "b1": "B1",
+      "b2": "B2",
+      "c1": "C1",
+      "unsure": "No lo sé"
+    },
+    "registro": {
+      "heading": "Crear cuenta",
+      "phoneHelp": "Para coordinar las clases, si lo prefieres",
+      "errorFullNameRequired": "Introduce tu nombre completo.",
+      "errorLevelRequired": "Elige tu nivel de alemán.",
+      "errorUserExists": "Ya existe una cuenta con ese email. Inicia sesión en su lugar.",
+      "errorGeneric": "No pudimos crear tu cuenta. Revisa los datos e inténtalo de nuevo.",
+      "submitButton": "Crear cuenta",
+      "submittingText": "Creando cuenta...",
+      "alreadyHaveAccount": "¿Ya tienes cuenta?",
+      "loginLink": "Iniciar sesión",
+      "confirmationHeading": "Revisa tu email",
+      "confirmationBody": "Te hemos enviado un email de confirmación a {email}. Revisa tu bandeja de entrada (y la carpeta de spam) para activar tu cuenta.",
+      "confirmedLoginLink": "Ya he confirmado mi email — Iniciar sesión"
+    },
+    "login": {
+      "heading": "Mi cuenta",
+      "errorInvalidCredentials": "Email o contraseña incorrectos.",
+      "needsConfirmationBody": "Todavía no has confirmado tu email. Revisa tu bandeja de entrada (y spam) o pide que te lo reenviemos.",
+      "resendSuccessText": "Te hemos reenviado el email de confirmación.",
+      "resendButton": "Reenviar email de confirmación",
+      "resendingText": "Reenviando...",
+      "resendErrorText": "No pudimos reenviar el email. Inténtalo de nuevo en un momento.",
+      "submitButton": "Entrar",
+      "submittingText": "Entrando...",
+      "noAccountYet": "¿No tienes cuenta todavía?",
+      "registerLink": "Crear cuenta"
+    },
+    "account": {
+      "heading": "Mi cuenta",
+      "myDataHeading": "Mis datos",
+      "noEnrollments": "No encontramos inscripciones asociadas a este email. Si compraste un paquete con un email distinto al de esta cuenta, escríbele a Gesa para que lo revise.",
+      "levelAndDate": "Nivel {level} · Comprado el {date}",
+      "hoursTotal": "Totales",
+      "hoursUsed": "Usadas",
+      "hoursRemaining": "Restantes",
+      "myClasses": "Mis clases"
+    },
+    "profile": {
+      "saveButton": "Guardar datos",
+      "savingText": "Guardando...",
+      "successText": "Datos actualizados.",
+      "errorText": "No se pudo guardar. Revisa los datos e inténtalo de nuevo."
+    }
   }
 }

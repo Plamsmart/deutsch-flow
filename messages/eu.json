@@ -350,5 +350,71 @@
         ]
       }
     ]
+  },
+  "student": {
+    "emailLabel": "Emaila",
+    "passwordLabel": "Pasahitza",
+    "fullNameLabel": "Izen-abizenak",
+    "germanLevelLabel": "Alemanaren maila",
+    "levelPlaceholder": "Aukeratu zure maila",
+    "phoneLabel": "Telefonoa (aukerakoa)",
+    "signOutButton": "Saioa itxi",
+    "signingOutText": "Saioa itxitzen...",
+    "privacyNote": "Datu hauek zure eskolak kudeatzeko soilik erabiltzen ditugu.",
+    "privacyLinkLabel": "Pribatutasun-politika",
+    "levels": {
+      "from_scratch": "Hutsetik hasten naiz",
+      "beginner": "Hasiberria (esperientziarik gabe)",
+      "a1": "A1",
+      "a2": "A2",
+      "b1": "B1",
+      "b2": "B2",
+      "c1": "C1",
+      "unsure": "Ez dakit"
+    },
+    "registro": {
+      "heading": "Kontua sortu",
+      "phoneHelp": "Eskolak koordinatzeko, nahi izanez gero",
+      "errorFullNameRequired": "Sartu zure izen-abizenak.",
+      "errorLevelRequired": "Aukeratu zure alemanaren maila.",
+      "errorUserExists": "Email horrekin kontu bat badago jada. Hasi saioa horren ordez.",
+      "errorGeneric": "Ezin izan dugu zure kontua sortu. Berrikusi datuak eta saiatu berriro.",
+      "submitButton": "Kontua sortu",
+      "submittingText": "Kontua sortzen...",
+      "alreadyHaveAccount": "Kontua baduzu jada?",
+      "loginLink": "Hasi saioa",
+      "confirmationHeading": "Begiratu zure emaila",
+      "confirmationBody": "Baieztapen-email bat bidali dizugu {email} helbidera. Begiratu zure sarrera-ontzian (eta spam karpetan) kontua aktibatzeko.",
+      "confirmedLoginLink": "Nire emaila baieztatu dut — Hasi saioa"
+    },
+    "login": {
+      "heading": "Nire kontua",
+      "errorInvalidCredentials": "Emaila edo pasahitza okerra.",
+      "needsConfirmationBody": "Oraindik ez duzu zure emaila baieztatu. Begiratu zure sarrera-ontzian (eta spam karpetan) edo eskatu berriro bidaltzeko.",
+      "resendSuccessText": "Baieztapen-emaila berriro bidali dugu.",
+      "resendButton": "Baieztapen-emaila berriro bidali",
+      "resendingText": "Bidaltzen...",
+      "resendErrorText": "Ezin izan dugu emaila berriro bidali. Saiatu berriro apur batean.",
+      "submitButton": "Sartu",
+      "submittingText": "Sartzen...",
+      "noAccountYet": "Ez duzu kontua oraindik?",
+      "registerLink": "Kontua sortu"
+    },
+    "account": {
+      "heading": "Nire kontua",
+      "myDataHeading": "Nire datuak",
+      "noEnrollments": "Ez dugu email honekin lotutako izen-ematerik aurkitu. Beste email batekin paketea erosi baduzu, idatzi Gesari egoera berrikus dezan.",
+      "levelAndDate": "{level} maila · Erositako data: {date}",
+      "hoursTotal": "Guztira",
+      "hoursUsed": "Erabilita",
+      "hoursRemaining": "Geratzen",
+      "myClasses": "Nire eskolak"
+    },
+    "profile": {
+      "saveButton": "Datuak gorde",
+      "savingText": "Gordetzen...",
+      "successText": "Datuak eguneratuta.",
+      "errorText": "Ezin izan da gorde. Berrikusi datuak eta saiatu berriro."
+    }
   }
 }

@@ -5,6 +5,8 @@ import { Resend } from "resend";
 import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { createClient } from "@/lib/supabase/server";
+import { getPlanTitle, type PlanTitleTranslator } from "@/lib/planTitle";
+import type { PlanId } from "@/lib/plans";
 import esMessages from "@/messages/es.json";
 import deMessages from "@/messages/de.json";
 import enMessages from "@/messages/en.json";
@@ -136,6 +138,25 @@ const MESSAGES_BY_LOCALE: Record<string, typeof esMessages> = {
 // (ej. filas viejas de antes de que existiera la columna).
 function resolveStoredLocale(locale: string | null): string {
   return locale && hasLocale(routing.locales, locale) ? locale : "es";
+}
+
+// Adaptador de getPlanTitle (lib/planTitle.ts) sobre el JSON ya cargado en
+// MESSAGES_BY_LOCALE — getTranslations de next-intl no es seguro acá adentro
+// (ver comentario de MESSAGES_BY_LOCALE más arriba sobre import() dinámico
+// dentro de un "use server"), así que esto solo indexa el objeto "clases" a
+// mano en vez de usar un translator real.
+function clasesTranslator(locale: string): PlanTitleTranslator {
+  const clases = MESSAGES_BY_LOCALE[locale].clases as unknown as Record<
+    string,
+    Record<string, { title?: string }>
+  >;
+  const read = (key: string): string | undefined => {
+    const [group, planId] = key.split(".");
+    return clases[group]?.[planId]?.title;
+  };
+  const translator = ((key: string) => read(key) ?? "") as PlanTitleTranslator;
+  translator.has = (key: string) => read(key) !== undefined;
+  return translator;
 }
 
 export async function completeSession(formData: FormData) {
@@ -307,7 +328,7 @@ export async function markTransferAsPaid(formData: FormData) {
     .from("enrollments")
     .update({ status: "paid", paid_at: new Date().toISOString() })
     .eq("id", enrollmentId)
-    .select("student_name, student_email, plan_title, locale")
+    .select("student_name, student_email, plan_id, plan_title, locale")
     .single();
 
   if (error || !data) {
@@ -323,6 +344,7 @@ export async function markTransferAsPaid(formData: FormData) {
   const enrollment = data as {
     student_name: string;
     student_email: string;
+    plan_id: PlanId;
     plan_title: string;
     locale: string | null;
   };
@@ -334,6 +356,11 @@ export async function markTransferAsPaid(formData: FormData) {
   try {
     const locale = resolveStoredLocale(enrollment.locale);
     const t: SimpleEmailMessages = MESSAGES_BY_LOCALE[locale].transferPaidEmail;
+    const planTitle = getPlanTitle(
+      enrollment.plan_id,
+      enrollment.plan_title,
+      clasesTranslator(locale),
+    );
 
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { data: emailData, error: emailError } = await resend.emails.send({
@@ -345,7 +372,7 @@ export async function markTransferAsPaid(formData: FormData) {
         greeting: t.greeting.replace("{name}", enrollment.student_name),
         body: t.body
           .replace("{name}", enrollment.student_name)
-          .replace("{plan}", enrollment.plan_title),
+          .replace("{plan}", planTitle),
         signoff: t.signoff,
       }),
     });

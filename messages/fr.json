@@ -350,5 +350,71 @@
         ]
       }
     ]
+  },
+  "student": {
+    "emailLabel": "E-mail",
+    "passwordLabel": "Mot de passe",
+    "fullNameLabel": "Nom complet",
+    "germanLevelLabel": "Niveau d'allemand",
+    "levelPlaceholder": "Choisis ton niveau",
+    "phoneLabel": "Téléphone (facultatif)",
+    "signOutButton": "Se déconnecter",
+    "signingOutText": "Déconnexion...",
+    "privacyNote": "Nous utilisons ces données uniquement pour gérer tes cours.",
+    "privacyLinkLabel": "Politique de confidentialité",
+    "levels": {
+      "from_scratch": "Je commence de zéro",
+      "beginner": "Débutant (sans expérience)",
+      "a1": "A1",
+      "a2": "A2",
+      "b1": "B1",
+      "b2": "B2",
+      "c1": "C1",
+      "unsure": "Je ne sais pas"
+    },
+    "registro": {
+      "heading": "Créer un compte",
+      "phoneHelp": "Pour organiser les cours, si tu le souhaites",
+      "errorFullNameRequired": "Indique ton nom complet.",
+      "errorLevelRequired": "Choisis ton niveau d'allemand.",
+      "errorUserExists": "Un compte existe déjà avec cet e-mail. Connecte-toi plutôt.",
+      "errorGeneric": "Nous n'avons pas pu créer ton compte. Vérifie tes informations et réessaie.",
+      "submitButton": "Créer un compte",
+      "submittingText": "Création du compte...",
+      "alreadyHaveAccount": "Tu as déjà un compte ?",
+      "loginLink": "Se connecter",
+      "confirmationHeading": "Consulte ton e-mail",
+      "confirmationBody": "Nous t'avons envoyé un e-mail de confirmation à {email}. Vérifie ta boîte de réception (et tes spams) pour activer ton compte.",
+      "confirmedLoginLink": "J'ai confirmé mon e-mail — Se connecter"
+    },
+    "login": {
+      "heading": "Mon compte",
+      "errorInvalidCredentials": "E-mail ou mot de passe incorrect.",
+      "needsConfirmationBody": "Tu n'as pas encore confirmé ton e-mail. Vérifie ta boîte de réception (et tes spams) ou demande-nous de te le renvoyer.",
+      "resendSuccessText": "Nous t'avons renvoyé l'e-mail de confirmation.",
+      "resendButton": "Renvoyer l'e-mail de confirmation",
+      "resendingText": "Envoi en cours...",
+      "resendErrorText": "Nous n'avons pas pu renvoyer l'e-mail. Réessaie dans un instant.",
+      "submitButton": "Se connecter",
+      "submittingText": "Connexion...",
+      "noAccountYet": "Tu n'as pas encore de compte ?",
+      "registerLink": "Créer un compte"
+    },
+    "account": {
+      "heading": "Mon compte",
+      "myDataHeading": "Mes informations",
+      "noEnrollments": "Nous n'avons trouvé aucune inscription liée à cet e-mail. Si tu as acheté un forfait avec un autre e-mail, écris à Gesa pour qu'elle vérifie.",
+      "levelAndDate": "Niveau {level} · Acheté le {date}",
+      "hoursTotal": "Total",
+      "hoursUsed": "Utilisées",
+      "hoursRemaining": "Restantes",
+      "myClasses": "Mes cours"
+    },
+    "profile": {
+      "saveButton": "Enregistrer",
+      "savingText": "Enregistrement...",
+      "successText": "Informations mises à jour.",
+      "errorText": "Impossible d'enregistrer. Vérifie tes informations et réessaie."
+    }
   }
 }

@@ -350,5 +350,71 @@
         ]
       }
     ]
+  },
+  "student": {
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "fullNameLabel": "Full name",
+    "germanLevelLabel": "German level",
+    "levelPlaceholder": "Select your level",
+    "phoneLabel": "Phone (optional)",
+    "signOutButton": "Sign out",
+    "signingOutText": "Signing out...",
+    "privacyNote": "We only use this data to manage your classes.",
+    "privacyLinkLabel": "Privacy policy",
+    "levels": {
+      "from_scratch": "Starting from scratch",
+      "beginner": "Beginner (no experience)",
+      "a1": "A1",
+      "a2": "A2",
+      "b1": "B1",
+      "b2": "B2",
+      "c1": "C1",
+      "unsure": "I don't know"
+    },
+    "registro": {
+      "heading": "Create account",
+      "phoneHelp": "To coordinate classes, if you'd like",
+      "errorFullNameRequired": "Enter your full name.",
+      "errorLevelRequired": "Choose your German level.",
+      "errorUserExists": "An account with that email already exists. Sign in instead.",
+      "errorGeneric": "We couldn't create your account. Check your details and try again.",
+      "submitButton": "Create account",
+      "submittingText": "Creating account...",
+      "alreadyHaveAccount": "Already have an account?",
+      "loginLink": "Sign in",
+      "confirmationHeading": "Check your email",
+      "confirmationBody": "We've sent a confirmation email to {email}. Check your inbox (and spam folder) to activate your account.",
+      "confirmedLoginLink": "I've confirmed my email — Sign in"
+    },
+    "login": {
+      "heading": "My account",
+      "errorInvalidCredentials": "Incorrect email or password.",
+      "needsConfirmationBody": "You haven't confirmed your email yet. Check your inbox (and spam) or ask us to resend it.",
+      "resendSuccessText": "We've resent the confirmation email.",
+      "resendButton": "Resend confirmation email",
+      "resendingText": "Resending...",
+      "resendErrorText": "We couldn't resend the email. Try again in a moment.",
+      "submitButton": "Sign in",
+      "submittingText": "Signing in...",
+      "noAccountYet": "Don't have an account yet?",
+      "registerLink": "Create account"
+    },
+    "account": {
+      "heading": "My account",
+      "myDataHeading": "My details",
+      "noEnrollments": "We couldn't find any enrollments linked to this email. If you bought a package with a different email, write to Gesa so she can look into it.",
+      "levelAndDate": "Level {level} · Purchased on {date}",
+      "hoursTotal": "Total",
+      "hoursUsed": "Used",
+      "hoursRemaining": "Remaining",
+      "myClasses": "My classes"
+    },
+    "profile": {
+      "saveButton": "Save details",
+      "savingText": "Saving...",
+      "successText": "Details updated.",
+      "errorText": "Couldn't save. Check your details and try again."
+    }
   }
 }

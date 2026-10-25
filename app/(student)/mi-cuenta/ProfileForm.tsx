@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
+import { useTranslations } from "next-intl";
 import { createClient } from "@/lib/supabase/client";
-import { GERMAN_LEVEL_KEYS, GERMAN_LEVEL_LABELS } from "@/lib/germanLevels";
+import { GERMAN_LEVEL_KEYS } from "@/lib/germanLevels";
 
 type Status = "idle" | "saving" | "success" | "error";
 
@@ -18,6 +19,8 @@ export default function ProfileForm({
   initialPhone: string;
   initialGermanLevel: string;
 }) {
+  const t = useTranslations("student");
+  const tProfile = useTranslations("student.profile");
   const [fullName, setFullName] = useState(initialFullName);
   const [phone, setPhone] = useState(initialPhone);
   const [germanLevel, setGermanLevel] = useState(initialGermanLevel);
@@ -71,7 +74,7 @@ export default function ProfileForm({
           htmlFor="profile-fullName"
           className="mb-1 block text-[0.78rem] text-[#005461] opacity-80"
         >
-          Nombre completo
+          {t("fullNameLabel")}
         </label>
         <input
           type="text"
@@ -88,7 +91,7 @@ export default function ProfileForm({
           htmlFor="profile-germanLevel"
           className="mb-1 block text-[0.78rem] text-[#005461] opacity-80"
         >
-          Nivel de alemán
+          {t("germanLevelLabel")}
         </label>
         <select
           id="profile-germanLevel"
@@ -98,11 +101,11 @@ export default function ProfileForm({
           className="w-full rounded-[10px] border border-[rgba(0,84,97,0.18)] px-3 py-2 text-[0.9rem] text-[#142023] outline-none transition-colors duration-200 focus:border-[#00b7b5]"
         >
           <option value="" disabled>
-            Seleccioná tu nivel
+            {t("levelPlaceholder")}
           </option>
           {GERMAN_LEVEL_KEYS.map((levelKey) => (
             <option key={levelKey} value={levelKey}>
-              {GERMAN_LEVEL_LABELS[levelKey]}
+              {t(`levels.${levelKey}`)}
             </option>
           ))}
         </select>
@@ -113,7 +116,7 @@ export default function ProfileForm({
           htmlFor="profile-phone"
           className="mb-1 block text-[0.78rem] text-[#005461] opacity-80"
         >
-          Teléfono (opcional)
+          {t("phoneLabel")}
         </label>
         <input
           type="tel"
@@ -130,16 +133,16 @@ export default function ProfileForm({
           disabled={status === "saving"}
           className="rounded-[10px] bg-[#00b7b5] px-4 py-2 text-[0.9rem] font-semibold text-[#005461] transition-colors duration-200 hover:bg-[#33cfcd] disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {status === "saving" ? "Guardando..." : "Guardar datos"}
+          {status === "saving" ? tProfile("savingText") : tProfile("saveButton")}
         </button>
         {status === "success" && (
           <span className="text-[0.85rem] text-[#00b7b5]">
-            Datos actualizados.
+            {tProfile("successText")}
           </span>
         )}
         {status === "error" && (
           <span className="text-[0.85rem] text-red-600">
-            No se pudo guardar. Revisá los datos e intentá de nuevo.
+            {tProfile("errorText")}
           </span>
         )}
       </div>

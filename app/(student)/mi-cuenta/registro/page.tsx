@@ -4,9 +4,9 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import Link from "next/link";
 import { Fraunces, Work_Sans } from "next/font/google";
+import { useLocale, useTranslations } from "next-intl";
 import { createClient } from "@/lib/supabase/client";
-import { routing } from "@/i18n/routing";
-import { GERMAN_LEVEL_KEYS, GERMAN_LEVEL_LABELS } from "@/lib/germanLevels";
+import { GERMAN_LEVEL_KEYS } from "@/lib/germanLevels";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -21,6 +21,10 @@ const workSans = Work_Sans({
 });
 
 export default function RegistroPage() {
+  const t = useTranslations("student");
+  const tRegistro = useTranslations("student.registro");
+  const locale = useLocale();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
@@ -38,23 +42,23 @@ export default function RegistroPage() {
 
     const trimmedFullName = fullName.trim();
     if (!trimmedFullName) {
-      setError("Ingresá tu nombre completo.");
+      setError(tRegistro("errorFullNameRequired"));
       return;
     }
     if (!germanLevel) {
-      setError("Elegí tu nivel de alemán.");
+      setError(tRegistro("errorLevelRequired"));
       return;
     }
 
     setIsSubmitting(true);
 
-    // El formulario de registro no es locale-aware (fijo en español, como el
-    // resto de /mi-cuenta), así que no hay un locale real que propagar acá —
-    // se usa el default del sitio para el modal de bienvenida que se muestra
-    // después de confirmar. emailRedirectTo apunta a la ruta de callback (no
-    // directo a la página final): ahí es donde se canjea el ?code= por una
-    // sesión antes de redirigir.
-    const confirmedUrl = `/${routing.defaultLocale}?confirmed=1`;
+    // El idioma efectivo (ver lib/studentLocale.ts, resuelto en
+    // app/(student)/layout.tsx y expuesto acá vía useLocale()) se usa tanto
+    // para el modal de bienvenida tras confirmar como para guardarlo en
+    // user_metadata.locale. emailRedirectTo sigue apuntando a la ruta de
+    // callback (no directo a la página final): ahí es donde se canjea el
+    // ?code= por una sesión antes de redirigir.
+    const confirmedUrl = `/${locale}?confirmed=1`;
     const supabase = createClient();
     const { error: signUpError } = await supabase.auth.signUp({
       email,
@@ -68,6 +72,7 @@ export default function RegistroPage() {
           full_name: trimmedFullName,
           german_level: germanLevel,
           phone: phone.trim() || null,
+          locale,
         },
       },
     });
@@ -75,8 +80,8 @@ export default function RegistroPage() {
     if (signUpError) {
       setError(
         signUpError.message === "User already registered"
-          ? "Ya existe una cuenta con ese email. Iniciá sesión en su lugar."
-          : "No pudimos crear tu cuenta. Revisá los datos e intentá de nuevo.",
+          ? tRegistro("errorUserExists")
+          : tRegistro("errorGeneric"),
       );
       setIsSubmitting(false);
       return;
@@ -84,7 +89,7 @@ export default function RegistroPage() {
 
     // La confirmación de email está activada en Supabase: todavía no hay
     // sesión utilizable acá, así que no redirigimos a /mi-cuenta — nos
-    // quedamos en esta pantalla mostrando el mensaje de "revisá tu email".
+    // quedamos en esta pantalla mostrando el mensaje de "revisa tu email".
     setConfirmationSentTo(email);
     setIsSubmitting(false);
   }
@@ -96,18 +101,16 @@ export default function RegistroPage() {
       >
         <div className="w-full max-w-[420px] rounded-[20px] border border-[rgba(0,84,97,0.1)] bg-white p-8 text-center shadow-[0_6px_20px_rgba(0,84,97,0.06)]">
           <h1 className="mb-3 font-[family-name:var(--font-fraunces)] text-[1.4rem] font-medium text-[#005461]">
-            Revisá tu email
+            {tRegistro("confirmationHeading")}
           </h1>
           <p className="text-[0.9rem] text-[#142023] opacity-80">
-            Te enviamos un email de confirmación a{" "}
-            <strong>{confirmationSentTo}</strong>. Revisá tu bandeja de
-            entrada (y la carpeta de spam) para activar tu cuenta.
+            {tRegistro("confirmationBody", { email: confirmationSentTo })}
           </p>
           <Link
             href="/mi-cuenta/login"
             className="mt-6 inline-block text-[0.85rem] font-medium text-[#00b7b5] hover:underline"
           >
-            Ya confirmé mi email — Iniciar sesión
+            {tRegistro("confirmedLoginLink")}
           </Link>
         </div>
       </main>
@@ -123,7 +126,7 @@ export default function RegistroPage() {
         className="w-full max-w-[380px] rounded-[20px] border border-[rgba(0,84,97,0.1)] bg-white p-8 shadow-[0_6px_20px_rgba(0,84,97,0.06)]"
       >
         <h1 className="mb-6 text-center font-[family-name:var(--font-fraunces)] text-[1.6rem] font-medium text-[#005461]">
-          Crear cuenta
+          {tRegistro("heading")}
         </h1>
 
         <div className="mb-4">
@@ -131,7 +134,7 @@ export default function RegistroPage() {
             htmlFor="fullName"
             className="mb-1 block text-[0.78rem] text-[#005461] opacity-80"
           >
-            Nombre completo
+            {t("fullNameLabel")}
           </label>
           <input
             type="text"
@@ -148,7 +151,7 @@ export default function RegistroPage() {
             htmlFor="email"
             className="mb-1 block text-[0.78rem] text-[#005461] opacity-80"
           >
-            Email
+            {t("emailLabel")}
           </label>
           <input
             type="email"
@@ -165,7 +168,7 @@ export default function RegistroPage() {
             htmlFor="password"
             className="mb-1 block text-[0.78rem] text-[#005461] opacity-80"
           >
-            Contraseña
+            {t("passwordLabel")}
           </label>
           <input
             type="password"
@@ -183,7 +186,7 @@ export default function RegistroPage() {
             htmlFor="germanLevel"
             className="mb-1 block text-[0.78rem] text-[#005461] opacity-80"
           >
-            Nivel de alemán
+            {t("germanLevelLabel")}
           </label>
           <select
             id="germanLevel"
@@ -193,11 +196,11 @@ export default function RegistroPage() {
             className="w-full rounded-[10px] border border-[rgba(0,84,97,0.18)] px-3 py-2 text-[0.9rem] text-[#142023] outline-none transition-colors duration-200 focus:border-[#00b7b5]"
           >
             <option value="" disabled>
-              Seleccioná tu nivel
+              {t("levelPlaceholder")}
             </option>
             {GERMAN_LEVEL_KEYS.map((levelKey) => (
               <option key={levelKey} value={levelKey}>
-                {GERMAN_LEVEL_LABELS[levelKey]}
+                {t(`levels.${levelKey}`)}
               </option>
             ))}
           </select>
@@ -208,7 +211,7 @@ export default function RegistroPage() {
             htmlFor="phone"
             className="mb-1 block text-[0.78rem] text-[#005461] opacity-80"
           >
-            Teléfono (opcional)
+            {t("phoneLabel")}
           </label>
           <input
             type="tel"
@@ -218,7 +221,7 @@ export default function RegistroPage() {
             className="w-full rounded-[10px] border border-[rgba(0,84,97,0.18)] px-3 py-2 text-[0.9rem] text-[#142023] outline-none transition-colors duration-200 focus:border-[#00b7b5]"
           />
           <p className="mt-1 text-[0.72rem] text-[#005461] opacity-60">
-            Para coordinar las clases, si lo prefieres
+            {tRegistro("phoneHelp")}
           </p>
         </div>
 
@@ -233,28 +236,28 @@ export default function RegistroPage() {
           disabled={isSubmitting}
           className="w-full rounded-[10px] bg-[#00b7b5] py-3 text-[0.95rem] font-semibold text-[#005461] transition-colors duration-200 hover:bg-[#33cfcd] disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {isSubmitting ? "Creando cuenta..." : "Crear cuenta"}
+          {isSubmitting ? tRegistro("submittingText") : tRegistro("submitButton")}
         </button>
 
         <p className="mt-4 text-center text-[0.72rem] text-[#005461] opacity-60">
-          Usamos estos datos solo para gestionar tus clases.{" "}
+          {t("privacyNote")}{" "}
           <Link
-            href="/es/privacidad"
+            href={`/${locale}/privacidad`}
             target="_blank"
             rel="noopener noreferrer"
             className="underline hover:opacity-80"
           >
-            Política de privacidad
+            {t("privacyLinkLabel")}
           </Link>
         </p>
 
         <p className="mt-5 text-center text-[0.82rem] text-[#005461] opacity-70">
-          ¿Ya tenés cuenta?{" "}
+          {tRegistro("alreadyHaveAccount")}{" "}
           <Link
             href="/mi-cuenta/login"
             className="font-medium text-[#00b7b5] hover:underline"
           >
-            Iniciar sesión
+            {tRegistro("loginLink")}
           </Link>
         </p>
       </form>

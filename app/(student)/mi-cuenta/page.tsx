@@ -1,7 +1,11 @@
 import { redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { Fraunces, Work_Sans } from "next/font/google";
 import { createClient } from "@/lib/supabase/server";
+import { resolveStudentLocale } from "@/lib/studentLocale";
 import { PLAN_HOURS, type PlanId } from "@/lib/plans";
+import { getPlanTitle } from "@/lib/planTitle";
+import { GERMAN_LEVEL_KEYS, type GermanLevelKey } from "@/lib/germanLevels";
 import CalendarView, {
   type CalendarSessionInput,
   type BusySlotInput,
@@ -51,15 +55,28 @@ type ProfileRow = {
   german_level: string | null;
 };
 
-function formatDate(isoDate: string | null) {
+function formatDate(isoDate: string | null, locale: string) {
   if (!isoDate) return "—";
-  return new Intl.DateTimeFormat("es-ES", {
+  return new Intl.DateTimeFormat(locale, {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(new Date(isoDate));
 }
 
+function formatGermanLevel(
+  level: string,
+  t: Awaited<ReturnType<typeof getTranslations>>,
+) {
+  return GERMAN_LEVEL_KEYS.includes(level as GermanLevelKey)
+    ? t(`levels.${level}`)
+    : level;
+}
+
 export default async function MiCuentaPage() {
+  const locale = await resolveStudentLocale();
+  const t = await getTranslations({ locale, namespace: "student" });
+  const tClases = await getTranslations({ locale, namespace: "clases" });
+
   const supabase = await createClient();
 
   const {
@@ -177,14 +194,14 @@ export default async function MiCuentaPage() {
       <div className="mx-auto max-w-[1200px]">
         <div className="mb-8 flex items-center justify-between">
           <h1 className="font-[family-name:var(--font-fraunces)] text-[1.8rem] font-medium text-[#005461]">
-            Mi cuenta
+            {t("account.heading")}
           </h1>
           <SignOutButton />
         </div>
 
         <div className="mb-8 rounded-[16px] border border-[rgba(0,84,97,0.1)] bg-white p-6 shadow-[0_6px_20px_rgba(0,84,97,0.06)]">
           <h2 className="mb-4 font-[family-name:var(--font-fraunces)] text-[1.15rem] font-medium text-[#005461]">
-            Mis datos
+            {t("account.myDataHeading")}
           </h2>
           <ProfileForm
             userId={user.id}
@@ -196,9 +213,7 @@ export default async function MiCuentaPage() {
 
         {enrollments.length === 0 ? (
           <div className="rounded-[16px] border border-[rgba(0,84,97,0.1)] bg-white p-6 text-center text-[0.9rem] text-[#005461] opacity-80 shadow-[0_6px_20px_rgba(0,84,97,0.06)]">
-            No encontramos inscripciones asociadas a este email. Si compraste un
-            paquete con un email distinto al de esta cuenta, escribile a Gesa
-            para que lo revise.
+            {t("account.noEnrollments")}
           </div>
         ) : (
           <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -224,16 +239,18 @@ export default async function MiCuentaPage() {
                   className="rounded-[16px] border border-[rgba(0,84,97,0.1)] bg-white p-6 shadow-[0_6px_20px_rgba(0,84,97,0.06)]"
                 >
                   <h2 className="mb-1 font-[family-name:var(--font-fraunces)] text-[1.15rem] font-medium text-[#005461]">
-                    {enrollment.plan_title}
+                    {getPlanTitle(enrollment.plan_id, enrollment.plan_title, tClases)}
                   </h2>
                   <p className="mb-4 text-[0.82rem] text-[#005461] opacity-70">
-                    Nivel {enrollment.level} · Comprado el{" "}
-                    {formatDate(enrollment.paid_at)}
+                    {t("account.levelAndDate", {
+                      level: formatGermanLevel(enrollment.level, t),
+                      date: formatDate(enrollment.paid_at, locale),
+                    })}
                   </p>
                   <div className="grid grid-cols-3 gap-3 text-center text-[0.8rem]">
                     <div className="rounded-[12px] border border-[rgba(0,183,181,0.3)] bg-[rgba(0,183,181,0.08)] p-3">
                       <div className="text-[0.68rem] tracking-[0.05em] text-[#018790] uppercase">
-                        Totales
+                        {t("account.hoursTotal")}
                       </div>
                       <div className="mt-1 font-[family-name:var(--font-fraunces)] text-[1.3rem] font-medium text-[#005461]">
                         {totalHours}h
@@ -241,7 +258,7 @@ export default async function MiCuentaPage() {
                     </div>
                     <div className="rounded-[12px] border border-[rgba(0,84,97,0.1)] p-3">
                       <div className="text-[0.68rem] tracking-[0.05em] text-[#018790] uppercase">
-                        Usadas
+                        {t("account.hoursUsed")}
                       </div>
                       <div className="mt-1 font-[family-name:var(--font-fraunces)] text-[1.3rem] font-medium text-[#005461]">
                         {usedHours}h
@@ -255,7 +272,7 @@ export default async function MiCuentaPage() {
                       }`}
                     >
                       <div className="text-[0.68rem] tracking-[0.05em] text-[#018790] uppercase">
-                        Restantes
+                        {t("account.hoursRemaining")}
                       </div>
                       <div
                         className={`mt-1 font-[family-name:var(--font-fraunces)] text-[1.3rem] font-medium ${
@@ -277,7 +294,7 @@ export default async function MiCuentaPage() {
         {(calendarSessions.length > 0 || busySlots.length > 0) && (
           <>
             <h2 className="mb-4 font-[family-name:var(--font-fraunces)] text-[1.3rem] font-medium text-[#005461]">
-              Mis clases
+              {t("account.myClasses")}
             </h2>
             <CalendarView
               sessions={calendarSessions}
