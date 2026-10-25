@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Fraunces, Work_Sans } from "next/font/google";
 import { getTranslations } from "next-intl/server";
-import CalBookingButton from "./CalBookingButton";
 import { LotteWalkerProvider, StarsTrigger } from "./LotteWalker";
 import styles from "./Hero.module.css";
 
@@ -61,7 +60,12 @@ export default async function Hero() {
           </p>
 
           <div className="flex items-center gap-[1.8rem]">
-            <CalBookingButton label={tHero("ctaPrimary")} />
+            <a
+              href="#clases"
+              className="inline-block rounded-sm bg-[#00b7b5] px-[2.3rem] py-4 text-base font-medium text-[#04282d] shadow-[0_4px_20px_rgba(0,183,181,0.3)] transition-[transform,box-shadow,background] duration-[250ms] ease-out hover:-translate-y-0.5 hover:bg-[#33cfcd] hover:shadow-[0_8px_26px_rgba(0,183,181,0.4)] motion-reduce:transition-none"
+            >
+              {tHero("ctaPrimary")}
+            </a>
             <a
               href="#clases"
               className="border-b border-[rgba(244,244,244,0.35)] pb-0.5 text-[0.95rem] font-normal text-[#f4f4f4] transition-colors duration-200 hover:border-[#f4f4f4] motion-reduce:transition-none"
