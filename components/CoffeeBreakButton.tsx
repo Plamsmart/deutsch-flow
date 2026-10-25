@@ -5,6 +5,7 @@ import type { ChangeEvent, SubmitEvent } from "react";
 import { createPortal } from "react-dom";
 import { Fraunces, Work_Sans } from "next/font/google";
 import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import styles from "./CoffeeBreakButton.module.css";
 
 const fraunces = Fraunces({
@@ -35,6 +36,8 @@ export default function CoffeeBreakButton() {
   const t = useTranslations("coffeeBreak");
   const tModal = useTranslations("coffeeBreak.modal");
   const tCommonModal = useTranslations("modal");
+  const tPrivacy = useTranslations("privacy");
+  const tFooter = useTranslations("footer");
   const locale = useLocale();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -286,6 +289,16 @@ export default function CoffeeBreakButton() {
 
                   <p className="mt-3 text-center text-[0.72rem] text-[#005461] opacity-60">
                     {tModal("helperNote")}
+                  </p>
+
+                  <p className="mt-3 text-center text-[0.72rem] text-[#005461] opacity-60">
+                    {tPrivacy("formNote")}{" "}
+                    <Link
+                      href="/privacidad"
+                      className="underline hover:opacity-80"
+                    >
+                      {tFooter("privacyPolicy")}
+                    </Link>
                   </p>
                 </form>
               )}

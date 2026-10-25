@@ -185,7 +185,8 @@
     "clases": "Eskolak",
     "testimonios": "Iritziak",
     "contacto": "Kontaktua",
-    "copyright": "© 2026 Deutsch Flow. Eskubide guztiak erreserbatuta."
+    "copyright": "© 2026 Deutsch Flow. Eskubide guztiak erreserbatuta.",
+    "privacyPolicy": "Pribatutasun-politika"
   },
   "paymentSuccess": {
     "closeLabel": "Itxi",
@@ -231,6 +232,7 @@
     "holderLabel": "Titularra",
     "amountLabel": "Transferitu beharreko zenbatekoa",
     "referenceLabel": "Mesedez, sartu zure izena transferentziaren kontzeptuan, zure ordainketa identifikatu ahal izateko",
+    "providerDetails": "Zerbitzu-hornitzailearen datuak: Gesa Nommsen · NIE Z2906214P · {address}",
     "thanks": "Transferentzia berresten dugunean, zurekin harremanetan jarriko gara zure eskolak koordinatzeko.",
     "contactNote": "Transferentzia egin ondoren, idatzi Gesari {email} helbidera, ordainketa baieztatu dezan (e-mail honi zuzenean erantzun ere diezaiokezu)."
   },
@@ -258,5 +260,95 @@
     "heading": "Orain tripulazioko kide zara!",
     "body": "Zure e-maila egiaztatuta dago eta ikasle-kontua prest dago. Nire kontua atalean zure ikasgaiak eta orduak ikusi ahal izango dituzu.",
     "cta": "Joan Nire kontura"
+  },
+  "privacy": {
+    "title": "Pribatutasun-politika",
+    "updated": "Azken eguneratzea: 2026ko urriaren 25a",
+    "intro": "Deutsch Flow-en zure datuak serio hartzen ditugu. Hemen azaltzen dizugu zer datu tratatzen ditugun, zertarako, norekin partekatzen ditugun eta zer eskubide dituzun.",
+    "formNote": "Bidaltzean, onartzen duzu zure datuak gure pribatutasun-politikaren arabera tratatuko ditugula.",
+    "sections": [
+      {
+        "heading": "1. Tratamenduaren arduraduna",
+        "paragraphs": [],
+        "items": [
+          "Gesa Nommsen — Deutsch Flow (www.deutschflow.eu)",
+          "Helbidea: Irun (Gipuzkoa), Espainia",
+          "NIE: Z2906214P",
+          "Harremanetarako emaila: mehrlernen.gesa@gmail.com"
+        ]
+      },
+      {
+        "heading": "2. Zer datu tratatzen ditugun",
+        "paragraphs": [],
+        "items": [
+          "Kontaktu-formularioa: izena, emaila eta mezua.",
+          "Ikasle-kontua: emaila, pasahitza (autentifikazio-hornitzaileak enkriptatuta gordetzen du), izena, alemanaren maila eta, aukeran, telefonoa.",
+          "Eskola-paketeen eskaera: izena, emaila, maila, oharrak, aukeratutako paketea, ordainketa-metodoa eta hizkuntza.",
+          "German Coffee Break: izena, emaila eta oharrak.",
+          "Eskolak eta egutegia: zure eskolen datak eta orduak.",
+          "Iritziak: iritzi bat uzten baduzu, zure izena, balorazioa, iruzkina eta aukerako argazkia webgunean argitaratuko dira."
+        ]
+      },
+      {
+        "heading": "3. Zertarako erabiltzen ditugun zure datuak eta oinarri legala",
+        "paragraphs": [],
+        "items": [
+          "Zure kontsultei erantzuteko eta eskaera kudeatzeko: zure eskariz hartzen diren kontratu aurreko neurriak (DBEOren 6.1.b artikulua).",
+          "Eskolak emateko eta zure kontua kudeatzeko: kontratuaren betetzea (6.1.b artikulua).",
+          "Zerga- eta kontabilitate-betebeharrak betetzeko: betebehar legala (6.1.c artikulua).",
+          "Zure iritzia argitaratzeko eta zure telefonoa (aukerakoa) tratatzeko: zure baimena (6.1.a artikulua), noiznahi atzera bota dezakezuna."
+        ]
+      },
+      {
+        "heading": "4. Norekin partekatzen ditugun zure datuak",
+        "paragraphs": [],
+        "items": [
+          "Supabase (datu-basea eta autentifikazioa), Vercel (webgunearen ostalaritza), Resend (emailen bidalketa), Stripe (txartel bidezko ordainketak, aktibatuta badaude soilik) eta banku-erakundea transferentzia bidezko ordainketetan.",
+          "Gure datu-basea eta autentifikazio-sistema (Supabase) Europar Batasunean (Irlandan) ostatatzen dira. Beste zenbait hornitzailek, Vercel eta Resend bezala, datuak Ameriketako Estatu Batuetan edo Europako Esparru Ekonomikotik kanpoko beste herrialde batzuetan trata ditzakete; kasu horretan, berme egokietan oinarritzen dira, Europako Batzordearen klausula kontraktual tipoak edo EBren eta AEBen arteko Datuen Pribatutasun Esparrua bezala.",
+          "Ez ditugu zure datuak saltzen, ez eta publizitaterako erabiltzen ere.",
+          "Ez dugu erabaki automatizaturik hartzen, ez eta zure datuekin profilik egiten ere."
+        ]
+      },
+      {
+        "heading": "5. Cookieak",
+        "paragraphs": [],
+        "items": [
+          "Beharrezko cookie teknikoak soilik erabiltzen ditugu: zure saioa mantentzeko eta zure hizkuntza gogoratzeko. Ez dugu publizitate- edo analisi-cookierik erabiltzen."
+        ]
+      },
+      {
+        "heading": "6. Zure datuak zenbat denboran gordetzen ditugun",
+        "paragraphs": [],
+        "items": [
+          "Kontuaren datuak: kontua mantentzen duzun bitartean.",
+          "Kontaktu-kontsultak: konpondu arte eta, gehienez, 12 hilabete.",
+          "Fakturazio-datuak: aplikagarri diren epe legalak iraun bitartean (6 urte).",
+          "Iritziak: kentzeko eskatzen duzun arte."
+        ]
+      },
+      {
+        "heading": "7. Zure eskubideak",
+        "paragraphs": [],
+        "items": [
+          "Zure datuetarako sarbidea, zuzenketa, ezabatzea, mugatzea, aurka egitea eta eramangarritasuna eskatu ditzakezu, eta baimena atzera bota, mehrlernen.gesa@gmail.com helbidera idatziz. Zure eskaerari gehienez hilabeteko epean erantzungo diogu.",
+          "Zure datuak modu egokian tratatzen ez ditugula uste baduzu, erreklamazio bat aurkeztu dezakezu kontrol-agintariaren aurrean: Agencia Española de Protección de Datos (AEPD, www.aepd.es)."
+        ]
+      },
+      {
+        "heading": "8. Adingabeak eta segurtasuna",
+        "paragraphs": [],
+        "items": [
+          "Adingabea bazara, zure gurasoen edo tutorearen baimena behar dugu.",
+          "Zure datuak babesteko neurri tekniko eta antolakuntzako arrazoizkoak aplikatzen ditugu."
+        ]
+      },
+      {
+        "heading": "9. Politika honetako aldaketak",
+        "paragraphs": [],
+        "items": [
+          "Politika hau eguneratu dezakegu. Azken eguneratzearen data hasieran agertzen da."
+        ]
+      }
+    ]
   }
 }

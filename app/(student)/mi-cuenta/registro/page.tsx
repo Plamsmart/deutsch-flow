@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Fraunces, Work_Sans } from "next/font/google";
 import { createClient } from "@/lib/supabase/client";
 import { routing } from "@/i18n/routing";
+import { GERMAN_LEVEL_KEYS, GERMAN_LEVEL_LABELS } from "@/lib/germanLevels";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -22,6 +23,9 @@ const workSans = Work_Sans({
 export default function RegistroPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [germanLevel, setGermanLevel] = useState("");
+  const [phone, setPhone] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [confirmationSentTo, setConfirmationSentTo] = useState<string | null>(
@@ -30,8 +34,19 @@ export default function RegistroPage() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setIsSubmitting(true);
     setError(null);
+
+    const trimmedFullName = fullName.trim();
+    if (!trimmedFullName) {
+      setError("Ingresá tu nombre completo.");
+      return;
+    }
+    if (!germanLevel) {
+      setError("Elegí tu nivel de alemán.");
+      return;
+    }
+
+    setIsSubmitting(true);
 
     // El formulario de registro no es locale-aware (fijo en español, como el
     // resto de /mi-cuenta), así que no hay un locale real que propagar acá —
@@ -46,6 +61,14 @@ export default function RegistroPage() {
       password,
       options: {
         emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(confirmedUrl)}`,
+        // No se inserta en "profiles" desde el navegador: un trigger en
+        // Supabase lee este mismo options.data al crearse el usuario y
+        // rellena la fila de profiles solo.
+        data: {
+          full_name: trimmedFullName,
+          german_level: germanLevel,
+          phone: phone.trim() || null,
+        },
       },
     });
 
@@ -105,6 +128,23 @@ export default function RegistroPage() {
 
         <div className="mb-4">
           <label
+            htmlFor="fullName"
+            className="mb-1 block text-[0.78rem] text-[#005461] opacity-80"
+          >
+            Nombre completo
+          </label>
+          <input
+            type="text"
+            id="fullName"
+            value={fullName}
+            onChange={(event) => setFullName(event.target.value)}
+            required
+            className="w-full rounded-[10px] border border-[rgba(0,84,97,0.18)] px-3 py-2 text-[0.9rem] text-[#142023] outline-none transition-colors duration-200 focus:border-[#00b7b5]"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label
             htmlFor="email"
             className="mb-1 block text-[0.78rem] text-[#005461] opacity-80"
           >
@@ -138,6 +178,50 @@ export default function RegistroPage() {
           />
         </div>
 
+        <div className="mb-4">
+          <label
+            htmlFor="germanLevel"
+            className="mb-1 block text-[0.78rem] text-[#005461] opacity-80"
+          >
+            Nivel de alemán
+          </label>
+          <select
+            id="germanLevel"
+            value={germanLevel}
+            onChange={(event) => setGermanLevel(event.target.value)}
+            required
+            className="w-full rounded-[10px] border border-[rgba(0,84,97,0.18)] px-3 py-2 text-[0.9rem] text-[#142023] outline-none transition-colors duration-200 focus:border-[#00b7b5]"
+          >
+            <option value="" disabled>
+              Seleccioná tu nivel
+            </option>
+            {GERMAN_LEVEL_KEYS.map((levelKey) => (
+              <option key={levelKey} value={levelKey}>
+                {GERMAN_LEVEL_LABELS[levelKey]}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="mb-6">
+          <label
+            htmlFor="phone"
+            className="mb-1 block text-[0.78rem] text-[#005461] opacity-80"
+          >
+            Teléfono (opcional)
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            value={phone}
+            onChange={(event) => setPhone(event.target.value)}
+            className="w-full rounded-[10px] border border-[rgba(0,84,97,0.18)] px-3 py-2 text-[0.9rem] text-[#142023] outline-none transition-colors duration-200 focus:border-[#00b7b5]"
+          />
+          <p className="mt-1 text-[0.72rem] text-[#005461] opacity-60">
+            Para coordinar las clases, si lo prefieres
+          </p>
+        </div>
+
         {error && (
           <p className="mb-4 text-center text-[0.85rem] text-red-600">
             {error}
@@ -151,6 +235,18 @@ export default function RegistroPage() {
         >
           {isSubmitting ? "Creando cuenta..." : "Crear cuenta"}
         </button>
+
+        <p className="mt-4 text-center text-[0.72rem] text-[#005461] opacity-60">
+          Usamos estos datos solo para gestionar tus clases.{" "}
+          <Link
+            href="/es/privacidad"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:opacity-80"
+          >
+            Política de privacidad
+          </Link>
+        </p>
 
         <p className="mt-5 text-center text-[0.82rem] text-[#005461] opacity-70">
           ¿Ya tenés cuenta?{" "}

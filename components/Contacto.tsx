@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import type { ChangeEvent, SubmitEvent } from "react";
 import { Fraunces, Work_Sans } from "next/font/google";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import styles from "./Contacto.module.css";
 
 const fraunces = Fraunces({
@@ -33,6 +34,8 @@ const CONTACT_LOCATION = "Irún, Guipuzkoa";
 
 export default function Contacto() {
   const t = useTranslations("contacto");
+  const tPrivacy = useTranslations("privacy");
+  const tFooter = useTranslations("footer");
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -283,6 +286,13 @@ export default function Contacto() {
                   {t("formNote")}
                 </p>
               )}
+
+              <p className="mt-[0.6rem] text-center text-[0.72rem] text-[#f4f4f4] opacity-50">
+                {tPrivacy("formNote")}{" "}
+                <Link href="/privacidad" className="underline hover:opacity-80">
+                  {tFooter("privacyPolicy")}
+                </Link>
+              </p>
             </form>
           </div>
         </div>

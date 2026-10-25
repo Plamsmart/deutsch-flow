@@ -31,6 +31,7 @@ type TransferEmailMessages = {
   holderLabel: string;
   amountLabel: string;
   referenceLabel: string;
+  providerDetails: string;
   thanks: string;
   contactNote: string;
 };
@@ -179,29 +180,51 @@ export async function POST(request: Request) {
     const t: TransferEmailMessages = messages.transferEmail;
     const gesaEmail = process.env.CONTACT_EMAIL_TO!;
 
+    // {address} es otro parámetro que se reemplaza a mano, igual que
+    // {email} en contactNote más abajo. BUSINESS_ADDRESS nunca se expone en
+    // el repo ni en la web pública — solo vive en el entorno del servidor,
+    // y si falta, se omite la línea entera en vez de mandar el email con
+    // un "{address}" sin reemplazar.
+    const businessAddress = process.env.BUSINESS_ADDRESS;
+    if (!businessAddress) {
+      console.warn("[enroll-transfer] BUSINESS_ADDRESS no configurada");
+    }
+
+    const bodyLines = [
+      `${t.greeting} ${name},`,
+      "",
+      t.body,
+      "",
+      `${t.ibanLabel}: ${process.env.BANK_TRANSFER_IBAN}`,
+      `${t.holderLabel}: ${process.env.BANK_TRANSFER_HOLDER}`,
+      `${t.amountLabel}: ${formatPrice(priceCents, locale)}`,
+      "",
+      t.referenceLabel,
+      "",
+    ];
+
+    if (businessAddress) {
+      bodyLines.push(
+        t.providerDetails.replace("{address}", businessAddress),
+        "",
+      );
+    }
+
+    bodyLines.push(
+      t.thanks,
+      // {email} es el único parámetro ICU en este texto — se reemplaza a
+      // mano porque este archivo arma el email con strings planos, no con
+      // el formatter de next-intl (no hay useTranslations/getTranslations
+      // acá, solo se indexa el JSON de mensajes directamente).
+      t.contactNote.replace("{email}", gesaEmail),
+    );
+
     const { error } = await resend.emails.send({
       from: "Deutsch Flow <hallo@deutschflow.eu>",
       to: email,
       replyTo: gesaEmail,
       subject: t.subject,
-      text: [
-        `${t.greeting} ${name},`,
-        "",
-        t.body,
-        "",
-        `${t.ibanLabel}: ${process.env.BANK_TRANSFER_IBAN}`,
-        `${t.holderLabel}: ${process.env.BANK_TRANSFER_HOLDER}`,
-        `${t.amountLabel}: ${formatPrice(priceCents, locale)}`,
-        "",
-        t.referenceLabel,
-        "",
-        t.thanks,
-        // {email} es el único parámetro ICU en este texto — se reemplaza a
-        // mano porque este archivo arma el email con strings planos, no con
-        // el formatter de next-intl (no hay useTranslations/getTranslations
-        // acá, solo se indexa el JSON de mensajes directamente).
-        t.contactNote.replace("{email}", gesaEmail),
-      ].join("\n"),
+      text: bodyLines.join("\n"),
     });
 
     if (error) throw error;

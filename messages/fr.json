@@ -185,7 +185,8 @@
     "clases": "Cours",
     "testimonios": "Témoignages",
     "contacto": "Contact",
-    "copyright": "© 2026 Deutsch Flow. Tous droits réservés."
+    "copyright": "© 2026 Deutsch Flow. Tous droits réservés.",
+    "privacyPolicy": "Politique de confidentialité"
   },
   "paymentSuccess": {
     "closeLabel": "Fermer",
@@ -231,6 +232,7 @@
     "holderLabel": "Titulaire",
     "amountLabel": "Montant à virer",
     "referenceLabel": "Merci d'indiquer votre nom dans le motif du virement, afin que nous puissions identifier votre paiement",
+    "providerDetails": "Coordonnées du prestataire : Gesa Nommsen · NIE Z2906214P · {address}",
     "thanks": "Dès que nous aurons confirmé le virement, nous vous contacterons pour organiser vos cours.",
     "contactNote": "Une fois le virement effectué, écris à Gesa à {email} pour qu'elle puisse confirmer le paiement (tu peux aussi répondre directement à cet e-mail)."
   },
@@ -258,5 +260,95 @@
     "heading": "Tu fais maintenant partie de l'équipage !",
     "body": "Ton e-mail est vérifié et ton compte élève est prêt. Dans Mon compte, tu pourras voir tes cours et tes heures.",
     "cta": "Aller à Mon compte"
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "updated": "Dernière mise à jour : 25 octobre 2026",
+    "intro": "Chez Deutsch Flow, nous prenons tes données au sérieux. Voici quelles données nous traitons, pourquoi, avec qui nous les partageons et quels sont tes droits.",
+    "formNote": "En envoyant ce formulaire, tu acceptes que nous traitions tes données conformément à notre politique de confidentialité.",
+    "sections": [
+      {
+        "heading": "1. Responsable du traitement",
+        "paragraphs": [],
+        "items": [
+          "Gesa Nommsen — Deutsch Flow (www.deutschflow.eu)",
+          "Adresse : Irun (Gipuzkoa), Espagne",
+          "NIE : Z2906214P",
+          "E-mail de contact : mehrlernen.gesa@gmail.com"
+        ]
+      },
+      {
+        "heading": "2. Quelles données nous traitons",
+        "paragraphs": [],
+        "items": [
+          "Formulaire de contact : nom, e-mail et message.",
+          "Compte élève : e-mail, mot de passe (stocké de façon chiffrée par le fournisseur d'authentification), nom, niveau d'allemand et, facultativement, numéro de téléphone.",
+          "Demande de forfaits de cours : nom, e-mail, niveau, notes, forfait choisi, moyen de paiement et langue.",
+          "German Coffee Break : nom, e-mail et notes.",
+          "Cours et calendrier : dates et horaires de tes cours.",
+          "Avis : si tu choisis d'en laisser un, ton nom, ta note, ton commentaire et une photo facultative, publiés sur le site."
+        ]
+      },
+      {
+        "heading": "3. Pourquoi nous utilisons tes données et base légale",
+        "paragraphs": [],
+        "items": [
+          "Répondre à tes questions et traiter ta demande : mesures précontractuelles prises à ta demande (art. 6, paragraphe 1, point b) du RGPD).",
+          "Assurer les cours et gérer ton compte : exécution du contrat (art. 6, paragraphe 1, point b)).",
+          "Respecter nos obligations fiscales et comptables : obligation légale (art. 6, paragraphe 1, point c)).",
+          "Publier ton avis et traiter ton numéro de téléphone (facultatif) : ton consentement (art. 6, paragraphe 1, point a)), que tu peux retirer à tout moment."
+        ]
+      },
+      {
+        "heading": "4. Avec qui nous partageons tes données",
+        "paragraphs": [],
+        "items": [
+          "Supabase (base de données et authentification), Vercel (hébergement du site), Resend (envoi d'e-mails), Stripe (paiements par carte, uniquement s'ils sont activés) et l'établissement bancaire pour les paiements par virement.",
+          "Notre base de données et notre système d'authentification (Supabase) sont hébergés dans l'Union européenne (Irlande). D'autres prestataires, comme Vercel et Resend, peuvent traiter des données aux États-Unis ou dans d'autres pays situés hors de l'Espace économique européen ; dans ce cas, ils s'appuient sur des garanties appropriées, comme les clauses contractuelles types de la Commission européenne ou le cadre de protection des données UE-États-Unis.",
+          "Nous ne vendons pas tes données et ne les utilisons pas à des fins publicitaires.",
+          "Nous ne prenons pas de décisions automatisées et n'établissons pas de profils à partir de tes données."
+        ]
+      },
+      {
+        "heading": "5. Cookies",
+        "paragraphs": [],
+        "items": [
+          "Nous utilisons uniquement des cookies techniques strictement nécessaires : pour maintenir ta session et mémoriser ta langue. Nous n'utilisons pas de cookies publicitaires ni analytiques."
+        ]
+      },
+      {
+        "heading": "6. Combien de temps nous conservons tes données",
+        "paragraphs": [],
+        "items": [
+          "Données de compte : tant que tu conserves ton compte.",
+          "Demandes de contact : jusqu'à leur résolution, et au maximum 12 mois.",
+          "Données de facturation : pendant les délais légaux applicables (6 ans).",
+          "Avis : jusqu'à ce que tu demandes leur retrait."
+        ]
+      },
+      {
+        "heading": "7. Tes droits",
+        "paragraphs": [],
+        "items": [
+          "Tu peux demander l'accès, la rectification, la suppression, la limitation, l'opposition et la portabilité de tes données, et retirer ton consentement, en écrivant à mehrlernen.gesa@gmail.com. Nous répondrons à ta demande dans un délai maximal d'un mois.",
+          "Si tu penses que nous ne traitons pas correctement tes données, tu peux déposer une réclamation auprès de l'autorité de contrôle : Agencia Española de Protección de Datos (AEPD, www.aepd.es)."
+        ]
+      },
+      {
+        "heading": "8. Mineurs et sécurité",
+        "paragraphs": [],
+        "items": [
+          "Si tu es mineur·e, nous avons besoin de l'autorisation de ton père, de ta mère ou de ton tuteur légal.",
+          "Nous appliquons des mesures techniques et organisationnelles raisonnables pour protéger tes données."
+        ]
+      },
+      {
+        "heading": "9. Modifications de cette politique",
+        "paragraphs": [],
+        "items": [
+          "Nous pouvons mettre à jour cette politique. La date de la dernière mise à jour apparaît en haut de la page."
+        ]
+      }
+    ]
   }
 }

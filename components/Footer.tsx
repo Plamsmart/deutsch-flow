@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Fraunces, Work_Sans } from "next/font/google";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import styles from "./Footer.module.css";
 
 const fraunces = Fraunces({
@@ -84,6 +85,10 @@ export default async function Footer() {
 
       <p className="mx-auto mt-[1.6rem] max-w-[1100px] text-center text-[0.76rem] text-[#f4f4f4] opacity-45">
         {t("copyright")}
+        {" · "}
+        <Link href="/privacidad" className="underline hover:opacity-80">
+          {t("privacyPolicy")}
+        </Link>
       </p>
     </footer>
   );

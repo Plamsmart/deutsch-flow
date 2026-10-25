@@ -185,7 +185,8 @@
     "clases": "Kurse",
     "testimonios": "Erfahrungen",
     "contacto": "Kontakt",
-    "copyright": "© 2026 Deutsch Flow. Alle Rechte vorbehalten."
+    "copyright": "© 2026 Deutsch Flow. Alle Rechte vorbehalten.",
+    "privacyPolicy": "Datenschutzerklärung"
   },
   "paymentSuccess": {
     "closeLabel": "Schließen",
@@ -231,6 +232,7 @@
     "holderLabel": "Kontoinhaber",
     "amountLabel": "Zu überweisender Betrag",
     "referenceLabel": "Bitte gib deinen Namen im Verwendungszweck an, damit wir deine Zahlung zuordnen können",
+    "providerDetails": "Angaben zum Anbieter: Gesa Nommsen · NIE Z2906214P · {address}",
     "thanks": "Sobald wir die Überweisung bestätigt haben, melden wir uns, um deine Kurse zu koordinieren.",
     "contactNote": "Sobald du die Überweisung getätigt hast, schreib Gesa an {email}, damit sie die Zahlung bestätigen kann (du kannst auch direkt auf diese E-Mail antworten)."
   },
@@ -258,5 +260,95 @@
     "heading": "Du gehörst jetzt zur Crew!",
     "body": "Deine E-Mail-Adresse ist bestätigt und dein Schülerkonto ist bereit. Unter „Mein Konto“ siehst du deine Stunden und deine Zeiten.",
     "cta": "Zu Mein Konto"
+  },
+  "privacy": {
+    "title": "Datenschutzerklärung",
+    "updated": "Letzte Aktualisierung: 25. Oktober 2026",
+    "intro": "Bei Deutsch Flow nehmen wir deine Daten ernst. Hier erklären wir dir, welche Daten wir verarbeiten, wofür, mit wem wir sie teilen und welche Rechte du hast.",
+    "formNote": "Mit dem Absenden akzeptierst du, dass wir deine Daten gemäß unserer Datenschutzerklärung verarbeiten.",
+    "sections": [
+      {
+        "heading": "1. Verantwortlicher für die Datenverarbeitung",
+        "paragraphs": [],
+        "items": [
+          "Gesa Nommsen — Deutsch Flow (www.deutschflow.eu)",
+          "Adresse: Irun (Gipuzkoa), Spanien",
+          "NIE: Z2906214P",
+          "Kontakt-E-Mail: mehrlernen.gesa@gmail.com"
+        ]
+      },
+      {
+        "heading": "2. Welche Daten wir verarbeiten",
+        "paragraphs": [],
+        "items": [
+          "Kontaktformular: Name, E-Mail-Adresse und Nachricht.",
+          "Schülerkonto: E-Mail-Adresse, Passwort (vom Authentifizierungsanbieter verschlüsselt gespeichert), Name, Deutschniveau und optional Telefonnummer.",
+          "Anfrage für Unterrichtspakete: Name, E-Mail-Adresse, Niveau, Anmerkungen, gewähltes Paket, Zahlungsmethode und Sprache.",
+          "German Coffee Break: Name, E-Mail-Adresse und Anmerkungen.",
+          "Unterricht und Kalender: Datum und Uhrzeit deiner Unterrichtsstunden.",
+          "Bewertungen: Wenn du eine Bewertung hinterlässt, werden dein Name, deine Bewertung, dein Kommentar und optional ein Foto auf der Website veröffentlicht."
+        ]
+      },
+      {
+        "heading": "3. Wofür wir deine Daten nutzen und auf welcher Rechtsgrundlage",
+        "paragraphs": [],
+        "items": [
+          "Um deine Anfragen zu beantworten und dein Anliegen zu bearbeiten: Durchführung vorvertraglicher Maßnahmen auf deine Anfrage (Art. 6 Abs. 1 lit. b DSGVO).",
+          "Um den Unterricht durchzuführen und dein Konto zu verwalten: Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO).",
+          "Um steuerliche und buchhalterische Pflichten zu erfüllen: rechtliche Verpflichtung (Art. 6 Abs. 1 lit. c DSGVO).",
+          "Um deine Bewertung zu veröffentlichen und deine Telefonnummer (optional) zu verarbeiten: deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die du jederzeit widerrufen kannst."
+        ]
+      },
+      {
+        "heading": "4. Mit wem wir deine Daten teilen",
+        "paragraphs": [],
+        "items": [
+          "Supabase (Datenbank und Authentifizierung), Vercel (Hosting der Website), Resend (Versand von E-Mails), Stripe (Kartenzahlungen, nur falls aktiviert) und die Bank bei Überweisungszahlungen.",
+          "Unsere Datenbank und unser Authentifizierungssystem (Supabase) werden in der Europäischen Union (Irland) gehostet. Einige andere Anbieter, wie Vercel und Resend, können Daten in den USA oder anderen Ländern außerhalb des Europäischen Wirtschaftsraums verarbeiten; in diesem Fall stützen sie sich auf geeignete Garantien, wie die Standardvertragsklauseln der Europäischen Kommission oder den EU-US-Datenschutzrahmen.",
+          "Wir verkaufen deine Daten nicht und nutzen sie nicht für Werbung.",
+          "Wir treffen keine automatisierten Entscheidungen und erstellen keine Profile mit deinen Daten."
+        ]
+      },
+      {
+        "heading": "5. Cookies",
+        "paragraphs": [],
+        "items": [
+          "Wir verwenden ausschließlich technisch notwendige Cookies: um deine Sitzung aufrechtzuerhalten und deine Sprache zu merken. Wir verwenden keine Werbe- oder Analyse-Cookies."
+        ]
+      },
+      {
+        "heading": "6. Wie lange wir deine Daten aufbewahren",
+        "paragraphs": [],
+        "items": [
+          "Kontodaten: solange du dein Konto behältst.",
+          "Kontaktanfragen: bis zur Klärung und maximal 12 Monate.",
+          "Abrechnungsdaten: während der gesetzlich vorgeschriebenen Fristen (6 Jahre).",
+          "Bewertungen: bis du ihre Entfernung beantragst."
+        ]
+      },
+      {
+        "heading": "7. Deine Rechte",
+        "paragraphs": [],
+        "items": [
+          "Du kannst Zugang, Berichtigung, Löschung, Einschränkung, Widerspruch und Übertragbarkeit deiner Daten verlangen und deine Einwilligung widerrufen, indem du an mehrlernen.gesa@gmail.com schreibst. Wir werden innerhalb von höchstens einem Monat auf deine Anfrage antworten.",
+          "Wenn du glaubst, dass wir deine Daten nicht korrekt verarbeiten, kannst du dich bei der Aufsichtsbehörde beschweren: Agencia Española de Protección de Datos (AEPD, www.aepd.es)."
+        ]
+      },
+      {
+        "heading": "8. Minderjährige und Sicherheit",
+        "paragraphs": [],
+        "items": [
+          "Wenn du minderjährig bist, benötigen wir die Zustimmung deiner Eltern oder deines Erziehungsberechtigten.",
+          "Wir setzen angemessene technische und organisatorische Maßnahmen ein, um deine Daten zu schützen."
+        ]
+      },
+      {
+        "heading": "9. Änderungen dieser Richtlinie",
+        "paragraphs": [],
+        "items": [
+          "Wir können diese Richtlinie aktualisieren. Das Datum der letzten Aktualisierung steht am Anfang."
+        ]
+      }
+    ]
   }
 }

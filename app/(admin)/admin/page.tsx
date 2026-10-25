@@ -3,6 +3,10 @@ import Link from "next/link";
 import { Fraunces, Work_Sans } from "next/font/google";
 import { createClient } from "@/lib/supabase/server";
 import { PLAN_HOURS, type PlanId } from "@/lib/plans";
+import {
+  GERMAN_LEVEL_LABELS,
+  type GermanLevelKey,
+} from "@/lib/germanLevels";
 import SignOutButton from "./SignOutButton";
 import { markTransferAsPaid } from "./actions";
 
@@ -30,6 +34,17 @@ type EnrollmentRow = {
   status: "pending" | "paid";
   payment_method: "stripe" | "transfer";
 };
+
+type ProfileLookupRow = {
+  email: string;
+  phone: string | null;
+  german_level: string | null;
+};
+
+function formatGermanLevel(level: string | null): string {
+  if (!level) return "—";
+  return GERMAN_LEVEL_LABELS[level as GermanLevelKey] ?? level;
+}
 
 function formatPrice(priceCents: number) {
   return new Intl.NumberFormat("es-ES", {
@@ -93,6 +108,34 @@ export default async function AdminPage() {
 
   const enrollments = (data ?? []) as EnrollmentRow[];
 
+  // Cruce por email contra "profiles" para mostrar teléfono y nivel
+  // declarado en el perfil (puede diferir del "level" de la compra, que es
+  // una foto fija del momento de inscripción). Esto depende de que
+  // "profiles" tenga una policy de RLS que le permita a Gesa leer perfiles
+  // que no son el suyo — si no existe, esta query va a devolver 0 filas y
+  // las columnas de abajo van a mostrar "—" para todos sin ningún error
+  // visible.
+  const studentEmails = enrollments.map((enrollment) => enrollment.student_email);
+
+  const { data: profilesData, error: profilesError } =
+    studentEmails.length > 0
+      ? await supabase
+          .from("profiles")
+          .select("email, phone, german_level")
+          .in("email", studentEmails)
+      : { data: [] as ProfileLookupRow[], error: null };
+
+  if (profilesError) {
+    console.error("[admin] Error trayendo profiles:", profilesError);
+  }
+
+  const profileByEmail = new Map(
+    ((profilesData ?? []) as ProfileLookupRow[]).map((profile) => [
+      profile.email,
+      profile,
+    ]),
+  );
+
   return (
     <main
       className={`${fraunces.variable} ${workSans.variable} min-h-screen bg-[#f4f4f4] px-6 py-10 font-[family-name:var(--font-work-sans)] md:px-10`}
@@ -133,8 +176,10 @@ export default async function AdminPage() {
                 <th className="px-4 py-3 font-semibold">Email</th>
                 <th className="px-4 py-3 font-semibold">Plan</th>
                 <th className="px-4 py-3 font-semibold">Precio</th>
-                <th className="px-4 py-3 font-semibold">Nivel</th>
+                <th className="px-4 py-3 font-semibold">Nivel (compra)</th>
                 <th className="px-4 py-3 font-semibold">Horas</th>
+                <th className="px-4 py-3 font-semibold">Teléfono</th>
+                <th className="px-4 py-3 font-semibold">Nivel (perfil)</th>
                 <th className="px-4 py-3 font-semibold">Fecha de pago</th>
                 <th className="px-4 py-3 font-semibold">Estado</th>
                 <th className="px-4 py-3 font-semibold">Detalle</th>
@@ -144,14 +189,17 @@ export default async function AdminPage() {
               {enrollments.length === 0 && (
                 <tr>
                   <td
-                    colSpan={9}
+                    colSpan={11}
                     className="px-4 py-6 text-center text-[#005461] opacity-60"
                   >
                     Todavía no hay inscripciones pagadas.
                   </td>
                 </tr>
               )}
-              {enrollments.map((enrollment) => (
+              {enrollments.map((enrollment) => {
+                const profile = profileByEmail.get(enrollment.student_email);
+
+                return (
                 <tr
                   key={enrollment.id}
                   className="border-b border-[rgba(0,84,97,0.06)] text-[#142023] last:border-0"
@@ -167,6 +215,10 @@ export default async function AdminPage() {
                   <td className="px-4 py-3">{enrollment.level}</td>
                   <td className="px-4 py-3">
                     {PLAN_HOURS[enrollment.plan_id]}h
+                  </td>
+                  <td className="px-4 py-3">{profile?.phone || "—"}</td>
+                  <td className="px-4 py-3">
+                    {formatGermanLevel(profile?.german_level ?? null)}
                   </td>
                   <td className="px-4 py-3">
                     {formatDate(enrollment.paid_at)}
@@ -207,7 +259,8 @@ export default async function AdminPage() {
                     </Link>
                   </td>
                 </tr>
-              ))}
+                );
+              })}
             </tbody>
           </table>
         </div>

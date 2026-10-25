@@ -7,6 +7,7 @@ import CalendarView, {
   type BusySlotInput,
 } from "@/components/admin/CalendarView";
 import SignOutButton from "./SignOutButton";
+import ProfileForm from "./ProfileForm";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -44,6 +45,12 @@ type BusySlotRow = {
   duration_minutes: number;
 };
 
+type ProfileRow = {
+  full_name: string | null;
+  phone: string | null;
+  german_level: string | null;
+};
+
 function formatDate(isoDate: string | null) {
   if (!isoDate) return "—";
   return new Intl.DateTimeFormat("es-ES", {
@@ -65,6 +72,21 @@ export default async function MiCuentaPage() {
   if (!user) {
     redirect("/mi-cuenta/login");
   }
+
+  // La RLS de "profiles" limita esto a la propia fila (auth.uid() = id). Si
+  // la cuenta se creó antes de que existiera esta tabla/trigger, puede no
+  // haber fila todavía — el formulario abajo igual permite completarla.
+  const { data: profileData, error: profileError } = await supabase
+    .from("profiles")
+    .select("full_name, phone, german_level")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  if (profileError) {
+    console.error("[mi-cuenta] Error trayendo el perfil:", profileError);
+  }
+
+  const profile = profileData as ProfileRow | null;
 
   // NOTA DE SEGURIDAD: cliente de servidor (anon key + sesión del alumno),
   // sujeto a RLS. Las políticas nuevas de "enrollments" y "class_sessions"
@@ -158,6 +180,18 @@ export default async function MiCuentaPage() {
             Mi cuenta
           </h1>
           <SignOutButton />
+        </div>
+
+        <div className="mb-8 rounded-[16px] border border-[rgba(0,84,97,0.1)] bg-white p-6 shadow-[0_6px_20px_rgba(0,84,97,0.06)]">
+          <h2 className="mb-4 font-[family-name:var(--font-fraunces)] text-[1.15rem] font-medium text-[#005461]">
+            Mis datos
+          </h2>
+          <ProfileForm
+            userId={user.id}
+            initialFullName={profile?.full_name ?? ""}
+            initialPhone={profile?.phone ?? ""}
+            initialGermanLevel={profile?.german_level ?? ""}
+          />
         </div>
 
         {enrollments.length === 0 ? (

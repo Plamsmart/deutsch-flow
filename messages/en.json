@@ -185,7 +185,8 @@
     "clases": "Classes",
     "testimonios": "Testimonials",
     "contacto": "Contact",
-    "copyright": "© 2026 Deutsch Flow. All rights reserved."
+    "copyright": "© 2026 Deutsch Flow. All rights reserved.",
+    "privacyPolicy": "Privacy policy"
   },
   "paymentSuccess": {
     "closeLabel": "Close",
@@ -231,6 +232,7 @@
     "holderLabel": "Account holder",
     "amountLabel": "Amount to transfer",
     "referenceLabel": "Please include your name in the transfer reference, so we can identify your payment",
+    "providerDetails": "Service provider details: Gesa Nommsen · NIE Z2906214P · {address}",
     "thanks": "Once we confirm the transfer, we'll reach out to coordinate your classes.",
     "contactNote": "Once you've made the transfer, write to Gesa at {email} so she can confirm the payment (you can also reply directly to this email)."
   },
@@ -258,5 +260,95 @@
     "heading": "You're now part of the crew!",
     "body": "Your email is verified and your student account is ready. In My account you can see your classes and your hours.",
     "cta": "Go to My account"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "updated": "Last updated: 25 October 2026",
+    "intro": "At Deutsch Flow we take your data seriously. Here we explain what data we process, why, who we share it with, and what rights you have.",
+    "formNote": "By submitting, you accept that we will process your data in accordance with our privacy policy.",
+    "sections": [
+      {
+        "heading": "1. Data controller",
+        "paragraphs": [],
+        "items": [
+          "Gesa Nommsen — Deutsch Flow (www.deutschflow.eu)",
+          "Address: Irun (Gipuzkoa), Spain",
+          "NIE: Z2906214P",
+          "Contact email: mehrlernen.gesa@gmail.com"
+        ]
+      },
+      {
+        "heading": "2. What data we process",
+        "paragraphs": [],
+        "items": [
+          "Contact form: name, email and message.",
+          "Student account: email, password (stored encrypted by the authentication provider), name, German level, and, optionally, phone number.",
+          "Class package request: name, email, level, notes, chosen package, payment method and language.",
+          "German Coffee Break: name, email and notes.",
+          "Classes and calendar: dates and times of your classes.",
+          "Reviews: if you choose to leave one, your name, rating, comment and an optional photo, which are published on the website."
+        ]
+      },
+      {
+        "heading": "3. Why we use your data and legal basis",
+        "paragraphs": [],
+        "items": [
+          "To respond to your enquiries and handle your request: taking pre-contractual steps at your request (Art. 6(1)(b) GDPR).",
+          "To deliver classes and manage your account: performance of a contract (Art. 6(1)(b)).",
+          "To comply with tax and accounting obligations: legal obligation (Art. 6(1)(c)).",
+          "To publish your review and process your phone number (optional): your consent (Art. 6(1)(a)), which you can withdraw at any time."
+        ]
+      },
+      {
+        "heading": "4. Who we share your data with",
+        "paragraphs": [],
+        "items": [
+          "Supabase (database and authentication), Vercel (website hosting), Resend (email delivery), Stripe (card payments, only if enabled) and the bank in the case of bank transfer payments.",
+          "Our database and authentication system (Supabase) are hosted in the European Union (Ireland). Some other providers, such as Vercel and Resend, may process data in the United States or other countries outside the European Economic Area; in that case they rely on appropriate safeguards, such as the European Commission's standard contractual clauses or the EU-U.S. Data Privacy Framework.",
+          "We do not sell your data or use it for advertising.",
+          "We do not make automated decisions or create profiles using your data."
+        ]
+      },
+      {
+        "heading": "5. Cookies",
+        "paragraphs": [],
+        "items": [
+          "We only use strictly necessary technical cookies: to keep you signed in and remember your language. We do not use advertising or analytics cookies."
+        ]
+      },
+      {
+        "heading": "6. How long we keep your data",
+        "paragraphs": [],
+        "items": [
+          "Account data: for as long as you keep your account.",
+          "Contact enquiries: until resolved, and for a maximum of 12 months.",
+          "Billing data: for the legally applicable periods (6 years).",
+          "Reviews: until you request their removal."
+        ]
+      },
+      {
+        "heading": "7. Your rights",
+        "paragraphs": [],
+        "items": [
+          "You can request access, rectification, erasure, restriction, objection and portability of your data, and withdraw your consent, by writing to mehrlernen.gesa@gmail.com. We will respond to your request within a maximum of one month.",
+          "If you believe we are not processing your data correctly, you can file a complaint with the supervisory authority: Agencia Española de Protección de Datos (AEPD, www.aepd.es)."
+        ]
+      },
+      {
+        "heading": "8. Minors and security",
+        "paragraphs": [],
+        "items": [
+          "If you are a minor, we need the authorisation of your parent or legal guardian.",
+          "We apply reasonable technical and organisational measures to protect your data."
+        ]
+      },
+      {
+        "heading": "9. Changes to this policy",
+        "paragraphs": [],
+        "items": [
+          "We may update this policy. The date of the last update appears at the top."
+        ]
+      }
+    ]
   }
 }

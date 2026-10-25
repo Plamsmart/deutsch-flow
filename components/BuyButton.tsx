@@ -7,6 +7,8 @@ import { Fraunces, Work_Sans } from "next/font/google";
 import { useLocale, useTranslations } from "next-intl";
 import type { PlanId } from "@/lib/plans";
 import { STRIPE_CHECKOUT_ENABLED } from "@/lib/payments";
+import { createClient } from "@/lib/supabase/client";
+import { Link } from "@/i18n/navigation";
 import BoatModal from "./BoatModal";
 import styles from "./BuyButton.module.css";
 
@@ -48,6 +50,8 @@ export default function BuyButton({
   // (hermanos de "clases"), no sub-claves de "clases".
   const t = useTranslations();
   const tModal = useTranslations("modal");
+  const tPrivacy = useTranslations("privacy");
+  const tFooter = useTranslations("footer");
   const locale = useLocale();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -101,6 +105,46 @@ export default function BuyButton({
     return () => {
       document.removeEventListener("mousedown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
+
+  // Si quien abre el modal ya está logueado como alumno (misma cookie de
+  // sesión de Supabase Auth en todo el dominio, independientemente de que
+  // esto viva en el sitio público y /mi-cuenta sea otro route group),
+  // precarga nombre/email/nivel desde su perfil. Solo completa los campos
+  // que todavía están vacíos, para no pisar algo que la persona ya escribió
+  // a mano (ej. si cerró el modal y lo volvió a abrir).
+  useEffect(() => {
+    if (!isOpen) return;
+
+    let isCancelled = false;
+
+    (async function prefillFromProfile() {
+      const supabase = createClient();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user || isCancelled) return;
+
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("full_name, german_level")
+        .eq("id", user.id)
+        .maybeSingle();
+
+      if (isCancelled) return;
+
+      setFormData((prev) => ({
+        ...prev,
+        name: prev.name || profile?.full_name || "",
+        email: prev.email || user.email || "",
+        level: prev.level || profile?.german_level || "",
+      }));
+    })();
+
+    return () => {
+      isCancelled = true;
     };
   }, [isOpen]);
 
@@ -401,6 +445,16 @@ export default function BuyButton({
                     {tModal("secureNote")}
                   </p>
                 )}
+
+                <p className="mt-3 text-center text-[0.72rem] text-[#005461] opacity-60">
+                  {tPrivacy("formNote")}{" "}
+                  <Link
+                    href="/privacidad"
+                    className="underline hover:opacity-80"
+                  >
+                    {tFooter("privacyPolicy")}
+                  </Link>
+                </p>
               </form>
             </div>
           </div>,
