@@ -66,12 +66,12 @@ export default async function Hero() {
             >
               {tHero("ctaPrimary")}
             </a>
-            <a
+            {/* <a
               href="#clases"
               className="border-b border-[rgba(244,244,244,0.35)] pb-0.5 text-[0.95rem] font-normal text-[#f4f4f4] transition-colors duration-200 hover:border-[#f4f4f4] motion-reduce:transition-none"
             >
               {tHero("ctaSecondary")}
-            </a>
+            </a> */}
           </div>
         </div>
 
